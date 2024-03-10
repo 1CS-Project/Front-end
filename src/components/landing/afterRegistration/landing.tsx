@@ -1,4 +1,4 @@
-import Header from "./header";
+import Header from "../common/header";
 
 function Landing() {
     return ( 

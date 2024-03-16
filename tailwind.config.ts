@@ -12,6 +12,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        "Abril":['"Abril Fatface"',"serif"],
+        "Open":["Open Sans", "sans-serif"],
+        "Inter":["Inter", "sans-serif"]
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

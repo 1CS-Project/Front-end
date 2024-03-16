@@ -2,16 +2,16 @@ import { z } from "zod";
 
 
 export const TirageRegSchema=z.object({
-    first_name:z.string({required_error:"first name required"}),
-    last_name:z.string(),
-    phone:z.string().regex(/\d{9}/).transform((val)=>"+213"+val),
-    birthCert_num:z.string().regex(/\d{5}/),
-    city:z.string(),
-    state:z.string(),
-    passport_number:z.string().regex(/\d{9}/),
-    expire_date:z.date(),
-    birth_date:z.date(),
-    image:z.string().url(),
+    firstname:z.string().trim().min(1,{message:"First name is required"}),
+    lastname:z.string().trim().min(1,{message:"Last name is required"}),
+    phoneNumber:z.string().regex(/\+213\d{9}/,{message:"Phone number must start with +213"}),
+    birthCerteficateNumber:z.string().regex(/\d{5}/,{message:"certeficate number length must be 5"}),
+    city:z.string().trim(),
+    state:z.string().trim(),
+    nationalIdNumber:z.string().regex(/\d{9}/),
+    passportExpirationDate:z.string(),
+    dateOfBirth:z.string(),
+    imageUrl:z.string().url(),
     gender:z.enum(["male","female"])
 })
 

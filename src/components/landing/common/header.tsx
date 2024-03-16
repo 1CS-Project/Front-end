@@ -1,11 +1,20 @@
 'use client'
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
 import { SetStateAction, useEffect, useState } from "react";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
-function Header() {
-  const t = useTranslations('home');
+
+type props={
+  journey:string,
+  steps:string,
+  conditions:string,
+  tirage:string,
+  hotel:string
+}
+
+
+
+function Header({hotel,conditions,journey,steps,tirage}:props) {
   const [language, setLanguage] =useState({ name: 'English', flag: 'fi-sh' });
   const [navbar, setNavbar] = useState(false)
   const [color, setColor] = useState('transparent')
@@ -50,31 +59,31 @@ function Header() {
         <div className="font-semibold text-2xl">
           Makkah
         </div>
-        <div className="flex gap-x-6 hidden sm:flex items-center">
+        <div className="gap-x-6 hidden sm:flex items-center">
           <Link href={"/journey"}>
             <h1 className="font-semibold hover:underline">
-              {t("journey")}
+              {journey}
             </h1>
 
           </Link>
           <Link href={"/steps"}>
             <h1 className="font-semibold hover:underline">
-              {t("Steps")}
+              {steps}
             </h1>
           </Link>
           <Link href={"/conditions"}>
             <h1 className="font-semibold hover:underline">
-              {t("Conditions")}
+              {conditions}
             </h1>
           </Link>
           <Link href={"/tirage"}>
             <h1 className="font-semibold hover:underline">
-              {t("Tirage")}
+              {tirage}
             </h1>
           </Link>
           <Link href={"/hotel"}>
             <h1 className="font-semibold hover:underline">
-              {t("Hotel")}
+              {hotel}
             </h1>
           
           </Link>
@@ -157,27 +166,27 @@ function Header() {
           : "sm:hidden absolute top-0 right-0 bottom-0 left-[-100%] justify-center items-center w-full h-screen bg-white text-center ease-in duration-300 "}>
           <Link href={"/journey"}>
             <h1 className="font-semibold text-black p-5 hover:underline ">
-              {t("journey")}
+              {journey}
             </h1>
           </Link>
           <Link href={"/steps"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {t("Steps")}
+              {steps}
             </h1>
           </Link>
           <Link href={"/conditions"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {t("Conditions")}
+              {conditions}
             </h1>
           </Link>
           <Link href={"/tirage"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {t("Tirage")}
+              {tirage}
             </h1>
           </Link>
           <Link href={"/hotel"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {t("Hotel")}
+              {hotel}
             </h1>
 
           </Link>

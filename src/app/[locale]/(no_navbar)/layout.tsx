@@ -5,11 +5,9 @@ import {NextUIProvider} from "@nextui-org/react";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-<NextIntlClientProvider messages={{}}>
       <div>
         {children}
       </div>
-    </NextIntlClientProvider>
     
   );
 }

@@ -5,6 +5,9 @@
       "Conditions":"Conditions",
       "Tirage":"Tirage",
       "Hotel":"Hotel"
-
+  },
+  "journey":{
+    "reg":"Registration",
+    "regInfo":"This step ensures that all necessary information is accurately collected and securely stored, facilitating the smooth coordination of pilgrimage logistics."
   }
 }

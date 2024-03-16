@@ -5,5 +5,10 @@
     "Conditions": "Conditions",
     "Tirage": "Tirage",
     "Hotel": "Hôtel"
+  },
+  "journey":{
+    "reg":"Inscription",
+    "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité, facilitant ainsi la coordination fluide de la logistique du pèlerinage."
+
   }
 }

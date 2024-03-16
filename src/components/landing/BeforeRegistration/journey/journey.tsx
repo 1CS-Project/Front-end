@@ -1,8 +1,10 @@
-'use client'
+"use client"
+import { useTranslations } from 'next-intl';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
 function Journey() {
+  const t=useTranslations("journey");
   const color = `#525252`; 
 const colorn=`linear-gradient(to bottom right, ${`#B49169`} 5%, #698CB4 100%)`
   return (
@@ -24,8 +26,8 @@ const colorn=`linear-gradient(to bottom right, ${`#B49169`} 5%, #698CB4 100%)`
             }
           
           >
-            <h3 className="vertical-timeline-element-title font-bold underline pb-2">Registration</h3>
-            <span className='font-medium'>This step ensures that all necessary information is accurately collected and securely stored, facilitating the smooth coordination of pilgrimage logistics...</span>
+            <h3 className="vertical-timeline-element-title font-bold underline pb-2">{t("reg")}</h3>
+            <span className='font-medium'>{t("regInfo")}</span>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             visible={true}

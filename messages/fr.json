@@ -1,5 +1,9 @@
 {
-    "home":{
-        "hello":"bonjour"
-    }
+  "home": {
+    "journey": "Voyage",
+    "Steps": "Étapes",
+    "Conditions": "Conditions",
+    "Tirage": "Tirage",
+    "Hotel": "Hôtel"
+  }
 }

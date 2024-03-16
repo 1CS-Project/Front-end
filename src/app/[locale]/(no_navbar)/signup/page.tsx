@@ -1,0 +1,9 @@
+
+import Signup from "@/components/registration/signup/signup";
+function page() {
+  return (
+    <Signup/>
+  )
+}
+
+export default page

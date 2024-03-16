@@ -1,5 +1,9 @@
 {
-    "home":{
-        "hello":"مرحبا"
-    }
+  "home": {
+    "journey": "الرحلة",
+    "Steps": "خطوات",
+    "Conditions": "الشروط",
+    "Tirage": "السحب",
+    "Hotel": "فندق"
+  }
 }

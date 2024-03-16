@@ -1,5 +1,10 @@
 {
-    "home":{
-        "hello":"hello"
-    }
+  "home":{
+      "journey":"Journey",
+      "Steps":"Steps",
+      "Conditions":"Conditions",
+      "Tirage":"Tirage",
+      "Hotel":"Hotel"
+
+  }
 }

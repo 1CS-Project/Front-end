@@ -12,20 +12,19 @@ function hero() {
 const locale=useLocale()
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [bgImage, setBgImage] = useState("/hero1.png"); // Initial background image
+  const [bgImage, setBgImage] = useState("/hero1.png");
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    const images = ["/hero1.png", "/hero2.png", "/hero3.png"]; // Array of background images
+    const images = ["/hero1.png", "/hero2.png", "/hero3.png"]; 
     let currentIndex = 0;
 
     const interval = setInterval(() => {
-      // Update the background image every 2 seconds
       currentIndex = (currentIndex + 1) % images.length;
       setBgImage(images[currentIndex]);
     }, 2000);
 
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
+    return () => clearInterval(interval); 
   }, []);
   return (
     <div className='flex items-center justify-center h-screen mb-[4rem] bg-fixed bg-center bg-cover' style={{ backgroundImage: `url(${bgImage})` }}>

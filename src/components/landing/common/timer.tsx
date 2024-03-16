@@ -2,7 +2,7 @@ import { NextPage } from "next"
 import { useEffect, useState } from "react"
 
 const Timer: NextPage = () => {
-  const [partyTime, setPartyTime] = useState(false);
+  const [tirageTime, setTirageTime] = useState(false);
   const [months, setMonths] = useState(0);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -22,27 +22,26 @@ const Timer: NextPage = () => {
       let min = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       let s = Math.floor((difference % (1000 * 60)) / 1000);
 
-      // Decrement seconds and cascade to higher units when seconds reach zero
       if (s === 0) {
         if (min === 0) {
           if (h === 0) {
             if (d === 0) {
               if (m === 0) {
-                setPartyTime(true);
-                clearInterval(interval); // Stop the interval when it's party time
+                setTirageTime(true);
+                clearInterval(interval); 
                 return;
               }
               m--;
-              d = 30; // Reset days to maximum value for the month
+              d = 30; 
             }
             d--;
-            h = 24; // Reset hours to maximum value for the day
+            h = 24;
           }
           h--;
-          min = 60; // Reset minutes to maximum value for the hour
+          min = 60; 
         }
         min--;
-        s = 60; // Reset seconds to maximum value for the minute
+        s = 60;
       }
       
       setMonths(m);
@@ -53,7 +52,6 @@ const Timer: NextPage = () => {
 
     }, 1000);
 
-    // Cleanup the interval
     return () => clearInterval(interval);
   }, []);
 

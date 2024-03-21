@@ -3,24 +3,22 @@
 
 import { TirageRegSchema, tirageRegT } from "@/schema/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
+import { useForm, useWatch } from "react-hook-form";
 import InputText from "./inputText";
 import InputOption from "./inputOption";
-import ImagePlaceholder from "../landing/common/icons/image_placeholder";
+import InputFile from "./inputFile";
+import { useEffect, useState } from "react";
+import MerhremInfo from "./merhremInfo";
 
-type FieldValues = {
-    [x: string]: any;
-}
 
 
 function TirageReg() {
 
     
 
-    const {register,handleSubmit,getValues,formState:{errors}} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema)})
-
-    // const submit:SubmitHandler<any>=(data)=>console.log(data);
+    const {register,handleSubmit,getValues,control,formState:{errors}} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema)})
+    const showAdditional=useWatch<tirageRegT>({name:"gender",control})==="female"
+    console.log(errors);
     
     return ( 
         <div>
@@ -45,16 +43,11 @@ function TirageReg() {
                         <InputText field="passportExpirationDate" label="Expiration date"  register={register} error={errors.passportExpirationDate?.message}  type="date"/>
                         <InputText field="dateOfBirth" label="Birth date"  register={register} error={errors.dateOfBirth?.message}  type="date"/>
                         <InputOption  field="gender" label="Gender"  register={register} error={errors.gender?.message} />
-                        <div className="pt-5 flex">
-                            <ImagePlaceholder/>
-                            <div>
-                                <h1>Upload square image, size less than 100KB</h1>
-                                <input type="file" name="" id="" />
-                            </div>
-                        </div>
+                        <InputFile/>
                     </div>
+                        {showAdditional&&<MerhremInfo errors={errors} register={register} />}
 
-                    <button className="mt-[200px]" type="submit">submit</button>
+                    <button className="mt-10 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
                 </form>
                 
             </div>

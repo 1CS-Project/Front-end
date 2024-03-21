@@ -28,8 +28,6 @@ function InputOption({register,error,field,label}:props) {
                         <input value={"female"} {...register(field)} type="radio"  />
                         <span className="px-2">Female</span>
                     </label>
-
-
                 </div>
                 {/* <input className={"outline-none border w-full pr-8 pl-4 py-2 rounded-md  "+(error?"border-[#E64040]":"focus:border-black/40")} {...register(field)} placeholder={placeholder} type={type} /> */}
                 {/* {error&&<div className="absolute top-1.5 right-1">

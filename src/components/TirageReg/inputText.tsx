@@ -10,7 +10,7 @@ type props={
     type?:"date"|"text"
     label:string,
     placeholder?:string,
-    field:"firstname" | "lastname" | "phoneNumber" | "birthCerteficateNumber" | "city" | "state" | "nationalIdNumber" | "passportExpirationDate" | "dateOfBirth" | "imageUrl" | "gender"
+    field:"firstname" | "lastname" | "phoneNumber" | "birthCerteficateNumber" | "city" | "state" | "nationalIdNumber" | "passportExpirationDate" | "dateOfBirth" | "imageUrl" | "gender"|"mahremFirstname"|"mahremNationalIdNumber"|"mahremLastname"
 }
 
 

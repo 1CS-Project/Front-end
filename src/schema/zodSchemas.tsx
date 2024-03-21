@@ -12,7 +12,17 @@ export const TirageRegSchema=z.object({
     passportExpirationDate:z.string(),
     dateOfBirth:z.string(),
     imageUrl:z.string().url(),
-    gender:z.enum(["male","female"])
+    gender:z.enum(["male","female"]),
+    mahremNationalIdNumber:z.string().optional()
+}).refine((input)=>{
+    
+    if (input.gender==="female"&&input.mahremNationalIdNumber===undefined){
+        return false
+    }
+    return true;
+},{
+    message:"mahrem is required",
+    path:["mahremNationalIdNumber"]
 })
 
 export type tirageRegT=z.infer<typeof TirageRegSchema>

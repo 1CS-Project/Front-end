@@ -9,5 +9,57 @@
   "journey":{
     "reg":"Registration",
     "regInfo":"This step ensures that all necessary information is accurately collected and securely stored, facilitating the smooth coordination of pilgrimage logistics."
+  },
+  "tirageForm":{ 
+    "register":"Register",
+    "firstName":{
+      "name":"First name",
+      "error":"First name is required"
+    },
+    "lastName":{
+      "name":"Last name",
+      "error":"Last name is required"
+    },
+    "phone":{
+      "name":"Phone number",
+      "error":"Phone number start with +213"
+    },
+    "birthCert":{
+      "name":"Birth certificate number",
+      "error":"The number must be of length 5"
+    },
+    "state":{
+      "name":"State",
+      "error":"State name is required"
+    },
+    "city":{
+      "name":"City",
+      "error":"City name is required"
+    },
+    "passport":{
+      "name":"Passport number",
+      "error":"The number must be of length 9"
+    },
+    "passportExpire":{
+      "name":"Passport expire date",
+      "error":"Invalid date"
+    },
+    "birthdate":{
+      "name":"Birth date",
+      "error":"Invalid date"
+    },
+    "gender":{
+      "name":"gender",
+      "error":"This field is required"
+    },
+    "image":{
+      "name":"Upload a square image",
+      "error":"The picture is required"
+    },
+    "relationMahrem":{
+      "name":"Mahrem relation",
+      "error":"This field is required"
+    }
+    
   }
 }

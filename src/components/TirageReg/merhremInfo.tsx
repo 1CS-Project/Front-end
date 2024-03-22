@@ -1,6 +1,7 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister, UseFormUnregister } from "react-hook-form";
 import InputText from "./inputText";
 import { tirageRegT } from "@/schema/zodSchemas";
+import { useEffect } from "react";
 
 type props={
     register:UseFormRegister<tirageRegT>,
@@ -9,6 +10,7 @@ type props={
 
 
 function MerhremInfo({errors,register}:props) {
+
     return ( 
         <div className="mt-10">
             <h1>Your mehrem info</h1>
@@ -16,7 +18,7 @@ function MerhremInfo({errors,register}:props) {
                 {/* <InputText field="mahremFirstname" label="First name" placeholder="Enter your first name" register={register} error={errors.firstname?.message} /> */}
                 {/* <InputText field="mahremLastname" label="Last name" placeholder="Enter your last name" register={register} error={errors.lastname?.message} /> */}
                 <InputText field="mahremNationalIdNumber" label="PASSPORT" placeholder="Enter your passport number" register={register} error={errors.mahremNationalIdNumber?.message} />
-                <div  className="font-Open basis-[49%]  text-sm">
+                <div {...register("mahremRelation")} className="font-Open basis-[49%]  text-sm">
                     <h1 className="text-sm text-[#1E1E1E] py-2">Relation with mahrem</h1>
                     <select className="bg-transparent outline-none focus:border-black/40 border h-fit pl-4 pr-40 py-2 rounded-md" name="" id="">
                         <option value="husband" className="py-5">Husband</option>

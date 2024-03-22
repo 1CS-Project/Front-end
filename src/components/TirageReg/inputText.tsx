@@ -1,16 +1,14 @@
-import { tirageRegT } from "@/schema/zodSchemas";
-import { UseFormRegister } from "react-hook-form";
-
-import { Open_Sans } from "next/font/google";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import Error from "../landing/common/icons/error";
+import { tirageRegT } from "@/schema/zodSchemas";
 
 type props={
-    register:UseFormRegister<tirageRegT>,
+    register:UseFormRegister<tirageRegT>
     error?:string,
     type?:"date"|"text"
     label:string,
     placeholder?:string,
-    field:"firstname" | "lastname" | "phoneNumber" | "birthCerteficateNumber" | "city" | "state" | "nationalIdNumber" | "passportExpirationDate" | "dateOfBirth" | "imageUrl" | "gender"|"mahremFirstname"|"mahremNationalIdNumber"|"mahremLastname"
+    field:Path<tirageRegT>
 }
 
 

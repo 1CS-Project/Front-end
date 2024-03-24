@@ -1,10 +1,23 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../../app/globals.css"
 import Image from 'next/image'
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
 
 
 function conditions() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(()=>{
+    AOS.init({
+      duration:1000,
+      easing:"ease",
+      once:true,
+      anchorPlacement:"top-bottom",
+    });
+  })
+
   const requirements = [
     "Hold Algerian nationality",
     "Possess a valid biometric passport at the time of registration",
@@ -32,25 +45,26 @@ function conditions() {
   };
 
   {/* const textCircle = document.querySelector('.textCircle p');
-  const innerText: string = "-------------------------------------------"; // Example innerText, replace with your actual text
+  const innerText: string = "-------------------------------------------"; 
   if (textCircle) {
     textCircle.innerHTML = innerText
       .split('')
       .map((char: string, i: number) => `<span style="transform rotate-${i * 8.3}">${char}</span>`)
       .join('');
   }*/}
-  
+
   return (
     <section>
-      <h1 className="text-center font-semibold text-3xl">Our Conditions</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-[10rem] items-center mt-8">
+      <h1 data-aos="fade-down" className="text-center font-semibold text-3xl">Our Conditions</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-[10rem] items-center justify-between mt-8">
         <div>
           {requirements.slice(0, displayCount).map((requirement, index) => (
-            <p className="font-sans mb-3" key={index}>
+            <p data-aos="fade-right" className="font-sans mb-3 text-md" key={index}>
               {index + 1} - {requirement}
             </p>
           ))}
           <button
+          data-aos="fade-right"
             type="button"
             onClick={handleClick}
             className="text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl m-4 w-full border-gradient"
@@ -64,13 +78,14 @@ function conditions() {
 
             ))}
           </div> */}
-        <div className="relative w-[300px] h-[300px] rounded-full flex justify-center items-center">
-        <Image
-      src="/cond.png"
-      width={900}
-      height={900}
-      alt="Picture of the author"
-    />
+        <div data-aos="fade-left" className="relative md:w-[300px] md:h-[400px] w-[80%] h-[80%] border-[3px] flex justify-center items-center border-gray-500 rounded-lg">
+          <Image
+            src="/image/cond.png"
+            width={350}
+            height={350}
+            alt="Picture of the author"
+            className="-rotate-12 rounded-lg"
+          />
         </div>
       </div>
     </section>

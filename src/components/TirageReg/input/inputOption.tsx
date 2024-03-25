@@ -1,6 +1,6 @@
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-import Error from "../landing/common/icons/error";
+import Error from "../../landing/common/icons/error";
 import { tirageRegT } from "@/schema/zodSchemas";
 
 type props={

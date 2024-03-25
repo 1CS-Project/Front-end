@@ -1,5 +1,5 @@
 import { FieldErrors, FieldValues, UseFormRegister, UseFormUnregister } from "react-hook-form";
-import InputText from "./inputText";
+import InputText from "../input/inputText";
 import { tirageRegT } from "@/schema/zodSchemas";
 import { useEffect } from "react";
 

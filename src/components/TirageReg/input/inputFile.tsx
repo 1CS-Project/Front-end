@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import ImagePlaceholder from "../landing/common/icons/image_placeholder";
+import ImagePlaceholder from "../../landing/common/icons/image_placeholder";
 
 function InputFile() {
     let fileRef=useRef<HTMLInputElement>(null);

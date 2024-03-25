@@ -12,19 +12,19 @@
   },
   "tirageForm":{ 
     "register":"Register",
-    "firstName":{
+    "firstname":{
       "name":"First name",
       "error":"First name is required"
     },
-    "lastName":{
+    "lastname":{
       "name":"Last name",
       "error":"Last name is required"
     },
-    "phone":{
+    "phoneNumber":{
       "name":"Phone number",
       "error":"Phone number start with +213"
     },
-    "birthCert":{
+    "birthCerteficateNumber":{
       "name":"Birth certificate number",
       "error":"The number must be of length 5"
     },
@@ -36,17 +36,19 @@
       "name":"City",
       "error":"City name is required"
     },
-    "passport":{
+    "nationalIdNumber":{
       "name":"Passport number",
       "error":"The number must be of length 9"
     },
-    "passportExpire":{
+    "passportExpirationDate":{
       "name":"Passport expire date",
-      "error":"Invalid date"
+      "error":"Invalid date",
+      "expireError":"the passport must be at least 6 months old"
     },
-    "birthdate":{
+    "dateOfBirth":{
       "name":"Birth date",
-      "error":"Invalid date"
+      "error":"Invalid date",
+      "ageError":"you must be at least 19 years old"
     },
     "gender":{
       "name":"gender",
@@ -56,7 +58,7 @@
       "name":"Upload a square image",
       "error":"The picture is required"
     },
-    "relationMahrem":{
+    "mahremRelation":{
       "name":"Mahrem relation",
       "error":"This field is required"
     }

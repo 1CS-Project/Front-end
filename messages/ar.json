@@ -12,19 +12,19 @@
   },
   "tirageForm":{ 
     "register":"التسجيل",
-    "firstName":{
+    "firstname":{
       "name":"اللقب",
       "error":"اللقب ضروري"
     },
-    "lastName":{
+    "lastname":{
       "name":"الإسم",
       "error":"الإسم ضروري"
     },
-    "phone":{
+    "phoneNumber":{
       "name":"رقم الهاتف",
       "error":"رقم الهاتف يبدأ ب +213"
     },
-    "birthCert":{
+    "birthCerteficateNumber":{
       "name":"رقم شهادة الميلاد",
       "error":"الرقم مكون من 5 أرقام"
     },
@@ -36,17 +36,19 @@
       "name":"البلدية",
       "error":"إسم البلدية ضروري"
     },
-    "passport":{
+    "nationalIdNumber":{
       "name":"رقم جواز السفر",
       "error":"الرقم مكون من 9 أرقام"
     },
-    "passportExpire":{
+    "passportExpirationDate":{
       "name":"تاريخ نهاية الصلاحية جواز السفر",
-      "error":"ddd"
+      "error":"تاريخ خاطئ",
+      "expireError":"عمر جواز السفر يجب أين يكون 6 أشهر على الأقل"
     },
-    "birthdate":{
+    "dateOfBirth":{
       "name":"تاريخ الميلاد",
-      "error":"ddd"
+      "error":"تاريخ خاطئ",
+      "ageError":"يجب أن يكون عمرك على الأقل 19 سنة"
     },
     "gender":{
       "name":"الجنس",
@@ -56,7 +58,7 @@
       "name":"حمل صورة مربعة الشكل",
       "error":"الصورة الشخصية ضرورية"
     },
-    "relationMahrem":{
+    "mahremRelation":{
       "name":"نوع العلاقة",
       "error":"هذه الخانة ضرورية"
     }

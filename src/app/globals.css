@@ -5,6 +5,10 @@
  
 @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Roboto&display=swap');
 
+.modalEnabled{
+  height: 100vh;
+  overflow: hidden;
+}
 
 .amiri-quran-regular {
   font-family: "Amiri Quran", serif;

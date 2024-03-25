@@ -10,16 +10,16 @@ function footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-start dark:text-gray-400">
-          Copyright © 2024{" "}
-            
+            Copyright © 2024{" "}
+
             . All Rights Reserved.
             <div>
-            <a target="_blank" href="https://onpo.dz/" className="hover:underline">
-              NATIONAL OFFICE OF PILGRIMAGE AND OMRA
-            </a>
+              <a target="_blank" href="https://onpo.dz/" className="hover:underline">
+                NATIONAL OFFICE OF PILGRIMAGE AND OMRA
+              </a>
             </div>
           </span>
-          
+
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a
               target="_blank"
@@ -86,21 +86,21 @@ function footer() {
               target="_blank"
               href="https://onpo.dz/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                <svg width={34} height={33} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="0.966431" y="0.202148" width="40.6266" height="41.6175" rx="20.3133" fill="#383D38"/>
-                  <g clipPath="url(#clip0_657_7553)">
-                    <path d="M9.08649 20.454C9.08649 22.056 9.40203 23.6423 10.0151 25.1224C10.6282 26.6025 11.5267 27.9473 12.6595 29.0801C13.7923 30.2129 15.1371 31.1115 16.6172 31.7245C18.0973 32.3376 19.6836 32.6531 21.2856 32.6531C22.8876 32.6531 24.4739 32.3376 25.954 31.7245C27.4341 31.1115 28.7789 30.2129 29.9117 29.0801C31.0445 27.9473 31.9431 26.6025 32.5561 25.1224C33.1692 23.6423 33.4847 22.056 33.4847 20.454C33.4847 17.2186 32.1995 14.1157 29.9117 11.8279C27.6239 9.54014 24.521 8.25488 21.2856 8.25488C18.0502 8.25488 14.9473 9.54014 12.6595 11.8279C10.3717 14.1157 9.08649 17.2186 9.08649 20.454Z" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M9.89978 16.3877H32.6715" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M9.89978 24.521H32.6715" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M20.6079 8.25488C18.3244 11.9141 17.1138 16.1408 17.1138 20.454C17.1138 24.7673 18.3244 28.9939 20.6079 32.6531" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M21.9633 8.25488C24.2468 11.9141 25.4574 16.1408 25.4574 20.454C25.4574 24.7673 24.2468 28.9939 21.9633 32.6531" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round"/>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_657_7553">
-                      <rect width="32.531" height="32.531" fill="white" transform="translate(5.02008 4.18896)"/>
-                    </clipPath>
-                  </defs>
-                </svg>
+              <svg width={34} height={33} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.966431" y="0.202148" width="40.6266" height="41.6175" rx="20.3133" fill="#383D38" />
+                <g clipPath="url(#clip0_657_7553)">
+                  <path d="M9.08649 20.454C9.08649 22.056 9.40203 23.6423 10.0151 25.1224C10.6282 26.6025 11.5267 27.9473 12.6595 29.0801C13.7923 30.2129 15.1371 31.1115 16.6172 31.7245C18.0973 32.3376 19.6836 32.6531 21.2856 32.6531C22.8876 32.6531 24.4739 32.3376 25.954 31.7245C27.4341 31.1115 28.7789 30.2129 29.9117 29.0801C31.0445 27.9473 31.9431 26.6025 32.5561 25.1224C33.1692 23.6423 33.4847 22.056 33.4847 20.454C33.4847 17.2186 32.1995 14.1157 29.9117 11.8279C27.6239 9.54014 24.521 8.25488 21.2856 8.25488C18.0502 8.25488 14.9473 9.54014 12.6595 11.8279C10.3717 14.1157 9.08649 17.2186 9.08649 20.454Z" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M9.89978 16.3877H32.6715" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M9.89978 24.521H32.6715" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M20.6079 8.25488C18.3244 11.9141 17.1138 16.1408 17.1138 20.454C17.1138 24.7673 18.3244 28.9939 20.6079 32.6531" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M21.9633 8.25488C24.2468 11.9141 25.4574 16.1408 25.4574 20.454C25.4574 24.7673 24.2468 28.9939 21.9633 32.6531" stroke="#FEFFFC" strokeWidth="1.98178" strokeLinecap="round" strokeLinejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_657_7553">
+                    <rect width="32.531" height="32.531" fill="white" transform="translate(5.02008 4.18896)" />
+                  </clipPath>
+                </defs>
+              </svg>
 
               <span className="sr-only">Site web</span>
             </a>

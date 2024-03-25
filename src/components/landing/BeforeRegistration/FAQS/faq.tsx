@@ -10,7 +10,7 @@ import {
 function faq() {
   return (
     <section className="mt-[4rem] ">
-    
+
       <h1 className="text-center font-semibold text-3xl mb-[4rem]">Frequently asked questions </h1>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">

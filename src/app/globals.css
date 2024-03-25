@@ -5,6 +5,10 @@
  
 @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Roboto&display=swap');
 
+.modalEnabled{
+  height: 100vh;
+  overflow: hidden;
+}
 
 .amiri-quran-regular {
   font-family: "Amiri Quran", serif;
@@ -33,3 +37,28 @@
 }
 
 
+.animate-slide-left {
+  
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+}
+
+.animate-slide-right {
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+}
+
+.show-form {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+}

@@ -1,6 +1,7 @@
 
 import Signup from "@/components/registration/signup/signup";
-function page() {
+import { NextIntlClientProvider, useMessages } from "next-intl";
+async function page() {
   return (
     <Signup/>
   )

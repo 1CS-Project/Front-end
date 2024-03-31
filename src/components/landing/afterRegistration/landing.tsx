@@ -5,13 +5,10 @@ import Hero from "./hero/hero";
 
 function Landing() {
     return ( 
-        <div className="">
-            <div className="px-10">
+            <div className="px-10 mt-20">
                 <Hero/>
                 <Body/>
             </div>
-            <Footer/>
-        </div>
      );
 }
 

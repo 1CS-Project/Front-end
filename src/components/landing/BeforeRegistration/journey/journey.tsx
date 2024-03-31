@@ -1,120 +1,141 @@
-"use client"
-import { useTranslations } from 'next-intl';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
+
+'use client'
+import React, { useState } from "react";
+import Etapehaj from "../etapehaj/etapehaj";
+import Hajjdef from "../hajjdef/hajjdef";
+import Instruction from "../instruction/instruction";
 
 function Journey() {
-  const t = useTranslations("journey");
-  const color = `#fff`;
-  const colorn = `black`
+  const [showHajjDef, setShowHajjDef] = useState(true);
+  const [showGuide, setShowGuide] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [showTransport, setShowTransport] = useState(false);
+
+  const handleHajjDefClick = () => {
+    setShowHajjDef(true);
+    setShowGuide(false);
+    setShowInstructions(false);
+    setShowTransport(false);
+  };
+
+  const handleGuideClick = () => {
+    setShowHajjDef(false);
+    setShowGuide(true);
+    setShowInstructions(false);
+    setShowTransport(false);
+  };
+
+  const handleInstructionsClick = () => {
+    setShowHajjDef(false);
+    setShowGuide(false);
+    setShowInstructions(true);
+    setShowTransport(false);
+  };
+
+  const handleTransportClick = () => {
+    setShowHajjDef(false);
+    setShowGuide(false);
+    setShowInstructions(false);
+    setShowTransport(true);
+  };
+
+  const [activeCard, setActiveCard] = useState("hajjDef");
+
+  const handleCardClick = (card: any) => {
+    setActiveCard(card);
+  };
+
   return (
-    <section className='mt-[8rem] '>
-      <h1 className="text-center font-semibold text-3xl mb-[4rem]">Unlock the journey to Mecca with these essential steps</h1>
-
-      <div className='flex justify-center items'>
-        <VerticalTimeline lineColor='#2A2A2A' >
-
-          <VerticalTimelineElement
-            visible={true}
-            className="vertical-timeline-element"
-            contentArrowStyle={{ borderRight: `7px solid grey` }}
-            contentStyle={{ background: `${color}`, color: '#000' }}
-            iconStyle={{ background: `${colorn}`, color: '#000', border: `2px solid ${colorn}` }}
-            icon={<svg width="9" height="18" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.17578 18H5.41016V6.97266C5.41016 6.60547 5.41406 6.23828 5.42188 5.87109C5.42969 5.50391 5.4375 5.14453 5.44531 4.79297C5.46094 4.44141 5.48047 4.10547 5.50391 3.78516C5.33984 3.96484 5.13672 4.16016 4.89453 4.37109C4.66016 4.58203 4.41016 4.80078 4.14453 5.02734L2.17578 6.59766L0.792969 4.85156L5.87891 0.867188H8.17578V18Z" fill="#F5F5F5" />
+    <section className="mt-20">
+      <div className="mx-[10%] cursor-pointer grid grid-cols-1 md:grid-cols-2 mx-auto gap-[2rem] items-center justify-between mt-8">
+        <div className="flex gap-4">
+          <div className={`${activeCard === "hajjDef" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("hajjDef")}>
+            <svg className="m-auto"  width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M71.6187 9.17854C34.0364 -0.570347 36.6215 0.109807 36.1378 0.109807C35.654 0.109807 27.6266 2.36188 1.32207 9.17854C0.989456 9.26422 0.695939 9.46059 0.489851 9.73532C0.283764 10.0101 0.177394 10.3468 0.188257 10.69V65.1024C0.18302 65.4625 0.306545 65.8126 0.536585 66.0897C0.766625 66.3668 1.08806 66.5527 1.44301 66.6138C38.6775 73.0829 36.3343 72.6597 36.7274 72.6597L71.4977 66.6138C71.8527 66.5527 72.1741 66.3668 72.4041 66.0897C72.6342 65.8126 72.7577 65.4625 72.7525 65.1024V10.69C72.7633 10.3468 72.657 10.0101 72.4509 9.73532C72.2448 9.46059 71.9513 9.26422 71.6187 9.17854ZM3.21177 54.6582L4.72352 54.7943V57.923L3.21177 57.7265V54.6582ZM10.7705 65.1024L3.21177 63.7874V60.7645L10.7705 61.747V65.1024ZM7.74703 58.316V55.0512L16.8176 55.8372V59.51L7.74703 58.316ZM22.8646 67.2487L13.794 65.7372V62.1551L22.8646 63.334V67.2487ZM19.8411 59.903V56.1092L28.9116 56.8952V61.0819L19.8411 59.903ZM34.9586 69.3496L25.8881 67.8381V63.7421L34.9586 64.921V69.3496ZM34.9586 61.7923L31.9351 61.3993V57.1521L34.9586 57.4242V61.7923ZM34.9586 54.235L3.21177 51.6202V28.6461L34.9586 24.5047V54.235ZM34.9586 21.3004L3.21177 25.5929V24.0815L34.9586 18.5647V21.3004ZM34.9586 15.2546L3.21177 20.983V17.9601L34.9586 11.0527V15.2546ZM34.9586 7.69731L3.21177 14.8616V11.8387L34.9586 3.57104V7.69731ZM37.9821 57.1673L41.0056 56.8952V61.4749L37.9821 61.8679V57.1673ZM47.0526 67.5207L37.9821 69.0322V64.921L47.0526 63.7421V67.5207ZM57.6349 52.4062L48.5644 53.1921V36.5661L57.6349 36.9742V52.4062ZM65.1937 54.7791V58.0439L56.1232 59.2379V55.8372L65.1937 54.7791ZM53.0997 55.8372V59.6309L44.0291 60.8099V56.8952L53.0997 55.8372ZM59.1467 65.4047L50.0761 66.9161V63.334L59.1467 62.1551V65.4047ZM69.729 63.5607L62.1702 65.1024V61.7621L69.729 60.7796V63.5607ZM69.729 57.5149L68.2172 57.7114V54.7943L69.729 54.6582V57.5149ZM69.729 51.4691L60.6584 52.2701V35.6441C60.6584 35.2433 60.4992 34.8588 60.2156 34.5754C59.9321 34.2919 59.5476 34.1327 59.1467 34.1327L47.0526 33.6037C46.6517 33.6037 46.2672 33.7629 45.9837 34.0464C45.7002 34.3298 45.5409 34.7142 45.5409 35.1151V53.7211L37.9821 54.3862V24.5047L69.729 28.6461V51.4691ZM69.729 25.4418L37.9821 21.4516V18.5344L69.729 24.0513V25.4418ZM69.729 20.9074L37.9821 15.4662V11.0527L69.729 17.9601V20.9074ZM69.729 14.786L37.9821 7.95426V3.57104L69.729 11.8538V14.786Z" fill="#2A2A2A" />
             </svg>
-            }
 
-          >
-            <div className='flex gap-5'>
-              <img src="/image/reg.png" alt="registration" className='w-[150px]' />
-              <div>
-                <h3 className="vertical-timeline-element-title font-bold underline pb-2">{t("reg")}</h3>
-                <span className='font-medium'>{t("regInfo")}</span>
-              </div>
-            </div>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            visible={true}
-            className="vertical-timeline-element"
-            contentArrowStyle={{ borderRight: `7px solid grey` }}
-            contentStyle={{ background: `${color}`, color: '#000' }}
-            iconStyle={{ background: `${colorn}`, color: '#000', border: `2px solid ${colorn}` }}
-            icon={<svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.6797 18H0.078125V15.9258L4.51953 11.4258C5.37891 10.5508 6.08594 9.79688 6.64062 9.16406C7.19531 8.52344 7.60547 7.91797 7.87109 7.34766C8.14453 6.77734 8.28125 6.15625 8.28125 5.48438C8.28125 4.65625 8.04297 4.03125 7.56641 3.60938C7.08984 3.17969 6.46094 2.96484 5.67969 2.96484C4.9375 2.96484 4.25 3.11328 3.61719 3.41016C2.99219 3.69922 2.34375 4.11328 1.67188 4.65234L0.160156 2.83594C0.636719 2.42969 1.14453 2.05859 1.68359 1.72266C2.23047 1.38672 2.83984 1.12109 3.51172 0.925781C4.18359 0.722656 4.94922 0.621094 5.80859 0.621094C6.89453 0.621094 7.83203 0.816406 8.62109 1.20703C9.41016 1.58984 10.0156 2.125 10.4375 2.8125C10.8672 3.5 11.082 4.30078 11.082 5.21484C11.082 6.13672 10.8984 6.98828 10.5312 7.76953C10.1641 8.55078 9.64062 9.32422 8.96094 10.0898C8.28125 10.8477 7.47266 11.6719 6.53516 12.5625L3.57031 15.457V15.5859H11.6797V18Z" fill="#F5F5F5" />
+            <p className={`${activeCard === "hajjDef" ? "text-white" : ""} font-semibold`}>Hadj Definitions</p>
+          </div>
+          <div className={`${activeCard === "guide" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("guide")}>
+            <svg className="m-auto" width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_844_20432)">
+                <path d="M9.27734 57.5476C9.27734 59.1514 9.91445 60.6895 11.0485 61.8236C12.1826 62.9577 13.7207 63.5948 15.3245 63.5948C16.9283 63.5948 18.4664 62.9577 19.6005 61.8236C20.7345 60.6895 21.3716 59.1514 21.3716 57.5476C21.3716 55.9438 20.7345 54.4057 19.6005 53.2717C18.4664 52.1376 16.9283 51.5005 15.3245 51.5005C13.7207 51.5005 12.1826 52.1376 11.0485 53.2717C9.91445 54.4057 9.27734 55.9438 9.27734 57.5476Z" stroke="#2A2A2A" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.3711 57.5475H30.4418C32.0456 57.5475 33.5837 56.9104 34.7178 55.7763C35.8518 54.6423 36.489 53.1042 36.489 51.5004V27.3118C36.489 25.708 37.1261 24.1699 38.2601 23.0358C39.3942 21.9018 40.9323 21.2646 42.5361 21.2646H63.7011" stroke="#2A2A2A" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M54.6328 12.1938L63.7035 21.2646L54.6328 30.3353" stroke="#2A2A2A" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_844_20432">
+                  <rect width="72.5657" height="72.5657" fill="white" transform="translate(0.207031 0.0996094)" />
+                </clipPath>
+              </defs>
             </svg>
-            }
-          >
-            <div className='flex gap-5'>
-              <img src="/image/examination.png" alt="registration" className='w-[150px]' />
-              <div>
-                <h3 className="vertical-timeline-element-title font-bold underline pb-2">Examination</h3>
-                <span className='font-medium'>In this step, pilgrims are guided through the process of scheduling and attending medical examinations to assess their physical fitness and readiness for ...</span>
-              </div>
-            </div>
-          </VerticalTimelineElement>
-
-          <VerticalTimelineElement
-            visible={true}
-            className="vertical-timeline-element"
-            contentArrowStyle={{ borderRight: `7px solid grey` }}
-            contentStyle={{ background: `${color}`, color: '#000' }}
-            iconStyle={{ background: `${colorn}`, color: '#000', border: `2px solid ${colorn}` }}
-            icon={<svg width="12" height="19" viewBox="0 0 12 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.0234 4.78125C11.0234 5.55469 10.8672 6.22656 10.5547 6.79688C10.2422 7.36719 9.8125 7.83594 9.26562 8.20312C8.72656 8.5625 8.10156 8.82031 7.39062 8.97656V9.05859C8.75781 9.23047 9.78906 9.66016 10.4844 10.3477C11.1875 11.0352 11.5391 11.9453 11.5391 13.0781C11.5391 14.0703 11.3008 14.957 10.8242 15.7383C10.3477 16.5117 9.61719 17.1211 8.63281 17.5664C7.64844 18.0117 6.38281 18.2344 4.83594 18.2344C3.90625 18.2344 3.04297 18.1602 2.24609 18.0117C1.45703 17.8633 0.707031 17.625 -0.00390625 17.2969V14.8477C0.722656 15.207 1.49609 15.4844 2.31641 15.6797C3.13672 15.875 3.91406 15.9727 4.64844 15.9727C6.07812 15.9727 7.09766 15.707 7.70703 15.1758C8.31641 14.6367 8.62109 13.8945 8.62109 12.9492C8.62109 12.3398 8.46094 11.8398 8.14062 11.4492C7.82812 11.0586 7.33984 10.7656 6.67578 10.5703C6.01953 10.375 5.17188 10.2773 4.13281 10.2773H2.62109V8.0625H4.14453C5.13672 8.0625 5.93359 7.94531 6.53516 7.71094C7.13672 7.46875 7.57031 7.13672 7.83594 6.71484C8.10938 6.29297 8.24609 5.80078 8.24609 5.23828C8.24609 4.50391 8.00781 3.93359 7.53125 3.52734C7.05469 3.11328 6.34766 2.90625 5.41016 2.90625C4.83203 2.90625 4.30469 2.97266 3.82812 3.10547C3.35938 3.23828 2.92578 3.40625 2.52734 3.60938C2.12891 3.8125 1.75 4.03125 1.39062 4.26562L0.0664062 2.35547C0.714844 1.87109 1.48828 1.46094 2.38672 1.125C3.28516 0.789062 4.33203 0.621094 5.52734 0.621094C7.28516 0.621094 8.64062 1 9.59375 1.75781C10.5469 2.50781 11.0234 3.51562 11.0234 4.78125Z" fill="#F5F5F5" />
+            <p className={`${activeCard === "guide" ? "text-white" : ""} font-semibold`}>Guide</p>
+          </div>
+        </div>
+        <div className="flex gap-4">
+          <div className={`${activeCard === "Instructions" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("Instructions")}>
+            <svg className="m-auto" width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_844_20439)">
+                <path d="M36.5117 63.5948V51.5005" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M36.5117 39.4058V27.3115" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M36.5117 15.2176V9.17041" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M30.4648 63.5947H42.5591" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M24.4141 15.2173V27.3116H57.6733L63.7205 21.2644L57.6733 15.2173H24.4141Z" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M42.556 39.4062V51.5005H18.3675L12.3203 45.4534L18.3675 39.4062H42.556Z" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_844_20439">
+                  <rect width="72.5657" height="72.5657" fill="white" transform="translate(0.226562 0.0996094)" />
+                </clipPath>
+              </defs>
             </svg>
-            }
-          >
-            <div className='flex gap-5'>
-              <img src="/image/hotel.png" alt="registration" className='w-[150px]' />
-              <div>
-                <h3 className="vertical-timeline-element-title font-bold underline pb-2">Accommodation</h3>
-                <span className='font-medium'>In this step, pilgrims are presented with a comprehensive list of available hotels, ranging from budget-friendly options to luxury accommodations, conveniently ...</span>
-              </div>
-            </div>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            visible={true}
-            className="vertical-timeline-element"
-            contentArrowStyle={{ borderRight: `7px solid grey` }}
-            contentStyle={{ background: `${color}`, color: '#000' }}
-            iconStyle={{ background: `${colorn}`, color: '#fff', border: `2px solid ${colorn}` }}
-            icon={<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.3008 14.2383H10.9805V18H8.26172V14.2383H0.46875V12.1523L8.29688 0.820312H10.9805V11.9531H13.3008V14.2383ZM8.26172 11.9531V7.69922C8.26172 7.34766 8.26562 6.99219 8.27344 6.63281C8.28906 6.26562 8.30469 5.91406 8.32031 5.57812C8.33594 5.24219 8.35156 4.93359 8.36719 4.65234C8.38281 4.36328 8.39453 4.125 8.40234 3.9375H8.30859C8.16016 4.25 7.99609 4.57031 7.81641 4.89844C7.63672 5.21875 7.44531 5.53125 7.24219 5.83594L3.02344 11.9531H8.26172Z" fill="#F5F5F5" />
+            <p className={`${activeCard === "Instructions" ? "text-white" : ""} font-semibold`}>Instructions</p>
+          </div>
+          <div className={`${activeCard === "Transport" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("Transport")}>
+            <svg className="m-auto" width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_844_20449)">
+                <path d="M12.3438 51.5003C12.3438 53.1041 12.9809 54.6422 14.1149 55.7762C15.249 56.9103 16.7871 57.5474 18.3909 57.5474C19.9947 57.5474 21.5328 56.9103 22.6669 55.7762C23.8009 54.6422 24.438 53.1041 24.438 51.5003C24.438 49.8965 23.8009 48.3584 22.6669 47.2243C21.5328 46.0902 19.9947 45.4531 18.3909 45.4531C16.7871 45.4531 15.249 46.0902 14.1149 47.2243C12.9809 48.3584 12.3438 49.8965 12.3438 51.5003Z" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M48.6289 51.5003C48.6289 53.1041 49.266 54.6422 50.4001 55.7762C51.5341 56.9103 53.0722 57.5474 54.676 57.5474C56.2799 57.5474 57.818 56.9103 58.952 55.7762C60.0861 54.6422 60.7232 53.1041 60.7232 51.5003C60.7232 49.8965 60.0861 48.3584 58.952 47.2243C57.818 46.0902 56.2799 45.4531 54.676 45.4531C53.0722 45.4531 51.5341 46.0902 50.4001 47.2243C49.266 48.3584 48.6289 49.8965 48.6289 51.5003Z" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.3479 51.5001H6.30078V18.2409C6.30078 17.439 6.61934 16.6699 7.18636 16.1029C7.75339 15.5358 8.52245 15.2173 9.32435 15.2173H51.6544C55.6639 15.2173 59.5091 17.4472 62.3443 21.4164C65.1794 25.3856 66.7722 30.769 66.7722 36.3823V51.5001H60.7251M48.6308 51.5001H24.4422" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M48.6289 15.2173L53.1643 36.3823H66.7703" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6.30078 30.3354H51.6544" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.4141 15.2173V30.3351" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M36.5352 15.2173V30.3351" stroke="#121212" stroke-width="2.59163" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_844_20449">
+                  <rect width="72.5657" height="72.5657" fill="white" transform="translate(0.25 0.0996094)" />
+                </clipPath>
+              </defs>
             </svg>
-            }
-          >
-            <div className='flex gap-5'>
-              <img src="/image/payment.png" alt="registration" className='w-[150px]' />
-              <div>
-                <h3 className="vertical-timeline-element-title font-bold underline pb-2">Payment</h3>
-                <span className='font-medium'>In this step, pilgrims are provided with a secure and user-friendly platform to settle their bills and fees associated with the pilgrimage, including registration fees ...</span>
-              </div>
-            </div>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            visible={true}
-            className="vertical-timeline-element"
-            contentArrowStyle={{ borderRight: `7px solid grey` }}
-            contentStyle={{ background: `${color}`, color: '#000' }}
-            iconStyle={{ background: `${colorn}`, color: '#fff', border: `2px solid ${colorn}` }}
-            icon={<svg width="12" height="19" viewBox="0 0 12 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.90234 7.28906C7.00391 7.28906 7.97266 7.48828 8.80859 7.88672C9.65234 8.27734 10.3086 8.85547 10.7773 9.62109C11.2461 10.3789 11.4805 11.3086 11.4805 12.4102C11.4805 13.6133 11.2266 14.6523 10.7188 15.5273C10.2109 16.3945 9.46484 17.0625 8.48047 17.5312C7.49609 18 6.29688 18.2344 4.88281 18.2344C3.98438 18.2344 3.14453 18.1562 2.36328 18C1.58984 17.8438 0.921875 17.6094 0.359375 17.2969V14.8125C0.945312 15.1406 1.64844 15.4102 2.46875 15.6211C3.28906 15.8242 4.07422 15.9258 4.82422 15.9258C5.62109 15.9258 6.30469 15.8086 6.875 15.5742C7.44531 15.3398 7.88281 14.9805 8.1875 14.4961C8.5 14.0117 8.65625 13.3984 8.65625 12.6562C8.65625 11.6719 8.33984 10.9141 7.70703 10.3828C7.08203 9.84375 6.10156 9.57422 4.76562 9.57422C4.29688 9.57422 3.79688 9.61719 3.26562 9.70312C2.74219 9.78125 2.30469 9.86719 1.95312 9.96094L0.746094 9.24609L1.39062 0.867188H10.2969V3.29297H3.81641L3.44141 7.55859C3.72266 7.49609 4.05859 7.4375 4.44922 7.38281C4.83984 7.32031 5.32422 7.28906 5.90234 7.28906Z" fill="#F5F5F5" />
-            </svg>
-            }
-          >
-            <div className='flex gap-5'>
-              <img src="/image/steps.png" alt="registration" className='w-[150px]' />
-              <div>
-                <h3 className="vertical-timeline-element-title font-bold underline pb-2">Step by step</h3>
-                <span className='font-medium'>In this step, pilgrims gain access to a curated series of resources, tools, and information to navigate each stage of the Hajj pilgrimage with confidence and ease. From the ...</span>
-              </div>
-            </div>
-          </VerticalTimelineElement>
-
-
-        </VerticalTimeline>
+            <p className={`${activeCard === "Transport" ? "text-white" : ""} font-semibold`}>Transport</p>
+          </div>
+        </div>
       </div>
+
+
+      {activeCard === "hajjDef" && (
+        <div className="p-10">
+          <Hajjdef />
+        </div>
+      )}
+
+      {activeCard === "guide" && (
+        <div className="p-10">
+          <Etapehaj />
+        </div>
+      )}
+
+      {activeCard === "Instructions" && (
+        <div className="p-10">
+ <Instruction/>        </div>
+      )}
+
+      {activeCard === "Transport" && (
+        <div className="p-10">
+          Content for Transport
+        </div>
+      )}
     </section>
   );
 }

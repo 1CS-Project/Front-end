@@ -16,6 +16,12 @@ function SignUp() {
     setSignInMode(!signInMode);
   };
 
+  const openModal = () => {
+    const modal = document.getElementById('my_modal_3') as HTMLDialogElement | null;
+    if (modal) {
+      modal.showModal();
+    }
+  };
 
 
   return (
@@ -42,7 +48,7 @@ function SignUp() {
         </Link>
         <div className="w-full flex flex-col ">
 
-          <div className="w-full flex flex-col my-2">
+          <div className="w-full flex flex-col">
             <h3 className="flex justify-center font-semibold text-2xl mb-2">{signInMode ? 'Sign in' : 'Create an Account'}</h3>
           </div>
 
@@ -67,6 +73,85 @@ function SignUp() {
               <p className="font-medium text-[0.9em] mb-1">Password</p>
               <input type="password" placeholder="••••••••••" className="w-full text-black bg-transparent px-4 py-2 mb-2  border border-[#d1d5db] rounded-md bg-[#f9fafb]" required />
             </div>
+            {signInMode && (
+              <div className="w-full flex flex-col mb-1">
+                <button type='button' className='text-end hover:underline'></button>
+                <>
+                  <button className="btn text-end hover:underline" onClick={openModal}>Forgot password ?</button>
+                  <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box">
+                      <form method="dialog">
+                        {/* If there is a button in the form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                      </form>
+                    </div>
+                    <div className="p-8 sm:p-7">
+                      <div className="text-center">
+                        <h2 className="block text-2xl font-bold text-gray-800 dark:text-gray-200">
+                          Forgot password?
+                        </h2>
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                        Please enter your email or mobile number to search for your account.                          
+                        </p>
+                      </div>
+                      <div className="mt-5">
+                        {/* Form */}
+                        <form>
+                          <div className="grid gap-y-4">
+                            {/* Form Group */}
+                            <div>
+                              <label
+                                htmlFor="email"
+                                className="block text-sm mb-2 dark:text-white"
+                              >
+                                Email address
+                              </label>
+                              <div className="relative">
+                                <input
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  className="py-3 border-2 px-4 block w-full border-gray-500 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                  required
+                                  aria-describedby="email-error"
+                                />
+                                <div className="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
+                                  <svg
+                                    className="size-5 text-red-500"
+                                    width={16}
+                                    height={16}
+                                    fill="currentColor"
+                                    viewBox="0 0 16 16"
+                                    aria-hidden="true"
+                                  >
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                  </svg>
+                                </div>
+                              </div>
+                              <p
+                                className="hidden text-xs text-red-600 mt-2"
+                                id="email-error"
+                              >
+                                Please include a valid email address so we can get back to you
+                              </p>
+                            </div>
+                            {/* End Form Group */}
+                            <button
+                              type="submit"
+                              className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gradient-to-r from-buttonleft to-buttonright text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                            >
+                              Send email
+                            </button>
+                          </div>
+                        </form>
+                        {/* End Form */}
+                      </div>
+                    </div>
+                  </dialog>
+                </>
+              </div>
+
+            )}
 
             <div className="w-full flex flex-col">
               <Link href={signInMode ? `/${locale}/hero` : `/${locale}/confirmation`}>
@@ -85,7 +170,7 @@ function SignUp() {
             <span className="mx-4">Or</span>
             <hr className="w-1/4 border-t-1 border-gray-500" />
           </div>
-          <div className="w-full items-center flex justify-center mt-2">
+          <div className="w-full items-center flex justify-center ">
             <button
               aria-label="Sign in with Google"
               className="flex items-center justify-center bg-white border border-button-border-light rounded-full px-12 py-2"

@@ -3,9 +3,9 @@ import Condition from '@/components/landing/BeforeRegistration/Conditions/condit
 import Faq from '@/components/landing/BeforeRegistration/FAQS/faq';
 import ContactUs from '@/components/landing/BeforeRegistration/contactus/contactsUs';
 import Hero from '@/components/landing/BeforeRegistration/hero/hero';
-import Journey from '@/components/landing/BeforeRegistration/journey/journey';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import {pick} from "lodash";
+import Steps from '@/components/landing/BeforeRegistration/steps/steps';
  
 export default function Home() {
     const messages = useMessages();
@@ -15,7 +15,7 @@ export default function Home() {
         <div className='px-20'>
           <Condition/>
           <NextIntlClientProvider messages={pick(messages,"journey")}>
-            <Journey/>
+            <Steps/>
           </NextIntlClientProvider>
           <Faq/>
           <ContactUs/>

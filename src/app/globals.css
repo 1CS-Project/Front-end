@@ -62,3 +62,12 @@
   -ms-transform: translateX(-100%);
   -o-transform: translateX(-100%);
 }
+
+
+
+.active-link {
+  background: linear-gradient(to right, #B49169, #B5AC49);
+  border-radius: 10px;
+  padding: 6px;
+  color: white;
+}

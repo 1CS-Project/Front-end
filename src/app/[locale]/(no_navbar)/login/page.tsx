@@ -1,8 +1,7 @@
 function Page() {
     return ( 
         <div>
-            login
-        </div>
+login        </div>
      );
 }
 

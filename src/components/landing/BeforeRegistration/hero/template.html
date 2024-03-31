@@ -1,0 +1,66 @@
+<!-- email_template.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Email Template</h1>
+        </div>
+        <div class="content">
+            <p>Dear <%= encadreurName %>,</p>
+            <p>I trust this email finds you well.</p>
+            <p>I am reaching out to seek your guidance regarding the project guidelines. As we progress further into the project, I want to ensure that our team is aligned with the expectations and requirements outlined in the project guidelines.</p>
+            <p>Could we please schedule a meeting or a quick discussion to clarify any ambiguities and address any questions we may have regarding the project guidelines? Your insights and direction would greatly assist us in moving forward with clarity and confidence.</p>
+            <p>I am available at your convenience and look forward to your prompt response.</p>
+            <p>Thank you for your continued support and guidance.</p>
+            <p>Warm regards,</p>
+            <p><%= yourName %><br><%= yourPosition %></p>
+        </div>
+        <div class="footer">
+            <p>Contact Information: <%= yourContactInformation %></p>
+        </div>
+    </div>
+</body>
+</html>

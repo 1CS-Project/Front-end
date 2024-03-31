@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { SetStateAction, useEffect, useState } from "react";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useLocale } from "next-intl";
 
 
 type props = {
@@ -53,29 +54,68 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
   const closeDropdown = () => {
     setIsOpen(false);
   };
+
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [clickedConditions, setClickedConditions] = useState(false);
+  const [clickedSteps, setClickedSteps] = useState(false);
+  const [clickedJourney, setClickedJourney] = useState(false);
+
+  const handleConditionsClick = () => {
+    setClickedConditions(true);
+    setClickedSteps(false);
+    setClickedJourney(false);
+  };
+
+  const handleStepsClick = () => {
+    setClickedSteps(true);
+    setClickedConditions(false);
+    setClickedJourney(false);
+  };
+
+  const handleJourneyClick = () => {
+    setClickedSteps(false);
+    setClickedConditions(false);
+    setClickedJourney(true);
+  };
+
+  const locale = useLocale()
+
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
       <div style={{ color: `${textColor}` }} className="flex justify-between p-4 px-20 bg-transparent text-white m-auto">
         <div className="font-semibold text-2xl">
-          Makkah
+          <Link href={"/"}>
+            Makkah
+          </Link>
+
         </div>
         <div className="gap-x-6 hidden sm:flex items-center">
-          <Link href={"/journey"}>
-            <h1 className="font-semibold hover:underline">
-              {journey}
+          <Link href={"/" + locale + "/journey"}>
+            <h1
+              className={`font-semibold hover:underline ${clickedJourney ? "active-link" : ""}`}
+              onClick={handleJourneyClick}
+            >              {journey}
             </h1>
 
           </Link>
-          <Link href={"/steps"}>
-            <h1 className="font-semibold hover:underline">
-              {steps}
-            </h1>
-          </Link>
-          <Link href={"/conditions"}>
-            <h1 className="font-semibold hover:underline">
+          <Link href={"/" + "#conditions-section"}>
+            <h1
+              className={`font-semibold hover:underline ${clickedConditions ? "active-link" : ""}`}
+              onClick={handleConditionsClick}
+            >
               {conditions}
             </h1>
           </Link>
+          <Link href={"/" + "#steps-section"}>
+            <h1
+              className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
+              onClick={handleStepsClick}
+            >
+              {steps}
+            </h1>
+          </Link>
+
           <Link href={"/tirage"}>
             <h1 className="font-semibold hover:underline">
               {tirage}
@@ -169,16 +209,17 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
               {journey}
             </h1>
           </Link>
+          <Link href={"#conditions-section"}>
+            <h1 className="font-semibold text-black p-5 hover:underline">
+              {conditions}
+            </h1>
+          </Link>
           <Link href={"/steps"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {steps}
             </h1>
           </Link>
-          <Link href={"/conditions"}>
-            <h1 className="font-semibold text-black p-5 hover:underline">
-              {conditions}
-            </h1>
-          </Link>
+
           <Link href={"/tirage"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {tirage}

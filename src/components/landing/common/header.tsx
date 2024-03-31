@@ -65,29 +65,67 @@ function Header({ user }: props) {
   const closeDropdown = () => {
     setIsOpen(false);
   };
+
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [clickedConditions, setClickedConditions] = useState(false);
+  const [clickedSteps, setClickedSteps] = useState(false);
+  const [clickedJourney, setClickedJourney] = useState(false);
+
+  const handleConditionsClick = () => {
+    setClickedConditions(true);
+    setClickedSteps(false);
+    setClickedJourney(false);
+  };
+
+  const handleStepsClick = () => {
+    setClickedSteps(true);
+    setClickedConditions(false);
+    setClickedJourney(false);
+  };
+
+  const handleJourneyClick = () => {
+    setClickedSteps(false);
+    setClickedConditions(false);
+    setClickedJourney(true);
+  };
+
+
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
       <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto "+ (user?"text-black":"text-white")}>
         <div className="font-semibold text-2xl">
-          Makkah
+          <Link href={"/"}>
+            Makkah
+          </Link>
+
         </div>
         <div className="gap-x-6 hidden sm:flex items-center">
-          <Link href={"/journey"}>
-            <h1 className="font-semibold hover:underline">
+          <Link href={"/" + locale + "/journey"}>
+            <h1 className={`font-semibold hover:underline ${clickedJourney ? "active-link" : ""}`}
+                          onClick={handleJourneyClick}
+            >
               {t("journey")}
+              
             </h1>
 
           </Link>
-          <Link href={"/steps"}>
-            <h1 className="font-semibold hover:underline">
+          <Link href={"/" + "#conditions-section"}>
+            <h1 className={`font-semibold hover:underline ${clickedConditions ? "active-link" : ""}`}
+                          onClick={handleConditionsClick}
+            >
               {t("Steps")}
             </h1>
           </Link>
-          <Link href={"/conditions"}>
-            <h1 className="font-semibold hover:underline">
+          <Link href={"/" + "#steps-section"}>
+            <h1  className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
+
+                          onClick={handleStepsClick}
+                          >
               {t("Conditions")}
             </h1>
           </Link>
+
           <Link href={"/tirage"}>
             <h1 className="font-semibold hover:underline">
               {t("Tirage")}

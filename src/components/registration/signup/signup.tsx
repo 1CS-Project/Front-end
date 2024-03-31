@@ -121,7 +121,7 @@ function SignUp() {
         </Link>
         <div className="w-full flex flex-col ">
 
-          <div className="w-full flex flex-col my-2">
+          <div className="w-full flex flex-col">
             <h3 className="flex justify-center font-semibold text-2xl mb-2">{signInMode ? 'Sign in' : 'Create an Account'}</h3>
           </div>
           {errors.root?.error&&<h1 className='text-[#E64040] flex justify-center w-full'>
@@ -154,7 +154,7 @@ function SignUp() {
             <span className="mx-4">Or</span>
             <hr className="w-1/4 border-t-1 border-gray-500" />
           </div>
-          <div className="w-full items-center flex justify-center mt-2">
+          <div className="w-full items-center flex justify-center ">
             <button
               aria-label="Sign in with Google"
               className="flex items-center justify-center bg-white border border-button-border-light rounded-full px-12 py-2"

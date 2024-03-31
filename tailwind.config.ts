@@ -25,6 +25,7 @@ const config: Config = {
       colors: {
         'buttonleft': '#B49169',
         'buttonright': '#B5AC49',
+        'brown':'#B49169',
       },
     },
   },

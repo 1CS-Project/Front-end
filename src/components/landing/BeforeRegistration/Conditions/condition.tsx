@@ -8,6 +8,10 @@ import 'aos/dist/aos.css';
 
 
 function conditions() {
+
+
+
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(()=>{
     AOS.init({
@@ -17,6 +21,7 @@ function conditions() {
       anchorPlacement:"top-bottom",
     });
   })
+
 
   const requirements = [
     "Hold Algerian nationality",
@@ -54,7 +59,7 @@ function conditions() {
   }*/}
 
   return (
-    <section>
+    <section id="conditions-section" >
       <h1 data-aos="fade-down" className="text-center font-semibold text-3xl">Our Conditions</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-[10rem] items-center justify-between mt-8">
         <div>
@@ -67,7 +72,7 @@ function conditions() {
           data-aos="fade-right"
             type="button"
             onClick={handleClick}
-            className="text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl m-4 w-full border-gradient"
+            className="text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl mt-4 w-full border-gradient"
           >
             {showAll ? 'Hide Conditions' : 'See all Conditions'}
           </button>

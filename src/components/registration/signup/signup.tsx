@@ -1,20 +1,99 @@
 'use client'
 import { useState } from 'react';
 import Link from "next/link";
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import FormInput from './FormInput';
+import { redirect, useRouter } from 'next/navigation';
+import { handleLogin } from '@/app/action';
+
+
+const authSchema=z.object({
+  Email:z.string().email(),
+  Password:z.string().min(8,"password length must be at least 8"),
+  Name:z.string().min(2).optional(),
+  Phone_Number:z.string().regex(/^(07|06|05)\d{8}$/).optional()
+
+})
+
+export type authType=z.infer<typeof authSchema>
 
 
 
 function SignUp() {
   const locale = useLocale();
+  const router=useRouter()
 
   const [showForm, setShowForm] = useState(false);
   const [signInMode, setSignInMode] = useState(false);
-
+  
   const handleSignInClick = () => {
     setShowForm(!showForm);
     setSignInMode(!signInMode);
   };
+
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setError,
+    formState: { errors },
+  } = useForm<authType>({shouldUnregister:true,resolver:zodResolver(authSchema)})
+  
+
+
+  const handleSignIn:SubmitHandler<authType>=async (e)=>{
+    let {Email,Password}=e
+    let r=await handleLogin(Email,Password)
+    // console.log(r);
+    if (r&&r.logedIn){
+      router.push("/"+locale)
+    }
+     /*
+    try {
+      // let re=await signIn("credentials",{redirect:false,Email,Password}) 
+
+      if (re?.ok){
+        router.push("/"+locale)
+      }else{
+       console.log(re);
+       if (re?.error){
+         setError("root.error",{message:re.error})
+       }else{
+         setError("root.error",{message:"Please try again"})
+       }     
+      }
+    } catch (error) {
+      setError("root.error",{message:"Please try again"})
+    }
+    */
+  }
+
+  const handleSignUp:SubmitHandler<authType>=async (e)=>{
+
+    try {
+      let re=await fetch(process.env.NEXT_PUBLIC_BACKEND+"/api/Sign_Up",{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          },
+        body:JSON.stringify(e)
+      })
+      if (re.ok){
+        // setError("root.verifyEmail",{message:"We have sent an email to verify your account"})
+        router.push("/"+locale+"/confirmation")
+      }else{
+        setError("root.error",{message:(await re.json()).message})
+        
+      }
+      
+    } catch (error) {
+        setError("root.error",{message:"Please try again"})
+      }
+    }
 
 
 
@@ -45,39 +124,29 @@ function SignUp() {
           <div className="w-full flex flex-col my-2">
             <h3 className="flex justify-center font-semibold text-2xl mb-2">{signInMode ? 'Sign in' : 'Create an Account'}</h3>
           </div>
+          {errors.root?.error&&<h1 className='text-[#E64040] flex justify-center w-full'>
+                {errors.root?.error.message}
 
-          <form>
+          </h1>}
+          <form onSubmit={signInMode?handleSubmit(handleSignIn):handleSubmit(handleSignUp)}>
             {!signInMode && (
-              <div className="w-full flex flex-col mb-1">
-                <p className="font-medium text-[0.9em] mb-1">Full Name</p>
-                <input type="text" placeholder="Enter your full name" className="w-full text-black bg-transparent px-4 py-2 mb-2 border border-[#d1d5db] rounded-md bg-[#f9fafb]" required />
-              </div>
+              <FormInput register={register} field='Name' type='text' label='Full Name' error={errors.Name?.message} placeholder="Enter your full name"/>
             )}
-            <div className="w-full flex flex-col mb-1">
-              <p className="font-medium text-[0.9em] mb-1">E-mail</p>
-              <input type="email" placeholder="example@exemple.com" className="w-full text-black bg-transparent px-4 py-2 mb-2  border border-[#d1d5db] rounded-md bg-[#f9fafb]" required />
-            </div>
+            <FormInput register={register} field='Email' type='email' label='Email' error={errors.Email?.message} placeholder="example@exemple.com"/>
             {!signInMode && (
-              <div className="w-full flex flex-col mb-1">
-                <p className="font-medium text-[0.9em] mb-1">Phone number</p>
-                <input type="tel" placeholder="Enter your phone number" className="w-full text-black bg-transparent px-4 py-2 mb-2  border border-[#d1d5db] rounded-md bg-[#f9fafb]" required />
-              </div>
+              <FormInput register={register} field='Phone_Number' type='tel' label='Phone number' error={errors.Phone_Number?.message} placeholder="Enter your phone number"/>
             )}
-            <div className="w-full flex flex-col">
-              <p className="font-medium text-[0.9em] mb-1">Password</p>
-              <input type="password" placeholder="••••••••••" className="w-full text-black bg-transparent px-4 py-2 mb-2  border border-[#d1d5db] rounded-md bg-[#f9fafb]" required />
-            </div>
+            <FormInput register={register} field='Password' type='password' label='Password' error={errors.Password?.message} placeholder="••••••••••"/>
 
-            <div className="w-full flex flex-col">
-              <Link href={signInMode ? `/${locale}/hero` : `/${locale}/confirmation`}>
+
+            {/* <div className="w-full flex flex-col"> */}
                 <button
                   type="submit"
                   className="text-white font-medium ml-0 bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl m-4 w-full border-gradient"
                 >
                   {signInMode ? 'Sign in' : 'Sign up'}
                 </button>
-              </Link>
-            </div>
+            {/* </div> */}
           </form>
 
           <div className="w-full flex items-center justify-center">

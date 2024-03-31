@@ -2,31 +2,40 @@
 import Link from "next/link";
 import { SetStateAction, useEffect, useState } from "react";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useLocale, useTranslations } from "next-intl";
 
 
 type props = {
-  journey: string,
-  steps: string,
-  conditions: string,
-  tirage: string,
-  hotel: string
+  user?:string
+}
+
+const locales:Record<string,Record<string,string>>={
+  "en":{
+    "flag":"fi-sh",
+    "name":"English"
+  },
+  "fr":{
+    "flag":"fi-re",
+    "name":"French"
+  },
+  "ar":{
+    "flag":"fi-dz",
+    "name":"Arabic"
+  }
 }
 
 
-
-function Header({ hotel, conditions, journey, steps, tirage }: props) {
-  const [language, setLanguage] = useState({ name: 'English', flag: 'fi-sh' });
+function Header({ user }: props) {
   const [navbar, setNavbar] = useState(false)
+  const t = useTranslations("home");
+  const locale=useLocale();
   const [color, setColor] = useState('transparent')
-  const [textColor, setTextColor] = useState('white')
+  const [textColor, setTextColor] = useState(user?"black":'white')
   const [shadow, setShadow] = useState('shadow-xl')
   const handleNavbar = () => {
     setNavbar(!navbar)
   };
-  const handleLanguageChange = (selectedLanguage: SetStateAction<{ name: string; flag: string; }>) => {
-    setLanguage(selectedLanguage);
-    closeDropdown();
-  };
+
 
   useEffect(() => {
     const changeColor = () => {
@@ -36,9 +45,12 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
         setShadow('shadow-xl')
 
       } else {
-
         setColor('transparent')
-        setTextColor('#ffffff')
+        if (user){
+          setTextColor('#000000')
+        }else{
+          setTextColor('#ffffff')
+        }
       }
     };
     window.addEventListener('scroll', changeColor)
@@ -55,35 +67,35 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
   };
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
-      <div style={{ color: `${textColor}` }} className="flex justify-between p-4 px-20 bg-transparent text-white m-auto">
+      <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto "+ (user?"text-black":"text-white")}>
         <div className="font-semibold text-2xl">
           Makkah
         </div>
         <div className="gap-x-6 hidden sm:flex items-center">
           <Link href={"/journey"}>
             <h1 className="font-semibold hover:underline">
-              {journey}
+              {t("journey")}
             </h1>
 
           </Link>
           <Link href={"/steps"}>
             <h1 className="font-semibold hover:underline">
-              {steps}
+              {t("Steps")}
             </h1>
           </Link>
           <Link href={"/conditions"}>
             <h1 className="font-semibold hover:underline">
-              {conditions}
+              {t("Conditions")}
             </h1>
           </Link>
           <Link href={"/tirage"}>
             <h1 className="font-semibold hover:underline">
-              {tirage}
+              {t("Tirage")}
             </h1>
           </Link>
           <Link href={"/hotel"}>
             <h1 className="font-semibold hover:underline">
-              {hotel}
+              {t("Hotel")}
             </h1>
 
           </Link>
@@ -98,8 +110,8 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
                 onClick={toggleDropdown}
               >
                 <div className="flex justify-center items-center gap-4">
-                  <span className={`fi ${language.flag}`}></span>
-                  <p>{language.name}</p>
+                  <span className={`fi ${locales[locale].flag}`}></span>
+                  <p>{locales[locale].name}</p>
                 </div>
                 <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
@@ -110,40 +122,40 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
                 <div className="px-1 origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        href="/en"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        onClick={() => handleLanguageChange({ name: 'English', flag: 'fi-sh' })}
+                        // onClick={() => handleLanguageChange({ name: 'English', flag: 'fi-sh' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-sh"></span>
                           <p>English</p>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        href="/fr"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        onClick={() => handleLanguageChange({ name: 'French', flag: 'fi-re' })}
+                        // onClick={() => handleLanguageChange({ name: 'French', flag: 'fi-re' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-re"></span>
                           <p>French</p>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        href="/ar"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        onClick={() => handleLanguageChange({ name: 'Arabic', flag: 'fi-dz' })}
+                        // onClick={() => handleLanguageChange({ name: 'Arabic', flag: 'fi-dz' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-dz"></span>
                           <p>Arabic</p>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -166,27 +178,27 @@ function Header({ hotel, conditions, journey, steps, tirage }: props) {
           : "sm:hidden absolute top-0 right-0 bottom-0 left-[-100%] justify-center items-center w-full h-screen bg-white text-center ease-in duration-300 "}>
           <Link href={"/journey"}>
             <h1 className="font-semibold text-black p-5 hover:underline ">
-              {journey}
+              {t("journey")}
             </h1>
           </Link>
           <Link href={"/steps"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {steps}
+              {t("Steps")}
             </h1>
           </Link>
           <Link href={"/conditions"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {conditions}
+              {t("Conditions")}
             </h1>
           </Link>
           <Link href={"/tirage"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {tirage}
+              {t("Tirage")}
             </h1>
           </Link>
           <Link href={"/hotel"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {hotel}
+              {t("Hotel")}
             </h1>
 
           </Link>

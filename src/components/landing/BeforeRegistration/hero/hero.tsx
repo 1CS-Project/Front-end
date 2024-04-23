@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Image from 'next/image';
 function hero() {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -36,9 +37,8 @@ function hero() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className='flex items-center justify-center h-screen mb-[4rem] bg-fixed bg-center bg-cover' style={{ backgroundImage: `url(${bgImage})` }}>
-      <div className='absolute top-0 left-0 right-0 bottom-0 z-[2]' />
-
+    <div className='flex relative items-center justify-center h-screen mb-[4rem]'>
+      <Image className='absolute top-0 bg-fixed w-full h-full bg-center bg-cover' alt='background image' src={bgImage} width={1000} height={1000}/>
       <div className='p-5 text-white z-[2] text-center mt-20'>
         <p
           data-aos="fade-down"

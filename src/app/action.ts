@@ -4,9 +4,8 @@ import { cookies } from 'next/headers'
 
 
 export async function handleLogin(Email:string,Password:string) {
-
     try {
-        let res=await fetch("http://localhost:3001/api/Sign_In",{
+        let res=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/Sign_In`,{
             body:JSON.stringify({Email,Password}),
             method:"POST",
             headers: {
@@ -30,7 +29,6 @@ export async function handleLogin(Email:string,Password:string) {
             
         }else{
             console.log(await res.json());
-            
         }
     } catch (error) {
         throw error;

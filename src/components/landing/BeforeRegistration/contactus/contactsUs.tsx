@@ -7,14 +7,12 @@ import styled from "styled-components"
 
 
 function contactsUs() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const form = useRef();
 
-  const sendEmail = (e: { preventDefault: () => void; }) => {
+  const sendEmail = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_7jsn425', 'template_k0wx6en', form.current, {
+      .sendForm('service_7jsn425', 'template_k0wx6en', e.currentTarget, {
         publicKey: '9LqPnLBhgMDh2w93K',
       })
       .then(
@@ -50,7 +48,7 @@ function contactsUs() {
       <h4 className="text-center text-gray-500 mt-2">Can’t find the question you are looking for ? contact us</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-[5rem] items-center mt-8">
         <StyledContactForm>
-            <form ref={form}  onSubmit={sendEmail}>
+            <form onSubmit={sendEmail}>
               
               <input type="text" placeholder='Full name' name="user_name" required/>
               <input type="email" placeholder='E-mail' name="user_email" required />

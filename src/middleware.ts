@@ -30,6 +30,8 @@ export async function middleware(req:NextRequest){
     if (l.length>=1){
       locale=l[1]
     }
+    console.log(!payload);
+    
     
     if ((req.nextUrl.pathname.startsWith("/en/signup")||req.nextUrl.pathname.startsWith("/ar/signup")||req.nextUrl.pathname.startsWith("/fr/signup"))&&payload){      
       return Response.redirect(new URL("/"+locale,req.url))

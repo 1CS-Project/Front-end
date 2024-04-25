@@ -61,7 +61,7 @@ function conditions() {
   return (
     <section id="conditions-section" >
       <h1 data-aos="fade-down" className="text-center font-semibold text-3xl">Our Conditions</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-[10rem] items-center justify-between mt-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 mx-auto gap-[13em] items-center justify-between mt-8">
         <div>
           {requirements.slice(0, displayCount).map((requirement, index) => (
             <p data-aos="fade-right" className="font-sans mb-3 text-md" key={index}>

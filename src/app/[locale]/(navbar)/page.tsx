@@ -20,15 +20,15 @@ export default async function Home() {
     <main>
       {session?<Landing/>:
           <>
+              <NextIntlClientProvider messages={messages}>
             <Hero />
             <div className='px-20'>
               <Condition/>
-              <NextIntlClientProvider messages={pick(messages,"journey")}>
                 <Steps/>
-              </NextIntlClientProvider>
               <Faq/>
               <ContactUs/>
             </div>
+              </NextIntlClientProvider>
           </>
   }
     </main>

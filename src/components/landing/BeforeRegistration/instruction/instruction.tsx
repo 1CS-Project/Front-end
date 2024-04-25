@@ -2,9 +2,9 @@ import React from 'react'
 
 function instruction() {
   return (
-    <div className="p-10">
+    <div >
       <h1 className="text-center font-semibold text-2xl mt-8">Actions Advised Prior to Entering Ihram</h1>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 px-10 mt-8'>
         <div className='flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-4 mt-4'>
           <div>
             <svg width="67" height="68" viewBox="0 0 67 68" fill="none" xmlns="http://www.w3.org/2000/svg">

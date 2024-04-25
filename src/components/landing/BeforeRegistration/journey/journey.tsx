@@ -47,13 +47,14 @@ function Journey() {
 
   return (
     <section className="mt-20">
-      <div className="mx-[10%] cursor-pointer grid grid-cols-1 md:grid-cols-2 mx-auto gap-[2rem] items-center justify-between mt-8">
+      <h1 className="text-center font-semibold text-2xl mt-8">A guide to the Muslim pilgrimage, facilitating the journey</h1>
+
+      <div className="mx-20 cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-[2rem] items-center justify-between mt-8">
         <div className="flex gap-4">
           <div className={`${activeCard === "hajjDef" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("hajjDef")}>
-            <svg className="m-auto"  width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="m-auto" width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M71.6187 9.17854C34.0364 -0.570347 36.6215 0.109807 36.1378 0.109807C35.654 0.109807 27.6266 2.36188 1.32207 9.17854C0.989456 9.26422 0.695939 9.46059 0.489851 9.73532C0.283764 10.0101 0.177394 10.3468 0.188257 10.69V65.1024C0.18302 65.4625 0.306545 65.8126 0.536585 66.0897C0.766625 66.3668 1.08806 66.5527 1.44301 66.6138C38.6775 73.0829 36.3343 72.6597 36.7274 72.6597L71.4977 66.6138C71.8527 66.5527 72.1741 66.3668 72.4041 66.0897C72.6342 65.8126 72.7577 65.4625 72.7525 65.1024V10.69C72.7633 10.3468 72.657 10.0101 72.4509 9.73532C72.2448 9.46059 71.9513 9.26422 71.6187 9.17854ZM3.21177 54.6582L4.72352 54.7943V57.923L3.21177 57.7265V54.6582ZM10.7705 65.1024L3.21177 63.7874V60.7645L10.7705 61.747V65.1024ZM7.74703 58.316V55.0512L16.8176 55.8372V59.51L7.74703 58.316ZM22.8646 67.2487L13.794 65.7372V62.1551L22.8646 63.334V67.2487ZM19.8411 59.903V56.1092L28.9116 56.8952V61.0819L19.8411 59.903ZM34.9586 69.3496L25.8881 67.8381V63.7421L34.9586 64.921V69.3496ZM34.9586 61.7923L31.9351 61.3993V57.1521L34.9586 57.4242V61.7923ZM34.9586 54.235L3.21177 51.6202V28.6461L34.9586 24.5047V54.235ZM34.9586 21.3004L3.21177 25.5929V24.0815L34.9586 18.5647V21.3004ZM34.9586 15.2546L3.21177 20.983V17.9601L34.9586 11.0527V15.2546ZM34.9586 7.69731L3.21177 14.8616V11.8387L34.9586 3.57104V7.69731ZM37.9821 57.1673L41.0056 56.8952V61.4749L37.9821 61.8679V57.1673ZM47.0526 67.5207L37.9821 69.0322V64.921L47.0526 63.7421V67.5207ZM57.6349 52.4062L48.5644 53.1921V36.5661L57.6349 36.9742V52.4062ZM65.1937 54.7791V58.0439L56.1232 59.2379V55.8372L65.1937 54.7791ZM53.0997 55.8372V59.6309L44.0291 60.8099V56.8952L53.0997 55.8372ZM59.1467 65.4047L50.0761 66.9161V63.334L59.1467 62.1551V65.4047ZM69.729 63.5607L62.1702 65.1024V61.7621L69.729 60.7796V63.5607ZM69.729 57.5149L68.2172 57.7114V54.7943L69.729 54.6582V57.5149ZM69.729 51.4691L60.6584 52.2701V35.6441C60.6584 35.2433 60.4992 34.8588 60.2156 34.5754C59.9321 34.2919 59.5476 34.1327 59.1467 34.1327L47.0526 33.6037C46.6517 33.6037 46.2672 33.7629 45.9837 34.0464C45.7002 34.3298 45.5409 34.7142 45.5409 35.1151V53.7211L37.9821 54.3862V24.5047L69.729 28.6461V51.4691ZM69.729 25.4418L37.9821 21.4516V18.5344L69.729 24.0513V25.4418ZM69.729 20.9074L37.9821 15.4662V11.0527L69.729 17.9601V20.9074ZM69.729 14.786L37.9821 7.95426V3.57104L69.729 11.8538V14.786Z" fill="#2A2A2A" />
             </svg>
-
             <p className={`${activeCard === "hajjDef" ? "text-white" : ""} font-semibold`}>Hadj Definitions</p>
           </div>
           <div className={`${activeCard === "guide" ? "bg-gradient-to-r from-buttonleft to-buttonright" : "border-2 border-black"} w-1/2 rounded-md text-center p-4`} onClick={() => handleCardClick("guide")}>
@@ -115,24 +116,24 @@ function Journey() {
 
 
       {activeCard === "hajjDef" && (
-        <div className="p-10">
+        <div>
           <Hajjdef />
         </div>
       )}
 
       {activeCard === "guide" && (
-        <div className="p-10">
+        <div>
           <Etapehaj />
         </div>
       )}
 
       {activeCard === "Instructions" && (
-        <div className="p-10">
- <Instruction/>        </div>
+        <div>
+          <Instruction />        </div>
       )}
 
       {activeCard === "Transport" && (
-        <div className="p-10">
+        <div>
           Content for Transport
         </div>
       )}

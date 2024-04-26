@@ -3,13 +3,13 @@ import Header from "@/components/landing/common/header";
 import {  NextIntlClientProvider, useTranslations } from "next-intl";
 import Footer from "@/components/landing/common/footer";
 import { getMessages, getTranslations } from "next-intl/server";
-import { getSession } from "@/app/action";
+import { getUser } from "@/app/action";
 import { pick } from "lodash";
 
 async function Layout({ children }: { children: React.ReactNode }) {
   const t = await getTranslations('home');
   const messages = await getMessages();
-  const session=await getSession();
+  const user=await getUser();
 
   // const translations={
   //   journey:t("journey"),
@@ -22,7 +22,7 @@ async function Layout({ children }: { children: React.ReactNode }) {
   return (
       <div>
       <NextIntlClientProvider messages={pick(messages,"home")}>
-        <Header user={session?.name as string}/>
+        <Header user={user?.name as string}/>
       </NextIntlClientProvider>
         {children}
         <Footer/>

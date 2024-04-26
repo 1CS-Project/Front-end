@@ -60,28 +60,46 @@ export const TirageRegSchemaF=(t:(arg:string)=>string)=> z.object({
     birthCerteficateNumber:z.string().regex(/\d{5}/,t("birthCerteficateNumber.error")),
     city:z.string().trim().min(1,t("city.error")),
     state:z.string().trim().min(1,t("state.error")),
-    nationalIdNumber:z.string().regex(/\d{9}/,t("nationalIdNumber.error")),
+    nationalIdNumber:z.string().regex(/\d{18}/,t("nationalIdNumber.error")),
+    passportNumber:z.string().regex(/\d{9}/,t("passportNumber.error")),
     passportExpirationDate:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("passportExpirationDate.error")).refine((val)=> duration(val),t("passportExpirationDate.expireError")), //yyyy-mm-dd
     dateOfBirth:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("dateOfBirth.error")).refine((val)=>birthdateCheck(val),t("dateOfBirth.ageError")),
     // imageUrl:z.string().url(),
     imageUrl:z.string().optional(),
-
     gender:z.enum(["male","female"],{required_error:t('gender.error'),invalid_type_error:t('gender.error')}),
-    mahremNationalIdNumber:z.string().regex(/\d{9}/,t("nationalIdNumber.error")).optional().or(z.literal("")),
+    mahremId:z.string().regex(/\d{18}/,t("nationalIdNumber.error")).optional().or(z.literal("")),
     mahremRelation:z.enum(["husband","brother","father","son"],{required_error:t('mahremRelation.error'),invalid_type_error:t('mahremRelation.error')}).optional(),
 })
 .refine((input)=>{
     
-    if (input.gender==="female"&&(input.mahremNationalIdNumber===""||input.mahremNationalIdNumber===undefined)){
+    if (input.gender==="female"&&(input.mahremId===""||input.mahremId===undefined)){
         return false
     }
 
     return true;
 },{
     message:"mahrem is required",
-    path:["mahremNationalIdNumber"]
+    path:["mahremId"]
 })
 
+
+export const mahremTirageRegF=(t:(arg:string)=>string)=> z.object({
+    firstname:z.string().trim().min(1,t("firstname.error")),
+    lastname:z.string().trim().min(1,t("lastname.error")),
+    phoneNumber:z.string().regex(/\+213\d{9}/,t("phoneNumber.error")),
+    birthCerteficateNumber:z.string().regex(/\d{5}/,t("birthCerteficateNumber.error")),
+    city:z.string().trim().min(1,t("city.error")),
+    state:z.string().trim().min(1,t("state.error")),
+    nationalIdNumber:z.string().regex(/\d{18}/,t("nationalIdNumber.error")),
+    passportNumber:z.string().regex(/\d{9}/,t("passportNumber.error")),
+    passportExpirationDate:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("passportExpirationDate.error")).refine((val)=> duration(val),t("passportExpirationDate.expireError")), //yyyy-mm-dd
+    dateOfBirth:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("dateOfBirth.error")).refine((val)=>birthdateCheck(val),t("dateOfBirth.ageError")),
+    imageUrl:z.string().optional(),
+    gender:z.literal("male"),
+})
+
+
 export type tirageRegT=z.infer<ReturnType<typeof TirageRegSchemaF>>
+export type mahremtirageRegT=z.infer<ReturnType<typeof mahremTirageRegF>>
 
 // export type tirageRegT=z.infer<typeof TirageRegSchema>

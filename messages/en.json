@@ -38,6 +38,10 @@
       "error":"City name is required"
     },
     "nationalIdNumber":{
+      "name":"National ID number",
+      "error":"The number must be of length 18"
+    },
+    "passportNumber":{
       "name":"Passport number",
       "error":"The number must be of length 9"
     },

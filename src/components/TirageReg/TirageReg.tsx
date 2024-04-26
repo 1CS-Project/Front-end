@@ -13,41 +13,61 @@ import { useTranslations } from "next-intl";
 import ConfirmElement from "./mahram/confirmElement";
 import MarhemReg from "./mahram/merhemReg";
 import RegInputs from "./RegInputs";
+import MahremModal from "./mahram/mahremModel";
 
 
-const d:Record<string,string>={
-    firstname: "ddd",
-    lastname: "55",
-    dateOfBirth: "2004-03-25",
-    nationalIdNumber: "123456789",
-    passportExpirationDate: "2025-03-12",
-    };
+type props={
+    token:string
+}
 
 
-function TirageReg() {
+function TirageReg({token}:props) {
 
-    const submitHandle:SubmitHandler<tirageRegT>=(d,e)=>{
+    async function registerTirage(data:Record<string,any>){
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/register-tirage`,{
+            method:"POST",
+            body:JSON.stringify({...data,imageUrl:"ddd"}),
+            headers:{
+                "Authorization":`Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!re.ok){
+            console.log("error")
+        }else{
+            console.log("done")
+        }
+    }
+
+    const submitHandle:SubmitHandler<tirageRegT>=async (d,e)=>{
         e?.preventDefault()
-        document.body.classList.add("modalEnabled")
-        setShowModal(true)
-        console.log(e);
+        let {mahremRelation,mahremId,...remaining}=d
+        if (d.gender==="female"){
+            document.body.classList.add("modalEnabled")
+            setShowModal(true)       
+        }else{
+            registerTirage(remaining)
+        }
     }
 
     const t= useTranslations("tirageForm")
     const TirageRegSchema=TirageRegSchemaF(t);
     
-    const {register,handleSubmit,control,formState:{errors}} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
+    const {register,handleSubmit,control,formState:{errors},getValues} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
             birthCerteficateNumber: "55555",
             city: "ddd",
             dateOfBirth: "2004-03-25",
             firstname: "ddd",
             gender: "female",
             lastname: "55",
-            mahremNationalIdNumber: "555555555",
+            mahremId: "555555555555555555",
             mahremRelation: "husband",
-            nationalIdNumber: "123456789",
+            nationalIdNumber: "123456789123456789",
+            passportNumber:"123456789",
             passportExpirationDate: "2025-03-12",
             phoneNumber: "+213959595959",
+            imageUrl:"http://localhost:3000/en/tirage_reg",
             state: "dd"
     }})
     const showAdditional=useWatch<tirageRegT>({name:"gender",control})==="female"
@@ -68,36 +88,27 @@ function TirageReg() {
                     </div>
                         {showAdditional&&<MerhremInfo errors={errors} register={register} />}
 
-                    <button className="mt-8 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
+                    <button  className="mt-8 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
                 </form>
             </div>
             {showModal&&
-            <div onClick={(e)=>{
-                if (e.target){
-                    if((e.target as HTMLElement).classList.contains("modal")){
-                        document.body.classList.remove("modalEnabled")
-                        setShowModal(false)
+                <div onClick={(e)=>{
+                    if (e.target){
+                        if((e.target as HTMLElement).classList.contains("modal")){
+                            document.body.classList.remove("modalEnabled")
+                            setShowModal(false)
+                        }
                     }
-                }
-                
-           }} className="fixed modal top-0 left-0 z-20 overflow-hidden w-screen h-screen flex justify-center items-center bg-black/20">
-                <div  className="bg-white p-5 mx-4 sm:mx-0 sm:w-1/2 rounded-md ">
-                       <h1 className="font-medium text-xl">Could you please confirm if this is your mahram ?</h1>
-                       <div  className="px-3 py-4 rounded-md  mt-5 bg-[#f8f8f8] flex flex-wrap gap-y-8 gap-x-8">
-                                <ConfirmElement title={t("firstname.name")} data={d["firstname"]}/>
-                                <ConfirmElement title={t("lastname.name")} data={d["lastname"]}/>
-                                <ConfirmElement title={t("dateOfBirth.name")} data={d["dateOfBirth"]}/>
-                                <ConfirmElement title={t("nationalIdNumber.name")} data={d["nationalIdNumber"]}/>
-                                <ConfirmElement title={t("passportExpirationDate.name")} data={d["passportExpirationDate"]}/>
-                        </div> 
-                        <button className="mt-10 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
-                </div> 
-
-
-
-            
-                {/* <MarhemReg/> */}
-            </div>
+                }} className="fixed modal top-0 left-0 z-20 py-4 overflow-hidden w-screen h-screen flex justify-center items-center bg-black/20">
+                    {/* <div  className="bg-white h-full p-5 mx-4 sm:mx-0 sm:w-2/3 rounded-md overflow-scroll">  */}
+                         <MahremModal onSubmit={(v?:boolean,data?:Record<string,any>)=>{
+                            // if (v){
+                            //     registerTirage(data!)
+                            // }
+                            // registerTirage(getValues())
+                        }} token={token} id={getValues().mahremId!}/> 
+                    {/* </div>  */}
+                 </div>
             }
         </div>
      );

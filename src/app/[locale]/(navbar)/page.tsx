@@ -6,19 +6,19 @@ import Hero from '@/components/landing/BeforeRegistration/hero/hero';
 import Steps from '@/components/landing/BeforeRegistration/steps/steps';
 import { NextIntlClientProvider } from 'next-intl';
 import {pick} from "lodash";
-import { getSession } from '@/app/action';
+import { getToken, getUser } from '@/app/action';
 import { getMessages } from 'next-intl/server';
 import Landing from '@/components/landing/afterRegistration/landing';
  
 export default async function Home() {
     const messages = await getMessages();
-    const session=await getSession();
-    console.log(session);
+    const user=await getUser();
+    console.log(user);
     
     
   return (
     <main>
-      {session?<Landing/>:
+      {user?<Landing/>:
           <>
             <Hero />
             <div className='px-20'>

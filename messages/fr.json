@@ -5,11 +5,22 @@
     "Conditions": "Conditions",
     "Tirage": "Tirage",
     "Hotel": "Hôtel",
-    "from":"Du moment où vous décidez de vous lancer dans le pèlerinage du Hajj jusqu'à la fin de votre voyage profond"
+    "from":"Du moment où vous décidez de vous lancer dans le pèlerinage du Hajj jusqu'à la fin de votre voyage profond",
+    "regbutton":"registre",
+    "insbutton":"Inscription au tirage",
+    "still":"Reste à l'inscription :"
   },
   "journey":{
     "reg":"Inscription",
-    "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité, facilitant ainsi la coordination fluide de la logistique du pèlerinage."
+    "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité, facilitant ainsi la coordination fluide de la logistique du pèlerinage.",
+    "exam":"Examination",
+    "examinfo":"À cette étape, les pèlerins sont guidés à travers le processus de planification et de passage des examens médicaux pour évaluer leur condition physique et leur préparation à ...",
+    "accom":"Accommodation",
+    "accominfo":"À cette étape, les pèlerins se voient présenter une liste complète des hôtels disponibles, allant des options économiques aux hébergements de luxe, de manière pratique ...",
+    "pay":"Payment",
+    "payinfo":"À cette étape, les pèlerins disposent d'une plateforme sécurisée et conviviale pour régler leurs factures et frais liés au pèlerinage, y compris les frais d'inscription ...",
+    "step":"Step by step",
+    "stepinfo":"À cette étape, les pèlerins ont accès à une série de ressources, d'outils et d'informations soigneusement sélectionnés pour naviguer à travers chaque étape du pèlerinage à La Mecque avec confiance et facilité. De ..."
 
   }
 }

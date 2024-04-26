@@ -31,7 +31,7 @@ function etapehaj() {
     <div>
       <h1 className="text-center font-semibold text-2xl mt-8">Here are the steps Muslims follow when performing Hajj:</h1>
 
-      <div className=" grid grid-cols-1 md:grid-cols-2 mx-auto gap-[3rem] items-center justify-between mt-8">
+      <div className=" grid grid-cols-1 md:grid-cols-2 mx-auto gap-[3rem] items-center justify-between mt-8 px-10">
         <div className="flex justify-center items-center gap-1 ">
 
           <div>

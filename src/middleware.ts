@@ -2,6 +2,7 @@
 import { verifyToken } from "@/utils/auth";
 import { NextRequest } from "next/server";
 import createMiddleware from 'next-intl/middleware';
+import { getUser } from "./app/action";
  
 const defaultLocale='en'
 
@@ -18,8 +19,7 @@ const handleI18nRouting = createMiddleware({
 export async function middleware(req:NextRequest){
     const response = handleI18nRouting(req);
 
-    const token=req.cookies.get("jwt")?.value;
-    let payload=(token&&token.length>0)?(await verifyToken(token)):undefined;
+    let payload=await getUser()
 
     if (payload&&Object.keys(payload).length===0){
       payload=undefined;
@@ -29,9 +29,7 @@ export async function middleware(req:NextRequest){
     let locale=defaultLocale
     if (l.length>=1){
       locale=l[1]
-    }
-    console.log(!payload);
-    
+    }    
     
     if ((req.nextUrl.pathname.startsWith("/en/signup")||req.nextUrl.pathname.startsWith("/ar/signup")||req.nextUrl.pathname.startsWith("/fr/signup"))&&payload){      
       return Response.redirect(new URL("/"+locale,req.url))

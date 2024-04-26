@@ -3,24 +3,26 @@ import Link from "next/link";
 import { SetStateAction, useEffect, useState } from "react";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
+import { IconChevronDown } from '@tabler/icons-react';
 
 
 type props = {
-  user?:string
+  user?: string
 }
 
-const locales:Record<string,Record<string,string>>={
-  "en":{
-    "flag":"fi-sh",
-    "name":"English"
+const locales: Record<string, Record<string, string>> = {
+  "en": {
+    "flag": "fi-sh",
+    "name": "English"
   },
-  "fr":{
-    "flag":"fi-re",
-    "name":"French"
+  "fr": {
+    "flag": "fi-re",
+    "name": "French"
   },
-  "ar":{
-    "flag":"fi-dz",
-    "name":"Arabic"
+  "ar": {
+    "flag": "fi-dz",
+    "name": "Arabic"
   }
 }
 
@@ -28,9 +30,9 @@ const locales:Record<string,Record<string,string>>={
 function Header({ user }: props) {
   const [navbar, setNavbar] = useState(false)
   const t = useTranslations("home");
-  const locale=useLocale();
+  const locale = useLocale();
   const [color, setColor] = useState('transparent')
-  const [textColor, setTextColor] = useState(user?"black":'white')
+  const [textColor, setTextColor] = useState(user ? "black" : 'white')
   const [shadow, setShadow] = useState('shadow-xl')
   const handleNavbar = () => {
     setNavbar(!navbar)
@@ -46,9 +48,9 @@ function Header({ user }: props) {
 
       } else {
         setColor('transparent')
-        if (user){
+        if (user) {
           setTextColor('#000000')
-        }else{
+        } else {
           setTextColor('#ffffff')
         }
       }
@@ -91,9 +93,11 @@ function Header({ user }: props) {
   };
 
 
+  const [open,setOpen]=useState(false)
+
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
-      <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto "+ (user?"text-black":"text-white")}>
+      <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto " + (user ? "text-black" : "text-white")}>
         <div className="font-semibold text-2xl">
           <Link href={"/"}>
             Makkah
@@ -103,25 +107,25 @@ function Header({ user }: props) {
         <div className="gap-x-6 hidden sm:flex items-center">
           <Link href={"/" + locale + "/journey"}>
             <h1 className={`font-semibold hover:underline ${clickedJourney ? "active-link" : ""}`}
-                          onClick={handleJourneyClick}
+              onClick={handleJourneyClick}
             >
               {t("journey")}
-              
+
             </h1>
 
           </Link>
-          <Link href={"/" + "#conditions-section"}>
+          <Link href={"/" + "#steps-section"}>
             <h1 className={`font-semibold hover:underline ${clickedConditions ? "active-link" : ""}`}
-                          onClick={handleConditionsClick}
+              onClick={handleConditionsClick}
             >
               {t("Steps")}
             </h1>
           </Link>
-          <Link href={"/" + "#steps-section"}>
-            <h1  className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
+          <Link href={"/" + "#conditions-section"}>
+            <h1 className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
 
-                          onClick={handleStepsClick}
-                          >
+              onClick={handleStepsClick}
+            >
               {t("Conditions")}
             </h1>
           </Link>
@@ -163,7 +167,7 @@ function Header({ user }: props) {
                       <Link
                         href="/en"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        // onClick={() => handleLanguageChange({ name: 'English', flag: 'fi-sh' })}
+                      // onClick={() => handleLanguageChange({ name: 'English', flag: 'fi-sh' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-sh"></span>
@@ -175,7 +179,7 @@ function Header({ user }: props) {
                       <Link
                         href="/fr"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        // onClick={() => handleLanguageChange({ name: 'French', flag: 'fi-re' })}
+                      // onClick={() => handleLanguageChange({ name: 'French', flag: 'fi-re' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-re"></span>
@@ -187,7 +191,7 @@ function Header({ user }: props) {
                       <Link
                         href="/ar"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        // onClick={() => handleLanguageChange({ name: 'Arabic', flag: 'fi-dz' })}
+                      // onClick={() => handleLanguageChange({ name: 'Arabic', flag: 'fi-dz' })}
                       >
                         <div className="flex justify-center items-center gap-4">
                           <span className="fi fi-dz"></span>
@@ -200,6 +204,43 @@ function Header({ user }: props) {
               )}
             </div>
           </div>
+        </div>
+
+
+        {  /*--------------------- Profil section------------------------ */}
+
+
+          <div className="relative flex justify-center items-center gap-1"  onClick={()=>setOpen(!open)}>
+            <Image
+              src="/image/hadjdef.png"
+              height={40}
+              width={40}
+              alt="Profil Image"
+              className="rounded-full aspect-square object-cover"
+            />
+            <IconChevronDown stroke={2} />
+
+            
+          {open&&(
+            <div className="absolute top-16  shadow-lg">
+            <ul className="bg-white w-40 -left-24  text-black text-center p-1 rounded-lg">
+    
+              <Link href={"/" + locale + "/profil"}>
+                <li className="p-2 text-lg cursor-pointer hover:bg-gray-100" >
+                  Profil
+                  </li>
+              </Link>
+                <li className="p-2 text-lg cursor-pointer hover:bg-gray-100" >
+                Saved
+                </li>
+              <hr color="black"/>
+              <li className="text-red-500 p-2 text-lg cursor-pointer hover:bg-gray-100">
+                Log out
+              </li>
+            </ul>
+        </div>
+          )}
+        
         </div>
 
         <div onClick={handleNavbar} className="block sm:hidden z-10">

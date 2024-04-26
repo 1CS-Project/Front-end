@@ -5,11 +5,22 @@
       "Conditions":"Conditions",
       "Tirage":"Tirage",
       "Hotel":"Hotel",
-      "from":"From deciding to embark on the Hajj pilgrimage to completing your profound journey"
+      "from":"From deciding to embark on the Hajj pilgrimage to completing your profound journey",
+      "regbutton":"Register",
+      "insbutton":"Registration of tirage",
+      "still":"Still to the inscription :"
   },
   "journey":{
     "reg":"Registration",
-    "regInfo":"This step ensures that all necessary information is accurately collected and securely stored, facilitating the smooth coordination of pilgrimage logistics."
+    "regInfo":"This step ensures that all necessary information is accurately collected and securely stored, facilitating the smooth coordination of pilgrimage logistics. With intuitive guidance and clear instructions, the Registration step simplifies the process for pilgrims, allowing them to embark on their spiritual journey with ease and peace of mind.",
+    "exam":"Examination",
+    "examinfo":"In this step, pilgrims are guided through the process of scheduling and attending medical examinations to assess their physical fitness and readiness for ...",
+    "accom":"Accommodation",
+    "accominfo":"In this step, pilgrims are presented with a comprehensive list of available hotels, ranging from budget-friendly options to luxury accommodations, conveniently ...",
+    "pay":"Payment",
+    "payinfo":"In this step, pilgrims are provided with a secure and user-friendly platform to settle their bills and fees associated with the pilgrimage, including registration fees ...",
+    "step":"Step by step",
+    "stepinfo":"In this step, pilgrims gain access to a curated series of resources, tools, and information to navigate each stage of the Hajj pilgrimage with confidence and ease. From the ..."
   },
   "tirageForm":{ 
     "register":"Register",
@@ -38,6 +49,10 @@
       "error":"City name is required"
     },
     "nationalIdNumber":{
+      "name":"National ID number",
+      "error":"The number must be of length 18"
+    },
+    "passportNumber":{
       "name":"Passport number",
       "error":"The number must be of length 9"
     },

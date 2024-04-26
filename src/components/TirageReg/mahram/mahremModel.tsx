@@ -4,38 +4,20 @@ import ConfirmElement from "./confirmElement";
 import { getToken } from "@/app/action";
 import { useEffect, useState } from "react";
 import MarhemReg from "./merhemReg";
+import { modalApiT } from "../useAwaitableModal";
 
 
 type props={
-    id:string,
+    mahremId:string,
     token:string,
-    onSubmit:(v?:boolean,data?:Record<string,any>)=>void,
+    data?:Record<string,any>,
+    modalApi:modalApiT
+    // onSubmit:(v?:boolean,data?:Record<string,any>)=>void,
 }
 
 
-function MahremModal({id,token,onSubmit}:props) {
+function MahremModal({mahremId,token,data,modalApi}:props) {
     
-    // console.log(token);
-    let [data,setData]=useState(null)
-
-    async function getMahremInfo(){
-            
-        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/mahrem-info?mahremId=${id}`,{
-            headers:{
-                "Authorization":`Bearer ${token}`
-            }
-        })
-        if (!re.ok){
-            throw Error("Unauthorized access")
-        }
-        let k= await re.json()
-        
-        setData(k.data);
-    }
-
-    useEffect(()=>{
-        getMahremInfo()
-    },[])
     
     const t=useTranslations("tirageForm");
     
@@ -53,21 +35,15 @@ function MahremModal({id,token,onSubmit}:props) {
                         <ConfirmElement title={t("passportExpirationDate.name")} data={data["passportExpirationDate"]}/>
                 </div> 
                 <button onClick={()=>{
-                    onSubmit()
+                    modalApi.closeModalWithResult({accepted:true})
                 }} className="mt-10 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
             </div>
          );
-    }else if (data===undefined){
+    }else{
         return (
             <div  className="bg-white h-full p-5 mx-4 sm:mx-0 sm:w-2/3 rounded-md overflow-scroll">
-                  <MarhemReg onSubmit={onSubmit}/>
+                  <MarhemReg mahremId={mahremId} token={token} modalApi={modalApi}/>
             </div>
-        )
-    }else {
-       return ( 
-        <div  className="bg-white p-5 mx-4 sm:mx-0 sm:w-1/2 rounded-md ">
-            Loading .....
-        </div>
         )
     }
 }

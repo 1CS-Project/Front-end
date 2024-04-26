@@ -14,54 +14,87 @@ import ConfirmElement from "./mahram/confirmElement";
 import MarhemReg from "./mahram/merhemReg";
 import RegInputs from "./RegInputs";
 import MahremModal from "./mahram/mahremModel";
+import UseAwaitableModal from "./useAwaitableModal";
 
 
 type props={
     token:string
 }
 
+async function getHadjInfo(token:string,id:string){
+            
+    let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/hadj-info?userId=${id}`,{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }
+    })
+    if (!re.ok){
+        throw Error("Unauthorized access")
+    }
+    let k= await re.json()
+    
+    return k.data;
+}
+
+export async function registerTirage(data:Record<string,any>,token:string){
+    let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/register-tirage`,{
+        method:"POST",
+        body:JSON.stringify({...data,imageUrl:"ddd"}),
+        headers:{
+            "Authorization":`Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!re.ok){
+        console.log("error")
+    }else{
+        console.log("done")
+    }
+}
+
 
 function TirageReg({token}:props) {
 
-    async function registerTirage(data:Record<string,any>){
-        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/register-tirage`,{
-            method:"POST",
-            body:JSON.stringify({...data,imageUrl:"ddd"}),
-            headers:{
-                "Authorization":`Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
 
-        if (!re.ok){
-            console.log("error")
-        }else{
-            console.log("done")
-        }
-    }
+    let {openModal,renderModal}=UseAwaitableModal(token,(modalApi,params)=>(
+        <MahremModal modalApi={modalApi} data={params!.data}  token={token} mahremId={params!.mahremId}/> 
+    ))
 
     const submitHandle:SubmitHandler<tirageRegT>=async (d,e)=>{
+
         e?.preventDefault()
+        /// check if user already registered
+        let user= await getHadjInfo(token,d.nationalIdNumber)
+        if (user){
+            console.log("user already exist");
+            return ;
+        }
+
+
         let {mahremRelation,mahremId,...remaining}=d
         if (d.gender==="female"){
-            document.body.classList.add("modalEnabled")
-            setShowModal(true)       
+            let data=await getHadjInfo(token,mahremId!)
+            let result=await openModal({mahremId,data});
+            if (result &&result.accepted){
+                await registerTirage(d,token);
+            }
         }else{
-            registerTirage(remaining)
+            await registerTirage(remaining,token)
         }
     }
 
     const t= useTranslations("tirageForm")
     const TirageRegSchema=TirageRegSchemaF(t);
     
-    const {register,handleSubmit,control,formState:{errors},getValues} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
+    const {register,handleSubmit,control,formState:{errors}} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
             birthCerteficateNumber: "55555",
             city: "ddd",
             dateOfBirth: "2004-03-25",
             firstname: "ddd",
             gender: "female",
             lastname: "55",
-            mahremId: "555555555555555555",
+            mahremId: "555555535555555555",
             mahremRelation: "husband",
             nationalIdNumber: "123456789123456789",
             passportNumber:"123456789",
@@ -71,9 +104,6 @@ function TirageReg({token}:props) {
             state: "dd"
     }})
     const showAdditional=useWatch<tirageRegT>({name:"gender",control})==="female"
-
-    let [showModal,setShowModal]=useState(false)
-
     
     return ( 
         <div >
@@ -91,25 +121,7 @@ function TirageReg({token}:props) {
                     <button  className="mt-8 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
                 </form>
             </div>
-            {showModal&&
-                <div onClick={(e)=>{
-                    if (e.target){
-                        if((e.target as HTMLElement).classList.contains("modal")){
-                            document.body.classList.remove("modalEnabled")
-                            setShowModal(false)
-                        }
-                    }
-                }} className="fixed modal top-0 left-0 z-20 py-4 overflow-hidden w-screen h-screen flex justify-center items-center bg-black/20">
-                    {/* <div  className="bg-white h-full p-5 mx-4 sm:mx-0 sm:w-2/3 rounded-md overflow-scroll">  */}
-                         <MahremModal onSubmit={(v?:boolean,data?:Record<string,any>)=>{
-                            // if (v){
-                            //     registerTirage(data!)
-                            // }
-                            // registerTirage(getValues())
-                        }} token={token} id={getValues().mahremId!}/> 
-                    {/* </div>  */}
-                 </div>
-            }
+            {renderModal()}
         </div>
      );
 }

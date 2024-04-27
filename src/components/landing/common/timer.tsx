@@ -1,7 +1,14 @@
+"use client"
+
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
 
-const Timer: NextPage = () => {
+type props={
+  darkMode?:boolean
+}
+
+
+const Timer = ({darkMode=false}:props) => {
   const [tirageTime, setTirageTime] = useState(false);
   const [months, setMonths] = useState(0);
   const [days, setDays] = useState(0);
@@ -58,39 +65,29 @@ const Timer: NextPage = () => {
   return (
     <div>
       <div className="flex justify-center items-center">
-        <div className="flex items-center backdrop-blur-lg py-6 px-5 rounded-3xl">
-          <div className="mr-2">
+        <div className={`flex items-center flex-col justify-center ${darkMode?"bg-black text-[#CA9335]":""} backdrop-blur-lg py-6 px-5 rounded-3xl`}>
             <p className="font-bold text-4xl">{months}</p>
-            <p className="text-white text-sm">months</p>
-          </div>
+            <p className=" text-sm">months</p>
         </div>
         <p className="text-3xl mx-1">:</p>
-        <div className="flex items-center backdrop-blur-lg py-6 px-5 rounded-3xl">
-          <div className="mr-2">
+        <div className={`flex items-center flex-col justify-center ${darkMode?"bg-black text-[#CA9335]":""} backdrop-blur-lg py-6 px-5 rounded-3xl`}>
             <p className="font-bold text-4xl">{days}</p>
-            <p className="text-white text-sm">Days</p>
-          </div>
+            <p className="text-sm">Days</p>
         </div>
         <p className="text-3xl mx-1">:</p>
-        <div className="flex items-center backdrop-blur-lg py-6 px-5 rounded-3xl">
-          <div className="mr-2 ">
+        <div className={`flex items-center flex-col justify-center ${darkMode?"bg-black text-[#CA9335]":""} backdrop-blur-lg py-6 px-5 rounded-3xl`}>
             <p className="font-bold text-4xl">{hours}</p>
-            <p className="text-white text-sm">Hours</p>
-          </div>
+            <p className="text-sm">Hours</p>
         </div>
         <p className="text-3xl mx-1">:</p>
-        <div className="flex items-center backdrop-blur-lg py-6 px-5 rounded-3xl">
-          <div className="mr-2">
+        <div className={`flex items-center flex-col justify-center ${darkMode?"bg-black text-[#CA9335]":""} backdrop-blur-lg py-6 px-5 rounded-3xl`}>
             <p className="font-bold text-4xl">{minutes}</p>
-            <p className="text-white text-sm">Minutes</p>
-          </div>
+            <p className="text-sm">Minutes</p>
         </div>
         <p className="text-3xl mx-1">:</p>
-        <div className="flex items-center backdrop-blur-lg py-6 px-5 rounded-3xl">
-          <div className="mr-2">
+        <div className={`flex items-center flex-col justify-center ${darkMode?"bg-black text-[#CA9335]":""} backdrop-blur-lg py-6 px-5 rounded-3xl`}>
             <p className="font-bold text-4xl">{seconds}</p>
-            <p className="text-white text-sm">Seconds</p>
-          </div>
+            <p className="text-sm">Seconds</p>
         </div>
       </div>
     </div>

@@ -1,13 +1,11 @@
 "use client"
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
 
 function Steps() {
   const t = useTranslations("journey");
   return (
-    <section className='mt-[8rem] ' id='steps-section'>
+    <section className='mt-[8rem] scroll-mt-20' id='steps-section'>
       <h1 className="text-center font-semibold text-3xl mb-[4rem]">Unlock the journey to Mecca with these essential steps</h1>
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 mx-auto gap-[10em] items-center justify-between mt-8">

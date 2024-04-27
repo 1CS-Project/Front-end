@@ -5,9 +5,9 @@ function footer() {
 
   return (
     <footer className="bg-white dark:bg-gray-900">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:pb-8">
 
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <hr className="mb-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mb-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-start dark:text-gray-400">
             Copyright © 2024{" "}

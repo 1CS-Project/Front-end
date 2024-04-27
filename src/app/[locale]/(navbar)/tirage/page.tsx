@@ -1,6 +1,6 @@
 import { getTirageRegData, getToken } from "@/app/action";
 import TirageReg from "@/components/TirageReg/TirageReg";
-import TirageRegDone from "@/components/TirageReg/TirageRegDone";
+import TirageRegDone from "@/components/TirageReg/TirageRegDone(mustChangeLater)";
 import { pick } from "lodash";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getMessages } from "next-intl/server";

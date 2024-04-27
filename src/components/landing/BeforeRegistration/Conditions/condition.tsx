@@ -59,7 +59,7 @@ function conditions() {
   }*/}
 
   return (
-    <section id="conditions-section" >
+    <section className="scroll-mt-20" id="conditions-section" >
       <h1 data-aos="fade-down" className="text-center font-semibold text-3xl">Our Conditions</h1>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 mx-auto gap-[13em] items-center justify-between mt-8">
         <div>

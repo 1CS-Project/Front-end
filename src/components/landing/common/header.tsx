@@ -5,7 +5,7 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useLocale, useTranslations } from "next-intl";
 import LanguageButton from "./languageButton";
 import ProfileWidget from "./profileWidget";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 
 type props = {
@@ -19,12 +19,7 @@ let withWhiteText=["/en","/ar","/fr"]
 function Header({ user }: props) {
   const pathname = usePathname();
   
-  // console.log(searchParams.getAll());
-  
-  
   const blackText=user || !withWhiteText.includes(pathname)
-
-  
 
   const [navbar, setNavbar] = useState(false)
   const t = useTranslations("home");
@@ -54,10 +49,9 @@ function Header({ user }: props) {
   };
 
   useEffect(() => {
-    console.log("rerender");
-    
     if (!withWhiteText.includes(pathname)){
-      handleJourneyClick()
+      setClickedConditions(false);
+      setClickedSteps(false);
     }
     changeColor()
     window.addEventListener('scroll', changeColor)
@@ -66,42 +60,43 @@ function Header({ user }: props) {
     }
   }, [pathname])
 
+  useEffect(()=>{
+    console.log("rendered");
+    
+    if (window.location.hash.length!==0&&withWhiteText.includes(pathname)){
+      if (window.location.hash==="#steps-section"){
+          setClickedSteps(true)
+      }else if (window.location.hash==="#conditions-section"){
+          setClickedConditions(true)
+      }
+    }
+  },[])
 
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [clickedConditions, setClickedConditions] = useState(false);
   const [clickedSteps, setClickedSteps] = useState(false);
-  // const [clickedJourney, setClickedJourney] = useState(false);
+  const [clickedConditions, setClickedConditions] = useState(false);
+
+
   const isJourney=pathname.endsWith("/journey")
   const isTirage=pathname.endsWith("/tirage")
+  const isHotels=pathname.endsWith("/hotels")
 
 
 
   const handleConditionsClick = () => {
     setClickedConditions(true);
     setClickedSteps(false);
-    // setClickedJourney(false);
   };
   
   const handleStepsClick = () => {
+    setClickedConditions(false);
     setClickedSteps(true);
-    setClickedConditions(false);
-    // setClickedJourney(false);
   };
-
-  const handleJourneyClick = () => {
-    setClickedSteps(false);
-    setClickedConditions(false);
-    // setClickedJourney(true);
-  };
-
-
 
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
       <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto " + (blackText ? "text-black" : "text-white")}>
         <div className="font-semibold text-2xl">
-          <Link href={"/"}>
+          <Link href={"/"} >
             Makkah
           </Link>
 
@@ -116,16 +111,16 @@ function Header({ user }: props) {
 
           </Link>
           <Link href={"/" +locale+ "#steps-section"}>
-            <h1 className={`font-semibold hover:underline ${clickedConditions ? "active-link" : ""}`}
-              onClick={handleConditionsClick}
+            <h1 className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
+              onClick={handleStepsClick}
             >
               {t("Steps")}
             </h1>
           </Link>
           <Link href={"/" +locale+ "#conditions-section"}>
-            <h1 className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
+            <h1 className={`font-semibold hover:underline ${ clickedConditions? "active-link" : ""}`}
 
-              onClick={handleStepsClick}
+              onClick={handleConditionsClick}
             >
               {t("Conditions")}
             </h1>
@@ -136,8 +131,8 @@ function Header({ user }: props) {
               {t("Tirage")}
             </h1>
           </Link>
-          <Link href={"/hotel"}>
-            <h1 className="font-semibold hover:underline">
+          <Link href={"/" + locale + "/hotels"}>
+            <h1 className={`font-semibold hover:underline ${isHotels ? "active-link" : ""}`}>
               {t("Hotel")}
             </h1>
 
@@ -159,27 +154,27 @@ function Header({ user }: props) {
 
         <div className={navbar ? "sm:hidden absolute top-0 right-0 bottom-0 left-0 justify-center items-center w-full h-screen bg-white text-center ease-in duration-300 pt-40 "
           : "sm:hidden absolute top-0 right-0 bottom-0 left-[-100%] justify-center items-center w-full h-screen bg-white text-center ease-in duration-300 "}>
-          <Link href={"/journey"}>
+          <Link href={"/" + locale + "/journey"}>
             <h1 className="font-semibold text-black p-5 hover:underline ">
               {t("journey")}
             </h1>
           </Link>
-          <Link href={"/steps"}>
+          <Link href={"/" + "#steps-section"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {t("Steps")}
             </h1>
           </Link>
-          <Link href={"/conditions"}>
+          <Link href={"/" + "#conditions-section"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {t("Conditions")}
             </h1>
           </Link>
-          <Link href={"/tirage"}>
+          <Link href={"/" + locale + "/tirage_att"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {t("Tirage")}
             </h1>
           </Link>
-          <Link href={"/hotel"}>
+          <Link href={"/" + locale + "/journey"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {t("Hotel")}
             </h1>

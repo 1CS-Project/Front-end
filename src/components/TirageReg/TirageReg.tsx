@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import RegInputs from "./RegInputs";
 import MahremModal from "./mahram/mahremModel";
 import UseAwaitableModal from "./useAwaitableModal";
+import { useRouter } from "next/navigation";
 
 
 type props={
@@ -60,7 +61,7 @@ export async function registerTirage(data:Record<string,any>,token:string){
 
 function TirageReg({token}:props) {
 
-
+    let router=useRouter()
     let {openModal,renderModal}=UseAwaitableModal(token,(modalApi,params)=>(
         <MahremModal modalApi={modalApi} data={params!.data}  token={token} mahremId={params!.mahremId}/> 
     ))
@@ -87,10 +88,16 @@ function TirageReg({token}:props) {
                 let data=await getHadjInfo(token,mahremId!)
                 let result=await openModal({mahremId,data});
                 if (result &&result.accepted){
-                    await registerTirage(d,token);
+                    let res=await registerTirage(d,token);
+                    if (res){
+                        router.refresh()
+                    }
                 }
             }else{
-                await registerTirage(remaining,token)
+                let res=await registerTirage(remaining,token);
+                if (res){
+                    router.refresh()
+                }
             }
         } catch (error) {
             setError("root.error",{message:"Please try again later"},{shouldFocus:true})

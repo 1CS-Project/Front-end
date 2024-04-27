@@ -1,8 +1,8 @@
-import Profil from '@/components/landing/afterRegistration/profil/profil'
+import UserData from '@/components/landing/afterRegistration/profil/userData'
 
 function page() {
   return (
-    <Profil/>
+    <UserData/>
   )
 }
 

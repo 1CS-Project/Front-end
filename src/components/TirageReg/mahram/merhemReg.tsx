@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { modalApiT } from "../useAwaitableModal";
 import { useEffect } from "react";
-import { registerTirage } from "../TirageReg";
+import { getHadjInfo, registerTirage } from "../TirageReg";
 
 
 type props={
@@ -21,7 +21,7 @@ function MarhemReg({token,modalApi,mahremId}:props) {
     
     const t= useTranslations("tirageForm")
     const TirageRegSchema=TirageRegSchemaF(t);
-    const {register,handleSubmit,formState:{errors}} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
+    const {register,handleSubmit,formState:{errors},setError} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
         birthCerteficateNumber: "55555",
         city: "ddd",
         dateOfBirth: "2004-03-25",
@@ -40,6 +40,17 @@ function MarhemReg({token,modalApi,mahremId}:props) {
         e?.preventDefault()
         let {mahremRelation,mahremId,...remaining}=d
         let data={...remaining,uncount:true};
+        try {
+            let user= await getHadjInfo(token,d.nationalIdNumber)
+            if (user){
+                setError("nationalIdNumber",{message:"User already exist"},{shouldFocus:true})
+                return ;
+            }
+        } catch (error) {
+            setError("root.error",{message:"Please try again later"},{shouldFocus:true})
+            throw error;
+        }
+
         let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/register-tirage`,{
             method:"POST",
             body:JSON.stringify({...data,imageUrl:"ddd"}),
@@ -50,11 +61,9 @@ function MarhemReg({token,modalApi,mahremId}:props) {
         });
 
         if (!re.ok){
-            console.log("error");
-            // modalApi.closeModalWithError("Error")
+            setError("root.error",{message:"Please try again later"},{shouldFocus:true})
+            throw Error("Please try again later");
         }else{
-            console.log("done");
-            
             modalApi.closeModalWithResult({accepted:true})
         }
     }
@@ -83,6 +92,9 @@ function MarhemReg({token,modalApi,mahremId}:props) {
                         <InputFile/>
                     </div>
                     <button form="form3" className="mt-2 w-full py-2 rounded-lg text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright " type="submit">Continue</button>
+                    {errors.root?.error&&<h1 className='text-[#E64040] flex justify-center w-full'>
+                        {errors.root?.error.message}
+                   </h1>}
 
                 </div>
             </form>

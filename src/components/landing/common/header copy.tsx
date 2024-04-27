@@ -24,6 +24,7 @@ function Header({ user }: props) {
   
   const blackText=user || !withWhiteText.includes(pathname)
 
+  console.log(blackText);
   
 
   const [navbar, setNavbar] = useState(false)
@@ -37,29 +38,45 @@ function Header({ user }: props) {
     setNavbar(!navbar)
   };
 
-  const changeColor = () => {
-    if (window.scrollY >= 90) {
-      setColor('#ffffff')
-      setTextColor('#000000')
-      setShadow('shadow-xl')
-
-    } else {
-      setColor('transparent')
-      if (blackText) {
-        setTextColor('#000000')
-      } else {
-        setTextColor('#ffffff')
+  function onHashChange(){
+    console.log(window.location.hash);
+    
+    if (window.location.hash.length!==0){
+      if (window.location.hash==="#steps-section"){
+        document.getElementById("esteps-section")?.classList.add("active-link")
+        document.getElementById("econditions-section")?.classList.remove("active-link")
+      }else if (window.location.hash==="#conditions-section"){
+        document.getElementById("esteps-section")?.classList.remove("active-link")
+        document.getElementById("econditions-section")?.classList.add("active-link")
       }
+    }else{
+      document.getElementById("esteps-section")?.classList.remove("active-link")
+      document.getElementById("econditions-section")?.classList.remove("active-link")
     }
-  };
+  }
 
   useEffect(() => {
-    console.log("rerender");
     
-    if (!withWhiteText.includes(pathname)){
-      handleJourneyClick()
-    }
-    changeColor()
+    const changeColor = () => {
+      if (window.scrollY >= 90) {
+        setColor('#ffffff')
+        setTextColor('#000000')
+        setShadow('shadow-xl')
+
+      } else {
+        setColor('transparent')
+        if (blackText) {
+          setTextColor('#000000')
+        } else {
+          console.log("white");
+          
+          setTextColor('#ffffff')
+        }
+      }
+    };
+
+    changeColor();
+    onHashChange();
     window.addEventListener('scroll', changeColor)
     return ()=>{
       window.removeEventListener('scroll', changeColor)
@@ -69,29 +86,27 @@ function Header({ user }: props) {
 
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [clickedConditions, setClickedConditions] = useState(false);
-  const [clickedSteps, setClickedSteps] = useState(false);
+  // const [clickedConditions, setClickedConditions] = useState(false);
+  // const [clickedSteps, setClickedSteps] = useState(false);
   // const [clickedJourney, setClickedJourney] = useState(false);
   const isJourney=pathname.endsWith("/journey")
-  const isTirage=pathname.endsWith("/tirage")
-
 
 
   const handleConditionsClick = () => {
-    setClickedConditions(true);
-    setClickedSteps(false);
+    // setClickedConditions(true);
+    // setClickedSteps(false);
     // setClickedJourney(false);
   };
   
   const handleStepsClick = () => {
-    setClickedSteps(true);
-    setClickedConditions(false);
+    // setClickedSteps(true);
+    // setClickedConditions(false);
     // setClickedJourney(false);
   };
 
   const handleJourneyClick = () => {
-    setClickedSteps(false);
-    setClickedConditions(false);
+    // setClickedSteps(false);
+    // setClickedConditions(false);
     // setClickedJourney(true);
   };
 
@@ -99,7 +114,7 @@ function Header({ user }: props) {
 
   return (
     <div style={{ backgroundColor: `${color}`, boxShadow: `${shadow}` }} className="fixed left-0 top-0 w-full z-10 ease-in duration-300">
-      <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto " + (blackText ? "text-black" : "text-white")}>
+      <div style={{ color: `${textColor}` }} className={"flex justify-between p-4 px-20 bg-transparent  m-auto "}>
         <div className="font-semibold text-2xl">
           <Link href={"/"}>
             Makkah
@@ -108,31 +123,30 @@ function Header({ user }: props) {
         </div>
         <div className="gap-x-6 hidden sm:flex items-center">
           <Link href={"/" + locale + "/journey"}>
-            <h1 className={`font-semibold hover:underline ${isJourney ? "active-link" : ""}`}
-            >
+            <h1 className={`font-semibold hover:underline ${isJourney ? "active-link" : ""}`}>
               {t("journey")}
-
             </h1>
 
           </Link>
-          <Link href={"/" +locale+ "#steps-section"}>
-            <h1 className={`font-semibold hover:underline ${clickedConditions ? "active-link" : ""}`}
-              onClick={handleConditionsClick}
-            >
+          <Link onClick={()=>{
+            console.log("click");
+            
+            onHashChange()
+          }} id="esteps-section" href={"/" +locale+ "#steps-section"}>
+            <h1 className={`font-semibold hover:underline `}>
               {t("Steps")}
             </h1>
           </Link>
-          <Link href={"/" +locale+ "#conditions-section"}>
-            <h1 className={`font-semibold hover:underline ${clickedSteps ? "active-link" : ""}`}
-
-              onClick={handleStepsClick}
-            >
+          <Link onChange={()=>{
+            onHashChange()
+          }} id="econditions-section" href={"/" +locale+ "#conditions-section"}>
+            <h1 className={`font-semibold hover:underline `}>
               {t("Conditions")}
             </h1>
           </Link>
 
           <Link href={"/" + locale + "/tirage"}>
-            <h1 className={`font-semibold hover:underline ${isTirage? "active-link":""}`}>
+            <h1 className="font-semibold hover:underline">
               {t("Tirage")}
             </h1>
           </Link>
@@ -145,7 +159,7 @@ function Header({ user }: props) {
 
         </div>
 
-        {user?<ProfileWidget user={user}/>:<LanguageButton/>}
+        {user?<ProfileWidget/>:<LanguageButton/>}
 
         <div onClick={handleNavbar} className="block sm:hidden z-10">
           {navbar ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-black">

@@ -1,7 +1,6 @@
 'use server'
-import { verifyToken } from '@/utils/auth'
 import { cookies } from 'next/headers'
-
+import { redirect } from 'next/navigation'
 
 export async function handleLogin(Email:string,Password:string) {
     try {
@@ -12,39 +11,53 @@ export async function handleLogin(Email:string,Password:string) {
                 'Content-Type': 'application/json',
                 }
         })
-        // console.log(res.ok);
         
         if (res.ok){
-            let {accessToken,refreshToken}=await res.json()
-            // console.log(refreshToken);
+            let {accessToken}=await res.json()
+
             cookies().set("jwt",accessToken,{
                 httpOnly:true,
                 secure: process.env.NODE_ENV === 'production',
                 maxAge: 60 * 60 * 24 ,
                 path: '/',
             })
-            // return {accessToken};
-            return {logedIn:true}
+
+            return {loggedIn:true}
             
         }else{
-            console.log(await res.json());
+            return {loggedIn:false,error:"Incorrect Email or password"}
         }
     } catch (error) {
-        throw error;
+        return {loggedIn:false,error:"Please try again later"};
+        
         
     }
 }
 
 export async function getToken(){
     const token=cookies().get("jwt")?.value;    
-    // let payload=(token&&token.length>0)?(await verifyToken(token)):undefined;
-    // if (payload&&Object.keys(payload).length===0){
-    //     payload=undefined;
-    // }
-    // // console.log(payload);
-    
+
     return token;
-    // return "";
+}
+
+export async function getMinUser():Promise<Record<string,string>|undefined>{
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/getMinUser`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        if (!re.ok){
+            return undefined;
+        }
+        let user=await re.json()
+        return user;
+
+    } catch (error) {
+        return undefined;
+    }
 }
 
 export async function getUser():Promise<Record<string,string>|undefined>{
@@ -63,8 +76,35 @@ export async function getUser():Promise<Record<string,string>|undefined>{
         return user;
 
     } catch (error) {
-        console.log(error)
         return undefined;
     }
 }
 
+
+
+export async function logOut(){    
+    
+    cookies().delete("jwt")
+    redirect("/")
+}
+
+
+export async function getTirageRegData(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/user-registration`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        if (!re.ok){
+            return undefined;
+        }
+        let data=await re.json()
+        return data;
+
+    } catch (error) {
+        return undefined;
+    }
+}

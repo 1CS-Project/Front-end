@@ -8,12 +8,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import FormInput from './FormInput';
 import { redirect, useRouter } from 'next/navigation';
 import { handleLogin } from '@/app/action';
+import ForgetPassword from './ForgotPassword';
+import Image from 'next/image';
 
 
 const authSchema=z.object({
   Email:z.string().email(),
   Password:z.string().min(8,"password length must be at least 8"),
-  Name:z.string().min(2).optional(),
+  Name:z.string().trim().min(2).optional(),
   Phone_Number:z.string().regex(/^(07|06|05)\d{8}$/).optional()
 
 })
@@ -28,23 +30,24 @@ function SignUp() {
   const locale = useLocale();
   const router=useRouter()
 
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm<authType>({shouldUnregister:true,resolver:zodResolver(authSchema)})
+  
   const [showForm, setShowForm] = useState(false);
   const [signInMode, setSignInMode] = useState(false);
   
   const handleSignInClick = () => {
+    clearErrors("root.error")
     setShowForm(!showForm);
     setSignInMode(!signInMode);
   };
 
 
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    setError,
-    formState: { errors },
-  } = useForm<authType>({shouldUnregister:true,resolver:zodResolver(authSchema)})
-  
   const openModal = () => {
     const modal = document.getElementById('my_modal_3') as HTMLDialogElement | null;
     if (modal) {
@@ -55,29 +58,20 @@ function SignUp() {
 
   const handleSignIn:SubmitHandler<authType>=async (e)=>{
     let {Email,Password}=e
-    let r=await handleLogin(Email,Password)
-    // console.log(r);
-    if (r&&r.logedIn){
-      router.push("/"+locale)
-    }
-     /*
     try {
-      // let re=await signIn("credentials",{redirect:false,Email,Password}) 
-
-      if (re?.ok){
+      let r=await handleLogin(Email,Password)
+  
+      if (r.loggedIn){
         router.push("/"+locale)
       }else{
-       console.log(re);
-       if (re?.error){
-         setError("root.error",{message:re.error})
-       }else{
-         setError("root.error",{message:"Please try again"})
-       }     
+        setError("root.error",{message:r.error})
       }
+      
     } catch (error) {
-      setError("root.error",{message:"Please try again"})
+      setError("root.error",{message:"Please try again later"})
+      
     }
-    */
+
   }
 
   const handleSignUp:SubmitHandler<authType>=async (e)=>{
@@ -103,29 +97,6 @@ function SignUp() {
       }
     }
 
-
-    document.getElementById("sendEmailBtn")?.addEventListener("click", function(event) {
-      event.preventDefault(); 
-      
-      const emailInput = document.getElementById("emailInput") as HTMLInputElement | null;
-      if (emailInput) {
-          const email = emailInput.value;
-          const label = document.getElementById("label_email") as HTMLLabelElement | null;
-          if (label) {
-              label.style.display = "none";
-          }
-          
-        
-          const messageDiv = document.getElementById("message") as HTMLDivElement | null;
-          if (messageDiv) {
-              messageDiv.innerText = `We just emailed a reset link to ${email}.Click the link and you’ll be prompted to choose a new password.`;
-              messageDiv.style.display = "block";
-          }
-        
-          emailInput.style.display = "none";
-          (this as HTMLButtonElement).style.display = "none";
-      }
-  });
   
 
   return (
@@ -134,9 +105,12 @@ function SignUp() {
         <div className="absolute top-[50%] left-[30%] flex-col ">
           <p className="text-3xl text-center text-white amiri-quran-regular ">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</p>
         </div>
-        <img
+        <Image
+          priority
           src={signInMode ? "/image/signin.png" : "/image/signup.png"}
           alt={signInMode ? "signin" : "signup"}
+          width={400}
+          height={400}
           className="w-full h-full object-cover object-left"
         />
 
@@ -157,7 +131,6 @@ function SignUp() {
           </div>
           {errors.root?.error&&<h1 className='text-[#E64040] flex justify-center w-full'>
                 {errors.root?.error.message}
-
           </h1>}
           <form onSubmit={signInMode?handleSubmit(handleSignIn):handleSubmit(handleSignUp)}>
             {!signInMode && (
@@ -173,92 +146,18 @@ function SignUp() {
               <div className="w-full flex flex-col mb-1">
                 <button type='button' className='text-end hover:underline'></button>
                 <>
-                  <button className="btn text-end hover:underline" onClick={openModal}>Forgot password ?</button>
-                  <dialog id="my_modal_3" className="modal">
-                    <div className="modal-box">
-                      <form method="dialog">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                      </form>
-                    </div>
-                    <div className="p-8 sm:p-7">
-                      <div className="text-center">
-                        <h2 className="block text-2xl mb-2 font-bold text-gray-800 dark:text-gray-200">
-                          Forgot password?
-                        </h2>
-                        <p  id="message" className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Please enter your email or mobile number to search for your account.                          
-                        </p>
-                      </div>
-                      <div className="mt-5">
-                        {/* Form */}
-                        <form>
-                          <div className="grid gap-y-4">
-                            <div>
-                              <label
-                              id='label_email'
-                                htmlFor="email"
-                                className="block text-sm mb-2 dark:text-white"
-                              >
-                                Email address
-                              </label>
-                              <div className="relative">
-                                <input
-                                  type="email"
-                                  id="emailInput"
-                                  name="email"
-                                  className="py-3 border-2 px-4 block w-full border-gray-500 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                  required
-                                  aria-describedby="email-error"
-                                />
-                                <div className="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
-                                  <svg
-                                    className="size-5 text-red-500"
-                                    width={16}
-                                    height={16}
-                                    fill="currentColor"
-                                    viewBox="0 0 16 16"
-                                    aria-hidden="true"
-                                  >
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                                  </svg>
-                                </div>
-                              </div>
-                              <p
-                                className="hidden text-xs text-red-600 mt-2"
-                                id="email-error"
-                              >
-                                Please include a valid email address so we can get back to you
-                              </p>
-                            </div>
-
-                            
-                            <button
-                              type="submit"
-                              id="sendEmailBtn"
-                              className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gradient-to-r from-buttonleft to-buttonright text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            >
-                              Send email
-                            </button>
-                          </div>
-                        </form>
-                        {/* End Form */}
-                      </div>
-                    </div>
-                  </dialog>
+                  <button type='button' className="btn text-end hover:underline" onClick={openModal}>Forgot password ?</button>
                 </>
               </div>
 
             )}
-            {/* <div className="w-full flex flex-col"> */}
-                <button
-                  type="submit"
-                  className="text-white font-medium ml-0 bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl m-4 w-full border-gradient"
-                >
-                  {signInMode ? 'Sign in' : 'Sign up'}
-                </button>
-            {/* </div> */}
+            <button
+              type="submit"
+              className="text-white font-medium ml-0 bg-gradient-to-r from-buttonleft to-buttonright p-3 shadow-md rounded-xl m-4 w-full border-gradient">
+              {signInMode ? 'Sign in' : 'Sign up'}
+            </button>
           </form>
-
+          {signInMode&&<ForgetPassword/>}
           <div className="w-full flex items-center justify-center">
             <hr className="w-1/4 border-t-1 border-gray-500" />
             <span className="mx-4">Or</span>

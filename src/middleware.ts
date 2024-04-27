@@ -2,7 +2,7 @@
 import { verifyToken } from "@/utils/auth";
 import { NextRequest } from "next/server";
 import createMiddleware from 'next-intl/middleware';
-import { getUser } from "./app/action";
+import { getMinUser } from "./app/action";
  
 const defaultLocale='en'
 
@@ -19,7 +19,7 @@ const handleI18nRouting = createMiddleware({
 export async function middleware(req:NextRequest){
     const response = handleI18nRouting(req);
 
-    let payload=await getUser()
+    let payload=await getMinUser()
 
     if (payload&&Object.keys(payload).length===0){
       payload=undefined;
@@ -34,7 +34,7 @@ export async function middleware(req:NextRequest){
     if ((req.nextUrl.pathname.startsWith("/en/signup")||req.nextUrl.pathname.startsWith("/ar/signup")||req.nextUrl.pathname.startsWith("/fr/signup"))&&payload){      
       return Response.redirect(new URL("/"+locale,req.url))
     }
-    if ((req.nextUrl.pathname.startsWith("/en/tirage_reg")||req.nextUrl.pathname.startsWith("/ar/tirage_reg")||req.nextUrl.pathname.startsWith("/fr/tirage_reg"))&&!payload){      
+    if ((req.nextUrl.pathname.startsWith("/en/tirage")||req.nextUrl.pathname.startsWith("/ar/tirage")||req.nextUrl.pathname.startsWith("/fr/tirage"))&&!payload){      
       return Response.redirect(new URL("/"+locale+"/signup",req.url))
     }
   

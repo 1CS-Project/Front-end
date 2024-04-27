@@ -12,7 +12,6 @@ type props={
     token:string,
     data?:Record<string,any>,
     modalApi:modalApiT
-    // onSubmit:(v?:boolean,data?:Record<string,any>)=>void,
 }
 
 

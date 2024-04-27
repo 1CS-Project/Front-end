@@ -1,8 +1,6 @@
 "use client"
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
 
 function Steps() {
   const t = useTranslations("journey");

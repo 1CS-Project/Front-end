@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Etapehaj from "../etapehaj/etapehaj";
 import Hajjdef from "../hajjdef/hajjdef";
 import Instruction from "../instruction/instruction";
+import Transport from "../transport/transport";
 
 function Journey() {
   const [showHajjDef, setShowHajjDef] = useState(true);
@@ -134,7 +135,8 @@ function Journey() {
 
       {activeCard === "Transport" && (
         <div>
-          Content for Transport
+          
+          <Transport/>
         </div>
       )}
     </section>

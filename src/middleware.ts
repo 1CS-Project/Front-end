@@ -15,6 +15,7 @@ const handleI18nRouting = createMiddleware({
   defaultLocale: defaultLocale
 });
  
+let landings =["/en","/ar","/fr"]
 
 export async function middleware(req:NextRequest){
     const response = handleI18nRouting(req);
@@ -31,11 +32,17 @@ export async function middleware(req:NextRequest){
       locale=l[1]
     }    
     
-    if ((req.nextUrl.pathname.startsWith("/en/signup")||req.nextUrl.pathname.startsWith("/ar/signup")||req.nextUrl.pathname.startsWith("/fr/signup"))&&payload){      
-      return Response.redirect(new URL("/"+locale,req.url))
-    }
-    if ((req.nextUrl.pathname.startsWith("/en/tirage")||req.nextUrl.pathname.startsWith("/ar/tirage")||req.nextUrl.pathname.startsWith("/fr/tirage"))&&!payload){      
-      return Response.redirect(new URL("/"+locale+"/signup",req.url))
+    
+    if (!landings.includes(req.nextUrl.pathname)){
+      let pathname=req.nextUrl.pathname.slice(3);
+      // console.log(pathname);
+      
+      if (pathname.startsWith("/en/signup")&&payload){      
+        return Response.redirect(new URL("/"+locale,req.url))
+      }
+      if ((pathname.startsWith("/profil")||pathname.startsWith("/tirage_reg"))&&!payload){      
+        return Response.redirect(new URL("/"+locale+"/signup",req.url))
+      }   
     }
   
     return response;

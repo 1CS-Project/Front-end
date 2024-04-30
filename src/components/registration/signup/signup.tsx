@@ -1,12 +1,12 @@
 'use client'
 import { useState } from 'react';
 import Link from "next/link";
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale,  } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormInput from './FormInput';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/app/action';
 import ForgetPassword from './ForgotPassword';
 import Image from 'next/image';

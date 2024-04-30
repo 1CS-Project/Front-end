@@ -20,6 +20,9 @@ function ForgetPassword() {
               })
             if (re.ok){
                 setEmailSent(Email as string)
+            }else {
+              console.log((await re.json()).message);
+              
             }
         } catch (error) {
             console.log(error);
@@ -47,7 +50,7 @@ function ForgetPassword() {
           </div>
         {!emailSent&&
           <div className="mt-5">
-                    <form id='resetPassForm' onSubmit={submit}>
+            <form id='resetPassForm' onSubmit={submit}>
               <div className="grid gap-y-4">
                 <div>
                   <label
@@ -78,12 +81,6 @@ function ForgetPassword() {
                       </svg>
                     </div>
                   </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="email-error"
-                  >
-                    Please include a valid email address so we can get back to you
-                  </p>
                 </div>
 
                 

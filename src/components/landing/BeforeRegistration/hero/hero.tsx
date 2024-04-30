@@ -62,11 +62,12 @@ function hero() {
             {t("regbutton")}
             </button>
           </Link>
-          <button type="button"
+          <Link type="button"
+             href={"/" + locale + "/tirage_reg"}
             className="text-white font-medium bg-transparent p-3 shadow-md rounded-xl  border border-white"
           >
             {t("insbutton")}
-          </button>
+          </Link>
 
         </div>
         <p data-aos="fade-right"

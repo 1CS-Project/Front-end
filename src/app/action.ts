@@ -17,7 +17,7 @@ export async function handleLogin(Email:string,Password:string) {
 
             cookies().set("jwt",accessToken,{
                 httpOnly:true,
-                secure: process.env.NODE_ENV === 'production',
+                // secure: process.env.NODE_ENV === 'production',
                 maxAge: 60 * 60 * 24 ,
                 path: '/',
             })
@@ -42,7 +42,7 @@ export async function getToken(){
 
 export async function getMinUser():Promise<Record<string,string>|undefined>{
     const token=cookies().get("jwt")?.value;    
-
+    
     try {
         let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/getMinUser`,{
             headers:{

@@ -76,7 +76,7 @@ function hotels() {
               size={24}
               color2={'#ffd700'} />
             <Link className="underline font-semibold" href={"/learnmorehotel"}>
-              Learn more
+              Learn moree
             </Link>
           </div>
         </div>

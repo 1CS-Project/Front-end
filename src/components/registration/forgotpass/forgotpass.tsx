@@ -1,5 +1,21 @@
+"use client"
+
+import { useLocale } from "next-intl";
+import { redirect, useParams, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 function forgotpass() {
+  let params=useSearchParams();
+  let token=params.get("access_token");
+
+  let router=useRouter()
+  let locale=useLocale();
+
+  if (!token){
+    router.push("/")
+  }
+  let [error,setError]=useState<string|undefined>(undefined);
+  
   return (
     <div className="m-auto px-[20%] pt-[10%]">
       <div className="text-center">
@@ -11,7 +27,40 @@ function forgotpass() {
         </p>
 
         <div className="mt-5 px-[20%]">
-          <form>
+          <form onSubmit={async (e)=>{
+              setError(undefined);
+              e.preventDefault();
+              const form=e.currentTarget;
+              const formData=new FormData(form);
+              const password=formData.get("password");
+              const confirmPassword=formData.get("confirm_password");
+              if (password===confirmPassword){
+                try {
+                  let re=await fetch(process.env.NEXT_PUBLIC_BACKEND+"/api/ResetPassword",{
+                    method: "POST",
+                    headers: {
+                      'Content-Type': 'application/json',
+                      },
+                    body:JSON.stringify({Password:password,token})
+                  })
+                  if (re.ok){
+                    router.push("/"+locale+"/signup")
+                  }else{
+                    setError((await re.json()).message)
+                  }
+                } catch (error) {
+                  console.log(error);
+                  setError("Please try again later")
+                  
+                }
+              }else{
+                setError("Password doesn't match")
+              }
+
+              
+              
+            
+          }}>
             <div className="grid gap-y-4">
               <div>
                 <label
@@ -45,7 +94,7 @@ function forgotpass() {
                   <input
                     type="password"
                     id="passinput"
-                    name="password"
+                    name="confirm_password"
                     placeholder="••••••••••"
                     className="py-3 border-2 px-4 block w-full border-gray-500 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                     required
@@ -63,6 +112,9 @@ function forgotpass() {
               </button>
             </div>
           </form>
+          {error&&<p className=" text-sm text-red-600 pt-4 mx-1">
+              {error}
+          </p>}
         </div>
 
 

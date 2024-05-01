@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-function Confirmation() {
+function Confirmed() {
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <div className='text-center'>
@@ -9,7 +9,7 @@ function Confirmation() {
           src="/image/emcond.png"
           width={300}
           height={300}
-          alt="confirmation"
+          alt="Confirmed"
           className='mx-auto'
         />
         <p className='font-bold text-xl mt-8'>Email confirmed</p>
@@ -26,4 +26,4 @@ function Confirmation() {
   );
 }
 
-export default Confirmation;
+export default Confirmed;

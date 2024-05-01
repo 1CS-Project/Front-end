@@ -86,7 +86,14 @@ function SignUp() {
       })
       if (re.ok){
         // setError("root.verifyEmail",{message:"We have sent an email to verify your account"})
-        router.push("/"+locale+"/confirmation")
+        let r=await handleLogin(e.Email,e.Password)
+        console.log(r);
+        
+        if (r.loggedIn){
+          router.push("/"+locale+"/confirmation")
+        }else{
+          setError("root.error",{message:"Account created,Please try to sign in"})
+        }
       }else{
         setError("root.error",{message:(await re.json()).message})
         

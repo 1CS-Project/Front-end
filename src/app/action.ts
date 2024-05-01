@@ -21,13 +21,15 @@ export async function handleLogin(Email:string,Password:string) {
                 maxAge: 60 * 60 * 24 ,
                 path: '/',
             })
-
+            
             return {loggedIn:true}
             
         }else{
             return {loggedIn:false,error:"Incorrect Email or password"}
         }
     } catch (error) {
+        console.log(error);
+        
         return {loggedIn:false,error:"Please try again later"};
         
         

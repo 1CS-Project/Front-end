@@ -12,15 +12,153 @@
   },
   "journey":{
     "reg":"Inscription",
-    "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité, facilitant ainsi la coordination fluide de la logistique du pèlerinage.",
+    "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité.",
     "exam":"Examination",
-    "examinfo":"À cette étape, les pèlerins sont guidés à travers le processus de planification et de passage des examens médicaux pour évaluer leur condition physique et leur préparation à ...",
+    "examinfo":"Dans cette étape, les pèlerins sont invités à fixer un rendez-vous pour aller consulter un médecin qui examinera leurs capacités physiques.",
     "accom":"Accommodation",
-    "accominfo":"À cette étape, les pèlerins se voient présenter une liste complète des hôtels disponibles, allant des options économiques aux hébergements de luxe, de manière pratique ...",
+    "accominfo":"Dans cette étape, les pèlerins sont présentés avec une liste de toutes hôtels et les chambres disponibles couvrant des options de luxe aussi que économiques.",
     "pay":"Payment",
-    "payinfo":"À cette étape, les pèlerins disposent d'une plateforme sécurisée et conviviale pour régler leurs factures et frais liés au pèlerinage, y compris les frais d'inscription ...",
-    "step":"Step by step",
-    "stepinfo":"À cette étape, les pèlerins ont accès à une série de ressources, d'outils et d'informations soigneusement sélectionnés pour naviguer à travers chaque étape du pèlerinage à La Mecque avec confiance et facilité. De ..."
-
+    "payinfo":"Dans cette étape, les pèlerins sont fournis d'une plateforme sécurisée et facile à utiliser pour payer leurs frais du pèlerinage y compris l'inscription, l'hébergement, le transport et toutes les charges additionnelles.",
+    "step":"Guide Détaillé",
+    "stepinfo":"Une fois inscrit, le pèlerin gagne l'accès à une sélection de ressources, d'outils et d'informations bien élaborés qui facilitent et assurent la progression à chaque étape."
+  },
+  "FAQSec":{
+    "FAQ":"Foire Aux Questions",
+    "eligibility":"Qui est éligible pour effectuer le Hajj?",
+    "eligibilityDesc":"Le Hajj ;étant l'un des cinq pillers de l'Islam; est une obligation réligieuse imposée aux musulmans qui possèdent les moyens physiques et financière.",
+    "tomb":"Est ce que c'est obligatoire de réserver avant la visite le tombeau du prophète que la paix d'Allah et les bénédictions soient sur lui?",
+    "tombDesc":"Non, ce n'est pas obligatoire et il est à noter que seuls les hommes ont le droit de visiter le tombeau du prophète que la paix d'Allah et les bénédictions soient sur lui.",
+    "fine":"Est-ce qu'une amende est prévue si le visa expire pendant que le pèlerin se trouve toujours à La Mecque? Si oui, quel en est le montant?",
+    "fineDesc":"Le Bureau National du Pèlerinage et de la Omra n'a pas l'autorité pour imposer des amendes.",
+    "guides":"Y aura-t-il des guides pendant le Hajj?",
+    "guidesDesc":"Oui, il y aura 104 guides accompagnant les pèlerins pendant tous les rituels.",
+    "regWin":"Est-ce que s'inscrire sur la plateforme garantit de gagner au tirage?",
+    "regWinDesc":"Non, c'est le tirage qui détermine les gagnants en utilisant un algorithme."
+  },
+  "anotherQuestion": {
+    "anotherQuestionHeading":"Vous avez encore une question?",
+    "anotherQuestionDesc":"Remplissez ce formulaire ci-dessous, contactez-nous ou passez nous voir",
+    "fullName":"Nom et Prénom",
+    "E-mail":"E-mail",
+    "question":"Votre question...",
+    "send":"Envoyer"
+  },
+  "contactUs":{
+    "openHoursHeading":"Horaires d'ouverture",
+    "openHoursDesc":"De 08h00 à 16h30, sauf le vendredi et le samedi.",
+    "locationHeading":"Localisation",
+    "locationDesc":"Numéro 4-6, Mohammed 5 Rue-Algerie 16000 Alger, Algerie.",
+    "emailHeading":"Email",
+    "phoneNumberHeading":"Numéro de téléphone"
+  },
+  "tirageForm":{ 
+    "register":"S'inscrire",
+    "firstname":{
+      "name":"Prénom",
+      "error":"Veuillez indiquer votre prénom.",
+      "defaultValue":"Saisissez votre prénom"
+    },
+    "lastname":{
+      "name":"Nom",
+      "error":"Veuillez indiquer votre nom.",
+      "defaultValue":"Saisissez votre nom"
+    },
+    "phoneNumber":{
+      "name":"Numéro de téléphone",
+      "error":"Le numéro de téléphone doit commencer par +213."
+    },
+    "birthCerteficateNumber":{
+      "name":"Le numéro de l'acte de naissance",
+      "error":"Le numéro de l'acte de naissance doit avoir une longueur de 5 chiffres."
+    },
+    "municipality":{
+      "name":"commune",
+      "error":"Le nom de votre commune est obligatoire.",
+      "defaultValue":"Ras El Ma (Algerie)"
+    },
+    "country":{
+      "name":"Pays",
+      "error":"Veuillez sélectionner votre pays.",
+      "defaultValue":"Algerie"
+    },
+    "city":{
+      "name":"Ville",
+      "error":"Le nom de la ville est obligatoire.",
+      "defaultValue":"Sidi Bel Abbès"
+    },
+    "personalNumber":{
+      "name":"Numéro personnel",
+      "error":"Le numéro personnel doit avoir une longueur de 18 chiffres."
+    },
+    "passportNumber":{
+      "name":"Numéro de passport",
+      "error":"Le numéro du passport doit avoir une longueur de 9 chiffres."
+    },
+    "passportExpirationDate":{
+      "name":"La date d'expiration de passport",
+      "error":"Date invalide.",
+      "expireError":"La validité de votre passeport doit être d'au moins 6 mois.",
+      "defaultValue":"Lun Mar 04 2024"
+    },
+    "dateOfBirth":{
+      "name":"La date de naissance",
+      "error":"Date invalide.",
+      "ageError":"Vous devez avoir au moins 19 ans.",
+      "month":{
+        "name":"Mois",
+        "defaultValue":"Septembre",
+        "error":"Veuillez sélectionner un mois."
+      },
+      "Day":{
+        "name":"Jour",
+        "error":"Vous devez spécifier un jour."
+      },
+      "Year":{
+        "name":"Année",
+        "error":"Vous devez spécifier une année."
+      }
+    },
+    "gender":{
+      "name":"Sexe",
+      "error":"Vous devez indiquez votre sexe."
+    },
+    "image":{
+      "name":"Veuillez importer une image carrée. Elle doit être moins de 100 Ko en taille.",
+      "error":"Veuillez importez une image."
+    },
+    "mahremRelation":{
+      "name":"Votre relation avec le Mehrem",
+      "error":"Veuillez spécifier votre relation avec le Mehrem."
+    },
+    "continueBtn":"Continuer"
+  },
+  "signup":{
+    "returnBtn":"Retour",
+    "header":"Bienvenu à nomAppli",
+    "fullName":"Nom Complet",
+    "fullNameDefaultValue":"Saisissez votre nom complet",
+    "email":"Email",
+    "emailDefaultValue":"example@example.com",
+    "phoneNumber":"Numéro de Téléphone",
+    "phoneNumberDefaultvalue":"Saisissez votre numéro de télélophone",
+    "password":"Mot de Passe",
+    "signupBtn":"Créer mon Compte",
+    "or":"Ou",
+    "signupGoogle":"S'inscrire avec Google",
+    "alreadyHaveAccount":"Vous avez déjà un compte?",
+    "signinLink":"Connecter"
+  },
+  "signin":{
+    "returnBtn":"Retour",
+    "header":"Bienvenu à nomAppli",
+    "email":"Email",
+    "emailDefaultValue":"example@example.com",
+    "password":"Mot de Passe",
+    "forgotPassword":"Mot de passe oublié?",
+    "signinBtn":"Connecter",
+    "or":"Or",
+    "signinGoogle":"Connectez avec Google",
+    "dontHaveAccount":"Vous n'avez pas un compte?",
+    "signupLink":"Créez un compte"
   }
 }

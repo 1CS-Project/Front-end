@@ -1,6 +1,4 @@
-
-import { verifyToken } from "@/utils/auth";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from 'next-intl/middleware';
 import { getMinUser } from "./app/action";
  
@@ -20,7 +18,7 @@ let landings =["/en","/ar","/fr"]
 export async function middleware(req:NextRequest){
 
     if (req.nextUrl.pathname==="/"){
-      return Response.redirect(new URL("/"+defaultLocale,req.url))
+      return NextResponse.redirect(new URL("/"+defaultLocale,req.url))
     }
     const response = handleI18nRouting(req);
 
@@ -42,16 +40,16 @@ export async function middleware(req:NextRequest){
       let pathname=req.nextUrl.pathname.slice(3);
       
       if ((pathname.startsWith("/profil")||pathname.startsWith("/tirage_reg"))&&!payload){      
-        return Response.redirect(new URL("/"+locale+"/signup",req.url))
+        return NextResponse.redirect(new URL("/"+locale+"/signup",req.url))
       }   
       
       if (payload){
         if (!payload.verified&&!pathname.startsWith("/confirmation")){
-          return Response.redirect(new URL("/"+locale+"/confirmation",req.url))
+          return NextResponse.redirect(new URL("/"+locale+"/confirmation",req.url))
         }
 
         if ((pathname.startsWith("/signup")||pathname.startsWith("/confirmation"))&&payload.verified){      
-          return Response.redirect(new URL("/"+locale,req.url))
+          return NextResponse.redirect(new URL("/"+locale,req.url))
         }
 
       }
@@ -59,7 +57,7 @@ export async function middleware(req:NextRequest){
 
     }
     else if (payload&&!payload.verified){
-      return Response.redirect(new URL("/"+locale+"/confirmation",req.url))
+      return NextResponse.redirect(new URL("/"+locale+"/confirmation",req.url))
 
     }
   

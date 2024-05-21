@@ -5,22 +5,22 @@ async function Registration() {
     console.log(data);
     
     return ( 
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto items-center justify-between mt-12">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto items-center justify-between mt-16">
           <div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">First name </p>
+              <p className="font-semibold underline text-lg mb-2">First name </p>
               <p>{data.firstname}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Last name </p>
+              <p className="font-semibold underline text-lg mb-2">Last name </p>
               <p>{data.lastname}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Phone number </p>
+              <p className="font-semibold underline text-lg mb-2">Phone number </p>
               <p>{data.phoneNumber}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Date of birth </p>
+              <p className="font-semibold underline text-lg mb-2">Date of birth </p>
               <p>{data.dateOfBirth}</p>
             </div>
             
@@ -28,19 +28,19 @@ async function Registration() {
   
           <div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Birth certeficate number </p>
+              <p className="font-semibold underline text-lg mb-2">Birth certeficate number </p>
               <p>{data.birthCerteficateNumber}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Nationale identification number</p>
+              <p className="font-semibold underline text-lg mb-2">Nationale identification number</p>
               <p>{data.nationalIdNumber}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Expiration date </p>
+              <p className="font-semibold underline text-lg mb-2">Expiration date </p>
               <p>{data.passportExpirationDate}</p>
             </div>
             <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Gender  </p>
+              <p className="font-semibold underline text-lg mb-2">Gender  </p>
               <p>{data.gender}</p>
             </div>   
           </div>

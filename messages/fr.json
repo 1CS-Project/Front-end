@@ -11,6 +11,7 @@
     "still":"Reste à l'inscription :"
   },
   "journey":{
+    "header":"Entamez le périple vers La Mecque avec ces étapes",
     "reg":"Inscription",
     "regInfo":"Cette étape garantit que toutes les informations nécessaires sont collectées avec précision et stockées en toute sécurité.",
     "exam":"Examination",
@@ -35,15 +36,13 @@
     "regWin":"Est-ce que s'inscrire sur la plateforme garantit de gagner au tirage?",
     "regWinDesc":"Non, c'est le tirage qui détermine les gagnants en utilisant un algorithme."
   },
-  "anotherQuestion": {
+  "contactUs": {
     "anotherQuestionHeading":"Vous avez encore une question?",
     "anotherQuestionDesc":"Remplissez ce formulaire ci-dessous, contactez-nous ou passez nous voir",
     "fullName":"Nom et Prénom",
     "E-mail":"E-mail",
     "question":"Votre question...",
-    "send":"Envoyer"
-  },
-  "contactUs":{
+    "send":"Envoyer",
     "openHoursHeading":"Horaires d'ouverture",
     "openHoursDesc":"De 08h00 à 16h30, sauf le vendredi et le samedi.",
     "locationHeading":"Localisation",
@@ -132,33 +131,69 @@
     },
     "continueBtn":"Continuer"
   },
-  "signup":{
-    "returnBtn":"Retour",
-    "header":"Bienvenu à nomAppli",
-    "fullName":"Nom Complet",
-    "fullNameDefaultValue":"Saisissez votre nom complet",
-    "email":"Email",
-    "emailDefaultValue":"example@example.com",
-    "phoneNumber":"Numéro de Téléphone",
-    "phoneNumberDefaultvalue":"Saisissez votre numéro de télélophone",
-    "password":"Mot de Passe",
-    "signupBtn":"Créer mon Compte",
-    "or":"Ou",
-    "signupGoogle":"S'inscrire avec Google",
-    "alreadyHaveAccount":"Vous avez déjà un compte?",
-    "signinLink":"Connecter"
+  "authentification":{
+    "signup":{
+      "returnBtn":"Retour",
+      "header":"Bienvenu à nomAppli",
+      "fullName":"Nom Complet",
+      "fullNameDefaultValue":"Saisissez votre nom complet",
+      "email":"Email",
+      "emailDefaultValue":"example@example.com",
+      "phoneNumber":"Numéro de Téléphone",
+      "phoneNumberDefaultvalue":"Saisissez votre numéro de télélophone",
+      "password":"Mot de Passe",
+      "signupBtn":"Créer mon Compte",
+      "or":"Ou",
+      "signupGoogle":"S'inscrire avec Google",
+      "alreadyHaveAccount":"Vous avez déjà un compte?",
+      "signinLink":"Connecter"
+    },
+    "signin":{
+      "returnBtn":"Retour",
+      "header":"Bienvenu à nomAppli",
+      "email":"Email",
+      "emailDefaultValue":"example@example.com",
+      "password":"Mot de Passe",
+      "forgotPasswordLink":"Mot de passe oublié?",
+      "signinBtn":"Connecter",
+      "or":"Or",
+      "signinGoogle":"Connectez avec Google",
+      "dontHaveAccount":"Vous n'avez pas un compte?",
+      "signupLink":"Créez un compte"
+  }
+},
+"forgotPasswordPrompt":{
+  "header":"Mot de Passe Oublié",
+  "desc":"Veuillez saisir votre adresse email ou votre numéro de téléphone pour rechercher votre compte.",
+  "emailOrNum":"Addresse Email ou Numéro de Téléphone",
+  "sendBtn":"Envoyer un Email"
+},
+"resetPassword":{
+  "header":"Réinitialiser votre Mot de Passe",
+  "desc":"Créez un nouveau mot de passe fort qui est une combinaison de lettres, de chiffres et de caractères spéciaux. Il doit comporter au moins 6 caractères.",
+  "newPass":"Nouveau Mot de Passe",
+  "confirmPass":"Confirmez le Nouveau Mot de Passe",
+  "showLink":"Montrer",
+  "saveBtn":"Réinitialiser"
+},
+"passwordReset":{
+  "header":"Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter en utilisant le nouveau mot de passe.",
+  "continueToLoginBtn":"Se Connecter"
+},
+  "confirmEmail":{
+    "header":"Confirmation de l'Adresse Email",
+    "desc":"Nous venons de vous envoyer un email afin de confirmer votre adresse email. Veuillez vérifier votre boîte de réception et suivre les instructions pour compléter le processus de confirmation.",
+    "input":"Verifier mon Adresse Email",
+    "didntGetEmail":"Vous n'avez pas reçu un email?",
+    "resendLink":"Renvoyer l'Email de Confirmation"
   },
-  "signin":{
-    "returnBtn":"Retour",
-    "header":"Bienvenu à nomAppli",
-    "email":"Email",
-    "emailDefaultValue":"example@example.com",
-    "password":"Mot de Passe",
-    "forgotPassword":"Mot de passe oublié?",
-    "signinBtn":"Connecter",
-    "or":"Or",
-    "signinGoogle":"Connectez avec Google",
-    "dontHaveAccount":"Vous n'avez pas un compte?",
-    "signupLink":"Créez un compte"
+  "emailConfirmed":{
+    "header":"Adresse Email Confirmée",
+    "desc2":"Votre adresse email a été confirmée, merci! Vous pouvez maintenant accèder à nos services. Si vous avez d'autres questions ou besoin d'aide, n'hésitez pas à nous contacter.",
+    "continueBtn":"Continuer"
+  },
+  "timer":{
+    "header":"Sélection Hajj",
+    "desc":"Les résultats du tirage au sort pour le Hajj seront bientôt annoncés. Restez branchés pour savoir si vous avez été choisis pour ce périple sacré."
   }
 }

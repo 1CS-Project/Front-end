@@ -11,6 +11,7 @@
       "still":"Still to the inscription :"
   },
   "journey":{
+    "header":"Embark on your journey to Mecca with these steps.",
     "reg":"Registration",
     "regInfo":"This step ensures that all necessary information is accurately collected and securely stored.",
     "exam":"Examination",
@@ -35,15 +36,13 @@
     "regWin":"Does registering on the platform imply winning in the draw?",
     "regWinDesc":"No, it is the draw that determines the winners using an algorithm."
   },
-  "anotherQuestion": {
+  "contactUs": {
     "anotherQuestionHeading":"Still have a question?",
     "anotherQuestionDesc":"Fill in this form below or reach out to us.",
     "fullName":"Full Name",
     "E-mail":"E-mail",
     "question":"Your question...",
-    "send":"Send"
-  },
-  "contactUs":{
+    "send":"Send",
     "openHoursHeading":"Open Hours",
     "openHoursDesc":"From 08:00 AM to 04:30 PM Except for Friday and Saturday.",
     "locationHeading":"Location",
@@ -132,42 +131,184 @@
     },
     "continueBtn":"Continue"
   },
-  "signup":{
-    "returnBtn":"Return",
-    "header":"Welcome to appName",
-    "fullName":"Full Name",
-    "fullNameDefaultValue":"Type in your full name",
-    "email":"Email",
-    "emailDefaultValue":"example@example.com",
-    "phoneNumber":"Phone Number",
-    "phoneNumberDefaultvalue":"Type in your phone number",
-    "password":"Password",
-    "signupBtn":"Sign Up",
-    "or":"Or",
-    "signupGoogle":"Sign Up with Google",
-    "alreadyHaveAccount":"Already have an account?",
-    "signinLink":"Sign In"
+  "authentification":{
+    "signup":{
+      "returnBtn":"Return",
+      "header":"Welcome to appName",
+      "fullName":"Full Name",
+      "fullNameDefaultValue":"Type in your full name",
+      "email":"Email",
+      "emailDefaultValue":"example@example.com",
+      "phoneNumber":"Phone Number",
+      "phoneNumberDefaultvalue":"Type in your phone number",
+      "password":"Password",
+      "signupBtn":"Sign Up",
+      "or":"Or",
+      "signupGoogle":"Sign Up with Google",
+      "alreadyHaveAccount":"Already have an account?",
+      "signinLink":"Sign In"
+    },
+    "signin":{
+      "returnBtn":"Return",
+      "Header":"Welcome to appName",
+      "email":"Email",
+      "emailDefaultValue":"example@example.com",
+      "password":"Password",
+      "forgotPasswordLink":"Forgot your password?",
+      "signinBtn":"Sign In",
+      "or":"Or",
+      "signinGoogle":"Sign In with Google",
+      "dontHaveAccount":"Don't have an account?",
+      "signupLink":"Sign Up"
+    }
   },
-  "signin":{
-    "returnBtn":"Return",
-    "Header":"Welcome to appName",
-    "email":"Email",
-    "emailDefaultValue":"example@example.com",
-    "password":"Password",
-    "forgotPassword":"Forgot your password?",
-    "signinBtn":"Sign In",
-    "or":"Or",
-    "signinGoogle":"Sign In with Google",
-    "dontHaveAccount":"Don't have an account?",
-    "signupLink":"Sign Up"
+  "forgotPasswordPrompt":{
+    "header":"Forgot Password",
+    "desc":"Type in your email or phone number to look for your account.",
+    "emailOrNum":"Email Address or Phone Number",
+    "sendBtn":"Send an Email"
+  },
+  "resetPassword":{
+    "header":"Reset your Password",
+    "desc":"Create a new and strong password that is a combination of letters, numbers and special characters. It must at least 6 characters long.",
+    "newPass":"New Password",
+    "confirmPass":"Confirm New Password",
+    "showLink":"Show",
+    "saveBtn":"Reset"
+  },
+  "passwordReset":{
+    "header":"Your password has been reset. You can now login using the new password.",
+    "continueToLoginBtn":"Continue To Login"
   },
   "confirmEmail":{
-    "header":"Email Confirmation",
-    "desc1":"We've just sent an email to you in order to confirm your email address. Please check your inbox and follow the instructions provided to complete the confirmation process.",
-    "desc2":"Your email address has been successfully confirmed. Thank you for verifying your email. You may now proceed with accessing our services. If you have any further questions or require assistance, please don't hesitate to contact us.",
+    "header":"Email Address Confirmation",
+    "desc":"We've just sent an email to you in order to confirm your email address. Please check your inbox and follow the instructions provided to complete the confirmation process.",
     "input":"Verify my email address",
     "didntGetEmail":"Didn't get an email?",
-    "resendLink":"Resend Confirmation Email",
-    "continueBtn":"Continu"
+    "resendLink":"Resend Confirmation Email"
+  },
+  "emailConfirmed":{
+    "header":"Email Address Confirmed",
+    "desc":"Your email address has been successfully confirmed. Thank you for verifying your email. You may now proceed with accessing our services. If you have any further questions or require assistance, please don't hesitate to contact us.",
+    "continueBtn":"Continue"
+  },
+  "timer":{
+    "comment":"the following tuples haven't been translated yet",
+    "header":"Hajj Selection",
+    "desc":"The results of the Hajj draw will be revealed soon. Stay tuned to see if you were pciked for this sacred journey."
+  },
+  "mehremInfo":{
+    "firstname":{
+      "name":"First name",
+      "error":"Your first name is required.",
+      "defaultValue":"Type in your first name"
+    },
+    "lastname":{
+      "name":"Last name",
+      "error":"Your last name is required.",
+      "defaultValue":"Type in your last name"
+    },
+    "passportNumber":{
+      "name":"Passport number",
+      "error":"The passport number must be of length 9."
+    }
+  },
+  "regMehrem":{
+    "firstname":{
+      "name":"First name",
+      "error":"Your first name is required.",
+      "defaultValue":"Type in your first name"
+    },
+    "lastname":{
+      "name":"Last name",
+      "error":"Your last name is required.",
+      "defaultValue":"Type in your last name"
+    },
+    "phoneNumber":{
+      "name":"Phone number",
+      "error":"The phone number must start with +213."
+    },
+    "birthCerteficateNumber":{
+      "name":"Birth certificate number",
+      "error":"The Birth certificate number must be of length 5."
+    },
+    "municipality":{
+      "name":"municipality",
+      "error":"The municipality name is required.",
+      "defaultValue":"Ras El Ma (Algeria)"
+    },
+    "country":{
+      "name":"Country",
+      "error":"You must select a country.",
+      "defaultValue":"Algeria"
+    },
+    "city":{
+      "name":"City",
+      "error":"The city name is required.",
+      "defaultValue":"Sidi Bel Abbès"
+    },
+    "personalNumber":{
+      "name":"Personal Number",
+      "error":"The personal number must be of length 18."
+    },
+    "passportNumber":{
+      "name":"Passport number",
+      "error":"The passport number must be of length 9."
+    },
+    "passportExpirationDate":{
+      "name":"Passport expiration date",
+      "error":"Invalid date.",
+      "expireError":"Your passport must have a remaining validity of at least 6 months.",
+      "defaultValue":"Mon Mar 04 2024"
+    },
+    "dateOfBirth":{
+      "name":"Birth date",
+      "error":"Invalid date.",
+      "ageError":"You must be at least 19 years old.",
+      "month":{
+        "name":"Month",
+        "defaultValue":"September",
+        "error":"You must select a month."
+      },
+      "Day":{
+        "name":"Day",
+        "error":"You must provide a day."
+      },
+      "Year":{
+        "name":"Year",
+        "error":"Please specify a year."
+      }
+    },
+    "gender":{
+      "name":"gender",
+      "error":"You must indicate your gender."
+    },
+    "image":{
+      "name":"Please upload a square image. It must be less than 100KB in size.",
+      "error":"You must upload a picture."
+    },
+    "continueBtn":"Continue"
+  },
+  "confirmMehremInfo":{
+    "msg":"Could you confirm if this information is correct?",
+    "firstName":"First Name",
+    "lastname":"Last Name",
+    "phoneNumber":"Phone Number",
+    "birthCerteficateNumber":"Birth Certificate Number",
+    "country":"Country",
+    "city":"City",
+    "municipality":"Municipality",
+    "dateOfBirth":"Date of Birth",
+    "personalNumber":"Personal Number",
+    "expirationDate":"Expiration Date"
+  },
+  "stepsHajj": {
+    "guide ": {
+      "header":"Here are the practices Muslims adhere to when during Hajj:",
+      "ihram" : {
+        "title" : "Ihram",
+        "description" : ""
+      }
+    }
   }
 }

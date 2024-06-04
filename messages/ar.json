@@ -12,6 +12,7 @@
   },
 
   "journey":{
+    "header":"ابدأ رحلتك إلى مكة باتباع هذه الخطوات",
     "reg":"التسجيل",
     "regInfo":".تضمن هذه الخطوة جمع كافة المعلومات الضرورية بدقة وحفطها بشكل آمن",
     "exam":"الفحص",
@@ -42,9 +43,7 @@
     "fullName":"الإسم و اللقب",
     "E-mail":"البريد الإلكتروني",
     "question":"...سؤالكم",
-    "send":"أرسل"
-  },
-  "contactUs":{
+    "send":"أرسل",
     "openHoursHeading":"ساعات العمل",
     "openHoursDesc":".من 8:00 صباحا حتى 4:30 مساءا باستثناء يومي الجمعة و السبت",
     "locationHeading":"الموقع",
@@ -133,33 +132,69 @@
     },
     "continueBtn":"الإستمرار"
   },
-  "signup":{
-    "returnBtn":"العودة",
-    "header":"مرحبا بك في إسم التطبيق",
-    "fullName":"الإسم الكامل",
-    "fullNameDefaultValue":"أدخل إسمك الكامل",
-    "email":"البريد الإلكتروني",
-    "emailDefaultValue":"example@example.com",
-    "phoneNumber":"رقم الهاتف",
-    "phoneNumberDefaultvalue":"أدخل رقم هاتفك",
-    "password":"كلمة السر",
-    "signupBtn":"التسجيل",
-    "or":"أو",
-    "signupGoogle":"Google سجل باستعمال",
-    "alreadyHaveAccount":"هل لديك حساب؟",
-    "signinLink":"تسجيل الدخول"
+  "authentification":{
+    "signup":{
+      "returnBtn":"العودة",
+      "header":"مرحبا بك في إسم التطبيق",
+      "fullName":"الإسم الكامل",
+      "fullNameDefaultValue":"أدخل إسمك الكامل",
+      "email":"عنوان البريد الإلكتروني",
+      "emailDefaultValue":"example@example.com",
+      "phoneNumber":"رقم الهاتف",
+      "phoneNumberDefaultvalue":"أدخل رقم هاتفك",
+      "password":"كلمة السر",
+      "signupBtn":"التسجيل",
+      "or":"أو",
+      "signupGoogle":"Google سجل باستعمال",
+      "alreadyHaveAccount":"هل لديك حساب؟",
+      "signinLink":"تسجيل الدخول"
+    },
+    "signin":{
+      "returnBtn":"العودة",
+      "header":"مرحبا بك في إسم التطبيق",
+      "email":"عنوان البريد الإلكتروني",
+      "emailDefaultValue":"example@example.com",
+      "password":"كلمة السر",
+      "forgotPasswordLink":"هل نسيت كلمة السر؟",
+      "signinBtn":"تسجيل الدخول",
+      "or":"أو",
+      "signinGoogle":"Google تسجيل الدخول باستعمال",
+      "dontHaveAccount":"ليس لديك حساب؟",
+      "signupLink":"سجل معنا"
+    }
   },
-  "signin":{
-    "returnBtn":"العودة",
-    "header":"مرحبا بك في إسم التطبيق",
-    "email":"البريد الإلكتروني",
-    "emailDefaultValue":"example@example.com",
-    "password":"كلمة السر",
-    "forgotPassword":"هل نسيت كلمة السر؟",
-    "signinBtn":"تسجيل الدخول",
-    "or":"أو",
-    "signinGoogle":"Google تسجيل الدخول باستعمال",
-    "dontHaveAccount":"ليس لديك حساب؟",
-    "signupLink":"سجل معنا"
+  "forgotPasswordPrompt":{
+    "header":"نسيت كلمة المرور",
+    "desc":".يرجى إدخال عنوان بريدك الإلكتروني أو رقم هاتفك للبحث عن حسابك",
+    "emailOrNum":"عنوان البريد الإلكتروني أو رقم الهاتف",
+    "sendBtn":"إرسال بريد إلكتروني"
+  },
+  "confirmEmail":{
+    "header":"تأكيد عنوان البريد الإلكتروني",
+    "desc":"لقد قمنا للتو بإرسال بريد إلكتروني لتأكيد عنوان بريدك الإلكتروني. يرجى التحقق من صندوق البريد الخاص بك واتباع التعليمات المقدمة لإكمال عملية التأكيد.",
+    "input":"تأكيد عنوان البريد الإلكتروني",
+    "didntGetEmail":"لم يصلك أي بريد إلكتروني؟",
+    "resendLink":"إعادة إرسال بريد التأكيد الإلكتروني"
+  },
+  "resetPassword":{
+    "header":"إعادة ضبط كلمة المرور",
+    "desc":".أنشئ كلمة مرور جديدة و قوية تحتوي على أحرف، أرقام و رموز لا يقل طولها عن 6 أحرف",
+    "newPass":"كلمة المرور الجديدة",
+    "confirmPass":"تأكيد كلمة المرور الجديدة",
+    "showLink":"عرض",
+    "saveBtn":"إعادة الضبط"
+  },
+  "passwordReset":{
+    "header":"تمت إعادة ضبط كلمة المرور الخاصة بك. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة.",
+    "continueToLoginBtn":"تسجيل الدخول"
+  },
+  "emailConfirmed":{
+    "header":"تم تأكيد عنوان  بريدك الإلكتروني",
+    "desc":".لقد تم تأكيد عنوان بريدك الإلكتروني بنجاح شكرا! يمكنك الآن الولوج إلى خدماتنا. إذا كان لديك المزيد من الأسئلة أو احتجت إلى المساعدة، لا تتردد في التواصل معنا  ",
+    "continueBtn":"الإستمرار"
+  },
+  "timer":{
+    "header":"إختيار الحجاج",
+    "desc":".سيتم الإعلان قريباً عن نتائج القرعة للحج. ترقبوا لمعرفة ما إذا تم اختياركم لهذه الرحلة المقدسة"
   }
 }

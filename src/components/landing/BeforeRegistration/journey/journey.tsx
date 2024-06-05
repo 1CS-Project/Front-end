@@ -8,7 +8,6 @@ import Transport from "../transport/transport";
 import { useTranslations } from "next-intl";
 
 function Journey() {
-  const t = useTranslations("journey");
 
   const [showHajjDef, setShowHajjDef] = useState(true);
   const [showGuide, setShowGuide] = useState(false);

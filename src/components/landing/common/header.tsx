@@ -174,7 +174,7 @@ function Header({ user }: props) {
               {t("Tirage")}
             </h1>
           </Link>
-          <Link href={"/" + locale + "/journey"}>
+          <Link href={"/" + locale + "/hotels"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
               {t("AboutUs")}
             </h1>

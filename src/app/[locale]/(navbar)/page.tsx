@@ -10,6 +10,8 @@ import { getToken, getMinUser } from '@/app/action';
 import { getMessages } from 'next-intl/server';
 import Landing from '@/components/landing/afterRegistration/landing';
 import Examination from '@/components/landing/afterRegistration/examination/examination';
+import Payment from '@/components/landing/afterRegistration/payment/payment';
+import Resarvation from '@/components/landing/afterRegistration/resarvation/resarvation';
 
 export default async function Home() {
   const messages = await getMessages();
@@ -23,7 +25,10 @@ export default async function Home() {
           <NextIntlClientProvider messages={messages}>
             <Hero />
             <div className='px-20'>
-              <Examination/>
+              {/* <Examination/> */}
+              {/* <Payment/> */}
+              {/* <Resarvation /> */}
+
               <Condition />
               <Steps />
               <Faq />

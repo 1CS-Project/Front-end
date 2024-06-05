@@ -5,8 +5,11 @@ import Etapehaj from "../etapehaj/etapehaj";
 import Hajjdef from "../hajjdef/hajjdef";
 import Instruction from "../instruction/instruction";
 import Transport from "../transport/transport";
+import { useTranslations } from "next-intl";
 
 function Journey() {
+  const t = useTranslations("journey");
+
   const [showHajjDef, setShowHajjDef] = useState(true);
   const [showGuide, setShowGuide] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);

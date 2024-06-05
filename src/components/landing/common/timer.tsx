@@ -17,7 +17,7 @@ const Timer = ({darkMode=false}:props) => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const target = new Date("04/13/2025 05:56:01");
+    const target = new Date("06/05/2024 11:26:01");
 
     const interval = setInterval(() => {
       const now = new Date();

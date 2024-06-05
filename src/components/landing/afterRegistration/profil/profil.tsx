@@ -225,50 +225,6 @@ function profil() {
           </div>
   
   
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto items-center justify-between mt-12">
-          <div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">First name </p>
-              <p>Ikram</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Last name </p>
-              <p>Dadoune</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Phone number </p>
-              <p>0783119091</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Date of birth </p>
-              <p>October,10 2003</p>
-            </div>
-            
-          </div>
-  
-          <div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Birth certeficate number </p>
-              <p>087866332236</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Nationale identification number</p>
-              <p>1035549865120943</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Expiration date </p>
-              <p>February,08 2025</p>
-            </div>
-            <div className="mb-3">
-              <p className="font-bold text-lg mb-1">Gender  </p>
-              <p>Woman</p>
-            </div>
-            
-          </div>
-  
-  
-          </div>
-  
         </div>
       )}
 

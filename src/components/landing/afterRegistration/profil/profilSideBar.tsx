@@ -11,7 +11,7 @@ function ProfilSideBar() {
 
   return (
 
-      <div className="mt-12 ">
+      <div className="mt-32 ">
         <aside
           id="logo-sidebar"
           className="justify-between w-64 transition-transform "  >

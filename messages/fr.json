@@ -8,7 +8,9 @@
     "from":"Du moment où vous décidez de vous lancer dans le pèlerinage du Hajj jusqu'à la fin de votre voyage profond",
     "regbutton":"registre",
     "insbutton":"Inscription au tirage",
-    "still":"Reste à l'inscription :"
+    "still":"Reste à l'inscription :",
+    "regOpen":"L'inscription est ouverte"
+
   },
   "journey":{
     "reg":"Inscription",

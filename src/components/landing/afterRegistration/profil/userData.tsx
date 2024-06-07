@@ -4,9 +4,13 @@ async function UserData() {
     let data=await getUser()
     return ( 
         <>
+         <div className="max-w-lg ">
+                <div className="bg-red-500 rounded-full m-auto  w-[60px] h-[60px] flex items-center justify-center text-white">
+                {data?.name.charAt(0)}
+                </div>
+        </div>
 
-
-        <form className=" items-center max-w-lg mt-9 ">
+        <form className=" items-center max-w-lg mt-9 w-full">
 
           <div className="relative w-full">
             <label
@@ -17,7 +21,7 @@ async function UserData() {
             </label>
             <input
               type="text"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder={data?.name}
               required
             />

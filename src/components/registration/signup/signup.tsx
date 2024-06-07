@@ -86,6 +86,7 @@ function SignUp() {
       })
       if (re.ok){
         // setError("root.verifyEmail",{message:"We have sent an email to verify your account"})
+        
         let r=await handleLogin(e.Email,e.Password)
         console.log(r);
         

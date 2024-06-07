@@ -64,14 +64,12 @@ export const TirageRegSchemaF=(t:(arg:string)=>string)=> z.object({
     passportNumber:z.string().regex(/^\d{9}$/,t("passportNumber.error")),
     passportExpirationDate:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("passportExpirationDate.error")).refine((val)=> duration(val),t("passportExpirationDate.expireError")), //yyyy-mm-dd
     dateOfBirth:z.string().regex(/^\d\d\d\d-\d\d-\d\d$/,t("dateOfBirth.error")).refine((val)=>birthdateCheck(val),t("dateOfBirth.ageError")),
-    // imageUrl:z.string().url(),
-    imageUrl:z.string().optional(),
+    imageUrl:z.instanceof(File,{message:"Image is required"}),
     gender:z.enum(["male","female"],{required_error:t('gender.error'),invalid_type_error:t('gender.error')}),
     mahremId:z.string().regex(/^\d{18}$/,t("nationalIdNumber.error")).optional().or(z.literal("")),
     mahremRelation:z.enum(["husband","brother","father","son"],{required_error:t('mahremRelation.error'),invalid_type_error:t('mahremRelation.error')}).optional(),
 })
 .refine((input)=>{
-    
     if (input.gender==="female"&&(input.mahremId===""||input.mahremId===undefined)){
         return false
     }

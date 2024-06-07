@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import InputFile from "./input/inputFile";
 import InputOption from "./input/inputOption";
 import InputText from "./input/inputText";
@@ -7,11 +7,12 @@ import { tirageRegT } from "@/schema/zodSchemas";
 
 type props={
     register:UseFormRegister<tirageRegT>,
-    errors:FieldErrors<tirageRegT>
+    errors:FieldErrors<tirageRegT>,
+    setValue:UseFormSetValue<tirageRegT>
 }
 
 
-function RegInputs({register,errors}:props) {
+function RegInputs({register,errors,setValue}:props) {
     return ( 
         <>
             <InputText field="firstname" label="First name" placeholder="Enter your first name" register={register} error={errors.firstname?.message} />
@@ -26,7 +27,7 @@ function RegInputs({register,errors}:props) {
             <InputText field="dateOfBirth" label="Birth date"  register={register} error={errors.dateOfBirth?.message}  type="date"/>
             <InputOption field="gender" label="Gender" register={register} error={errors.gender?.message} />
             <div className="block w-full">
-                <InputFile/>
+                <InputFile setValue={setValue} register={register} field="imageUrl" error={errors.imageUrl?.message}/>
             </div>
         </>
      );

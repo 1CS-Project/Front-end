@@ -1,3 +1,4 @@
+import { isUserWinned } from "@/app/action";
 import Header from "../common/header";
 import Body from "./body/body";
 import Footer from "./footer/footer";
@@ -8,7 +9,9 @@ type props={
 }
 
 
-function Landing() {
+async function Landing() {
+
+    
     return ( 
             <div className="px-10 mt-20">
                 <Hero/>

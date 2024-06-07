@@ -25,7 +25,7 @@ function hero({startDate,endDate,hadjStart}:props) {
   
   const [currentTime,setCurrent]=useState(new Date());
 
-  const showTimer=startDate&&endDate&&(currentTime<startDate);
+  const startInterval=startDate&&endDate&&(currentTime<startDate);
   const hadjStarted=hadjStart?currentTime>hadjStart:false;
   const regStillNot=startDate?currentTime<startDate:false;
   const regStart=(startDate!==undefined&&endDate!==undefined)?(currentTime>=startDate)&&(currentTime<=endDate):false;
@@ -63,7 +63,7 @@ function hero({startDate,endDate,hadjStart}:props) {
 
   useEffect(()=>{
     let interval:NodeJS.Timeout;
-    if (showTimer){
+    if (startInterval){
       interval=setInterval(()=>{
         console.log("rerender");
         

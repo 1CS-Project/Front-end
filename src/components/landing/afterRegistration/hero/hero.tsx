@@ -1,4 +1,4 @@
-import { getTimer } from "@/app/action";
+import { baladiaDidTirage, getTimer, isUserWinned } from "@/app/action";
 import Hilal from "../../common/icons/hilal";
 import Stars from "../../common/icons/stars";
 import ATimer from "./aTimer";
@@ -10,8 +10,13 @@ import { NextIntlClientProvider, useLocale } from "next-intl";
 
 async function Hero() {
 
-    const locale=useLocale();
-    const hadjRegStart=(await getTimer()).startDate;
+    const dates=await getTimer();
+    const isWinner=await isUserWinned();
+    const baladiaTirage=await baladiaDidTirage();
+
+
+
+    
 
     return ( 
         <div className="mt-12">
@@ -32,7 +37,7 @@ async function Hero() {
             </div>   
             <Calendar/>
             <NextIntlClientProvider>
-                <ATimer startDate={hadjRegStart}/>
+                <ATimer isWinner={isWinner?true:false} baladiaDidTirage={baladiaTirage?true:false} {...dates} />
             </NextIntlClientProvider>
             
 

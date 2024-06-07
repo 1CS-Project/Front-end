@@ -11,8 +11,8 @@ function transport() {
             <div className="row">
               <div className="icon">1</div>
               <div className="description">
-                <h4>apres</h4>
-                <p>apres</p>
+                <h4>Al madinah bus</h4>
+                <p>24 hour ticket</p>
               </div>
             </div>
           </label>
@@ -21,8 +21,8 @@ function transport() {
             <div className="row">
               <div className="icon">2</div>
               <div className="description">
-                <h4>apres</h4>
-                <p>apres</p>
+                <h4>12 stops in total</h4>
+                <p>including Al Salam Gate, Al Qiblatain Mosque and Quba Mosque.</p>
               </div>
             </div>
           </label>

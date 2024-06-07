@@ -1,17 +1,24 @@
 'use client'
 import Link from "next/link";
 import { useLocale } from "next-intl";
-
+import { useState, useEffect } from "react";
 
 function ProfilSideBar() {
+  const locale = useLocale();
+  const [activeLink, setActiveLink] = useState("Profil");
 
-  const locale=useLocale();
+  // Set the default active link when the component mounts
+  useEffect(() => {
+    setActiveLink("Profil");
+  }, []);
 
-  let activeLink="hello"
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+  };
 
   return (
 
-      <div className="mt-12 ">
+      <div className="mt-32 ">
         <aside
           id="logo-sidebar"
           className="justify-between w-64 transition-transform "  >

@@ -91,6 +91,27 @@ export async function logOut(){
 }
 
 
+type TirageDataT={
+        nationalIdNumber: string,
+        registrationYear: number,
+        firstname: string,
+        lastname: string,
+        phoneNumber: string,
+        birthCerteficateNumber: string,
+        city: string,
+        state: string,
+        passportExpirationDate: string,
+        dateOfBirth: string,
+        gender: string,
+        imageUrl: string,
+        PassportNumber:string,
+        mahremId: string,
+        mahremRelation?: string,
+        userId: string,
+        uncount?: boolean
+}
+
+
 export async function getTirageRegData(){
     const token=cookies().get("jwt")?.value;    
 
@@ -104,9 +125,41 @@ export async function getTirageRegData(){
             return undefined;
         }
         let data=await re.json()
-        return data;
+        return data as {data:TirageDataT};
 
     } catch (error) {
         return undefined;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+type timer={
+    startDate:string,
+    endDate:string,
+    hadjStart:string
+}
+
+export async function getTimer(){       
+
+    try {
+        let res=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/timer/get-timer`);
+        
+        if (res.ok){
+            let data=await res.json() as timer;
+            return {
+                startDate:new Date(data.startDate),
+                endDate:new Date(data.endDate),
+                hadjStart:new Date(data.hadjStart)
+            };  
+        }else {
+            console.log(await res.json());
+            
+            throw Error("Something went wrong")
+        }
+        
+    } catch (error) {
+        
+        throw Error("Please try again later")
     }
 }

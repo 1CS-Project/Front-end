@@ -8,9 +8,28 @@ import 'aos/dist/aos.css';
 import { useTranslations } from "next-intl";
 import Image from 'next/image';
 
-function hero() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
+type props={
+  startDate?:Date,
+  endDate?:Date,
+  hadjStart?:Date,
+}
+
+
+function hero({startDate,endDate,hadjStart}:props) {
+
+
+  const notDefinedYet=!hadjStart||!startDate||!endDate;
+   
   const t = useTranslations("home");
+  
+  const [currentTime,setCurrent]=useState(new Date());
+
+  const showTimer=startDate&&endDate&&(currentTime<startDate);
+  const hadjStarted=hadjStart?currentTime>hadjStart:false;
+  const regStillNot=startDate?currentTime<startDate:false;
+  const regStart=(startDate!==undefined&&endDate!==undefined)?(currentTime>=startDate)&&(currentTime<=endDate):false;
+  
 
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -41,6 +60,26 @@ function hero() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(()=>{
+    let interval:NodeJS.Timeout;
+    if (showTimer){
+      interval=setInterval(()=>{
+        console.log("rerender");
+        
+        setCurrent(prev=>{
+          if (prev>startDate){
+            clearInterval(interval);
+            return prev;
+          }else{
+            return new Date()
+          }
+        })
+
+      },1000)
+    }
+    return ()=>clearInterval(interval)
+  },[])
   return (
     <div className='flex relative items-center justify-center h-screen mb-[4rem]'>
     <Image className='absolute top-0 bg-fixed w-full h-full bg-center bg-cover' alt='background image' src={bgImage} width={1000} height={1000}/>
@@ -62,17 +101,18 @@ function hero() {
             {t("regbutton")}
             </button>
           </Link>
-          <Link type="button"
-             href={"/" + locale + "/tirage_reg"}
-            className="text-white font-medium bg-transparent p-3 shadow-md rounded-xl  border border-white"
-          >
-            {t("insbutton")}
-          </Link>
+
+            <Link 
+              href={(regStart?"/" + locale + "/tirage_reg":"")}
+              className={`text-white font-medium ${regStart?"":"pointer-events-none"} bg-transparent p-3 shadow-md rounded-xl  border border-white`}
+            >
+              {t("insbutton")}
+            </Link>
 
         </div>
         <p data-aos="fade-right"
-          data-aos-delay="50" className='mb-8 text-xl'>{t("still")}</p>
-        <Timer />
+          data-aos-delay="50" className='mb-8 text-xl'>{regStart?t("regOpen"):regStillNot?t("still"):hadjStarted?"Hadj is ended for this year":"Registration is closed"}</p>
+        {!notDefinedYet&&!hadjStarted&&<Timer startDate={startDate}/>}
       </div>
 
     </div>

@@ -38,10 +38,21 @@ export async function getHadjInfo(token:string,id:string){
 
 export async function registerTirage(data:Record<string,any>,token:string){
     try {
-        
+        const formData=new FormData();
+        formData.append("imageUrl",data["imageUrl"])
+        const uploadRes=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/upload`,{
+            method:"POST",
+            body:formData,
+            headers:{
+                "Authorization":`Bearer ${token}`,
+            }  
+        })
+
+        let imageUrl=(await uploadRes.json()).imageUrl;
+
         let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/register-tirage`,{
             method:"POST",
-            body:JSON.stringify({...data,imageUrl:"ddd"}),
+            body:JSON.stringify({...data,imageUrl:imageUrl}),
             headers:{
                 "Authorization":`Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -66,9 +77,11 @@ function TirageReg({token}:props) {
         <MahremModal modalApi={modalApi} data={params!.data}  token={token} mahremId={params!.mahremId}/> 
     ))
 
+    
     const submitHandle:SubmitHandler<tirageRegT>=async (d,e)=>{
 
         e?.preventDefault()
+
         /// check if user already registered
         try {
             let user= await getHadjInfo(token,d.nationalIdNumber)
@@ -108,7 +121,7 @@ function TirageReg({token}:props) {
     const t= useTranslations("tirageForm")
     const TirageRegSchema=TirageRegSchemaF(t);
     
-    const {register,handleSubmit,control,formState:{errors},setError} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
+    const {register,handleSubmit,control,formState:{errors},setError,setValue} =useForm<tirageRegT>({resolver:zodResolver(TirageRegSchema),shouldUnregister:true,defaultValues:{
             birthCerteficateNumber: "55555",
             city: "ddd",
             dateOfBirth: "2004-03-25",
@@ -121,8 +134,8 @@ function TirageReg({token}:props) {
             passportNumber:"123456789",
             passportExpirationDate: "2025-03-12",
             phoneNumber: "+213959595959",
-            imageUrl:"http://localhost:3000/en/tirage_reg",
-            state: "dd"
+            state: "dd",
+
     }})
     const showAdditional=useWatch<tirageRegT>({name:"gender",control})==="female"
     
@@ -137,7 +150,7 @@ function TirageReg({token}:props) {
             <div className={"mt-10 w-full"}>
                 <form id="form1" onSubmit={handleSubmit(submitHandle)}>
                     <div  className="flex gap-x-[2%] gap-y-3 flex-wrap">
-                        <RegInputs errors={errors} register={register}/>
+                        <RegInputs setValue={setValue} errors={errors} register={register}/>
                     </div>
                         {showAdditional&&<MerhremInfo errors={errors} register={register} />}
 

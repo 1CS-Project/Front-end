@@ -133,7 +133,7 @@ function Header({ user }: props) {
           </Link>
           <Link href={"/" + locale + "/hotels"}>
             <h1 className={`font-semibold hover:underline ${isHotels ? "active-link" : ""}`}>
-              {t("Hotel")}
+              {t("AboutUs")}
             </h1>
 
           </Link>
@@ -174,9 +174,9 @@ function Header({ user }: props) {
               {t("Tirage")}
             </h1>
           </Link>
-          <Link href={"/" + locale + "/journey"}>
+          <Link href={"/" + locale + "/hotels"}>
             <h1 className="font-semibold text-black p-5 hover:underline">
-              {t("Hotel")}
+              {t("AboutUs")}
             </h1>
 
           </Link>

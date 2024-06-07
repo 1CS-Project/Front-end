@@ -4,11 +4,13 @@
       "Steps":"Steps",
       "Conditions":"Conditions",
       "Tirage":"Tirage",
-      "Hotel":"Hotels",
+      "AboutUs":"About us",
       "from":"From deciding to embark on the Hajj pilgrimage to completing your profound journey",
       "regbutton":"Register",
       "insbutton":"Registration of tirage",
-      "still":"Still to the inscription :"
+      "still":"Still to the inscription :",
+      "regOpen":"Registration is Open"
+
   },
   "journey":{
     "reg":"Registration",
@@ -79,5 +81,17 @@
       "error":"This field is required"
     }
     
+  },
+  "questions":{
+    "who":"Who is eligible to perform Hadj ?",
+    "whodes":"Hajj is the annual Islamic pilgrimage to Mecca, which is a religious obligation for Muslims who are physically and financially capable of undertaking the journey. It holds immense significance as one of the Five Pillars of Islam, representing a profound spiritual journey and an opportunity for purification and renewal.",
+    "exam":"Examination",
+    "examinfo":"In this step, pilgrims are guided through the process of scheduling and attending medical examinations to assess their physical fitness and readiness for ...",
+    "accom":"Accommodation",
+    "accominfo":"In this step, pilgrims are presented with a comprehensive list of available hotels, ranging from budget-friendly options to luxury accommodations, conveniently ...",
+    "pay":"Payment",
+    "payinfo":"In this step, pilgrims are provided with a secure and user-friendly platform to settle their bills and fees associated with the pilgrimage, including registration fees ...",
+    "step":"Step by step",
+    "stepinfo":"In this step, pilgrims gain access to a curated series of resources, tools, and information to navigate each stage of the Hajj pilgrimage with confidence and ease. From the ..."
   }
 }

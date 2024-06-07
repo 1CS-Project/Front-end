@@ -1,13 +1,20 @@
 'use client'
 import Link from "next/link";
 import { useLocale } from "next-intl";
-
+import { useState, useEffect } from "react";
 
 function ProfilSideBar() {
+  const locale = useLocale();
+  const [activeLink, setActiveLink] = useState("Profil");
 
-  const locale=useLocale();
+  // Set the default active link when the component mounts
+  useEffect(() => {
+    setActiveLink("Profil");
+  }, []);
 
-  let activeLink="hello"
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+  };
 
   return (
 

@@ -1,194 +1,71 @@
-'use client'
-import Image from "next/image"
+import { useLocale } from "next-intl"
 import Link from "next/link"
-import ReactStars from 'react-stars'
-import { IconArrowRight, IconArrowLeft ,IconMapPin} from '@tabler/icons-react';
-import { useState } from "react";
-
-
-const slides = [
-  "/image/hotels/hotels1.png",
-  "/image/hotels/hotels2.png",
-  "/image/hotels/hotels11.png",
-]
-
 
 function hotels() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  let [current, setCurrent] = useState(0);
-
-  let previousSlide = () => {
-    if (current === 0) setCurrent(slides.length - 1);
-    else setCurrent(current - 1);
-  };
-
-  let nextSlide = () => {
-    if (current === slides.length - 1) setCurrent(0);
-    else setCurrent(current + 1);
-  };
+  const locale = useLocale()
 
   return (
     <div className="mt-24 mx-10 h-full">
-      <h1 className="text-center font-semibold text-xl mb-4"> Hotels</h1>
-      <div className="items-center gap-4 justify-around grid grid-cols-1 md:grid-cols-2">
-        <div className="relative">
-          <div className="overflow-hidden relative">
-            <div className="flex transition ease-out duration-40"
-              style={{
-                transform: `translateX(-${current * 100}%)`,
-              }}>
-              {slides.map((s, index) => (
-                <Image width={650} height={550} key={index} src={s} alt={`slide-${index}`} />
-              ))}
-            </div>
-            <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10">
-              <button onClick={previousSlide} className="bg-black rounded-full p-2">
-                <IconArrowLeft stroke={2} />
-              </button>
+      <h1 className="text-center font-semibold text-xl mb-4"> The regulatory procedures and administrative documents for pilgrims for the Hajj
+      </h1>
+      <hr />
 
-              <button onClick={nextSlide} className="bg-black rounded-full p-2">
-                <IconArrowRight stroke={2} />
-              </button>
-            </div>
-            <div className="absolute bottom-2 py-4 flex justify-center gap-3 w-full">
-              {slides.map((s, i) => {
-                return (
-                  <div
-                    onClick={() => {
-                      setCurrent(i);
-                    }}
-                    key={"circle" + i}
-                    className={`rounded-full w-5 h-5 cursor-pointer  ${i == current ? "bg-white" : "bg-gray-400"
-                      }`}
-                  ></div>
-                );
-              })}
-            </div>
-          </div>
+      <main className="mt-6">
 
-          <div className="absolute left-6 bottom-12 text-white">
-            <p className="font-bold">Makkah Clock Royal Tower, A Fairmont Hotel.</p>
-            <p className="text-gray-300">King Abdul Aziz Endowment</p>
-            <ReactStars
-              edit={false}
-              value={4}
-              count={5}
-              size={24}
-              color2={'#ffd700'} />
-            <Link className="underline font-semibold" href={"/learnmorehotel"}>
-              Learn more
-            </Link>
-          </div>
-        </div>
-        <div>
-            <div className="mb-6 lg:max-w-full lg:flex">
-              <div
-                className="h-36 lg:h-40 lg:w-36 flex-none bg-cover rounded-t-l lg:rounded-t-l lg:rounded-l text-center overflow-hidden"
-                style={{ backgroundImage: 'url("/image/hotels/hotels3.png")' }}
-                title="hotel"
-              >
-              </div>
-              <div className="h-40 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-1">
-                  
-                  <div className="text-gray-900 font-bold">
-                  Makkah Clock Royal Tower, A Fairmont Hotel.            
-                      </div>
-                  <p className="text-gray-700 text-base">
-                  King Abdul Aziz Endowment
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="bg-black text-white p-1 rounded-lg">7,8</p>
-                  <p className="font-semibold underline">Excellent</p>
-                  <p className="text-gray-400">(133 reviews)</p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <IconMapPin stroke={2} />
-                  <p>5,5 miles to mecca</p>
-                </div>
-                <Link className="underline font-semibold" href={"/learnmorehotel"}>
-                Learn more
-              </Link>
-              </div>
-            </div>
+        <section id="step-1">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">Step 1:</span> Sign up on the platform:</p>
+          <p className="text-md"> Go to the <Link href={"/" + locale + "/signup"} className="text-blue-500 underline">Sign-Up Page</Link>. Fill in the required details to create your account. Verify your email address by clicking on the verification link sent to your email.</p>
+        </section>
 
-            <div className="mb-6 lg:max-w-full lg:flex">
-              <div
-                className="h-36 lg:h-40 lg:w-36 flex-none bg-cover rounded-t-l lg:rounded-t-l lg:rounded-l text-center overflow-hidden"
-                style={{ backgroundImage: 'url("/image/hotels/hotels6.png")' }}
-                title="hotel"
-              >
-              </div>
-              <div className="h-40 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400  rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-1">
-                  
-                  <div className="text-gray-900 font-bold">
-                  Makkah Clock Royal Tower, A Fairmont Hotel.            
-                      </div>
-                  <p className="text-gray-700 text-base">
-                  King Abdul Aziz Endowment
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="bg-black text-white p-1 rounded-lg">7,8</p>
-                  <p className="font-semibold underline">Excellent</p>
-                  <p className="text-gray-400">(133 reviews)</p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <IconMapPin stroke={2} />
-                  <p>5,5 miles to mecca</p>
-                </div>
-                <Link className="underline font-semibold" href={"/learnmorehotel"}>
-                Learn more
-              </Link>
-              </div>
-            </div>
+        <section id="step-2">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Step 2:</span> Register for Hajj:</p>
+          <p className="text-md"> - Log in to your account. Navigate to the Hajj registration section. Ensure you meet the necessary conditions for registration, which can be found on our <Link href={"/" +locale+ "#conditions-section"} className="text-blue-500 underline">Landing Page</Link>. <br />- Complete the Hajj registration form with accurate details. Submit your registration.</p>
+        </section>
 
-            <div className="mb-6 lg:max-w-full lg:flex">
-              <div
-                className="h-36 lg:h-40 lg:w-36 flex-none bg-cover rounded-t-l lg:rounded-t-l lg:rounded-l text-center overflow-hidden"
-                style={{ backgroundImage: 'url("/image/hotels/hotels4.png")' }}
-                title="hotel"
-              >
-              </div>
-              <div className="h-40 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-1">
-                  
-                  <div className="text-gray-900 font-bold">
-                  Makkah Clock Royal Tower, A Fairmont Hotel.            
-                      </div>
-                  <p className="text-gray-700 text-base">
-                  King Abdul Aziz Endowment
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="bg-black text-white p-1 rounded-lg">7,8</p>
-                  <p className="font-semibold underline">Excellent</p>
-                  <p className="text-gray-400">(133 reviews)</p>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <IconMapPin stroke={2} />
-                  <p>5,5 miles to mecca</p>
-                </div>
-                <Link className="underline font-semibold" href={"/learnmorehotel"}>
-                Learn more
-              </Link>
-              </div>
-            </div>
+        <section id="step-3">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Step 3:</span>  Wait for the Lottery Draw:</p>
+          <p className="text-md">- After submitting your registration, you will enter a lottery draw. Wait for the results of the draw. You will be notified via email if you are selected.</p>
+          <p className="text-md">- If you are not selected in the draw, you will need to reapply next year. Keep an eye on the registration dates for the next year.</p>
+        </section>
 
-            
 
-            
-            <div className="text-right ">
-              <Link className="underline font-semibold " href={"/allhotels"}>
-                  See all
-                </Link>
-            </div>
-            
-          
-        </div>
-      </div>
+
+        <section id="step-4">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Step 4:</span>  If Selected - Medical Examination:</p>
+          <p className="text-md">If you are selected, you will move on to the next step. Visit a designated hospital for a medical examination. The doctor will assess your health and determine if you are fit for the pilgrimage. Wait for the decision from the doctor. If approved, you will proceed to the next step. If not, you will need to reapply next year.</p>
+        </section>
+
+
+        <section id="step-5">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Step 5:</span>  Payment of Hajj Tariff:</p>
+          <p className="text-md">If your medical examination is approved: <br />
+            1- Receiving the Certificate of Success from the Municipal or District Authorities <br className="mb-2" />
+            2- Then you need to go to a designated bank to pay the Hajj tariff. (Make sure to keep the Certificate as proof of your success).</p>
+        </section>
+
+        <section id="step-6">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Step 6:</span>  Flight and Room Reservations:</p>
+          <p className="text-md">After your payment is confirmed, you can proceed to book your flight and room: <br />
+            1- Select your preferred flight from your nearest wilaya (province) for yourself and any accompanying friends.
+            <br /> 2- Choose your accommodation and make the necessary reservations. <br />
+          3- Submit the reservation details and wait for confirmation of acceptance from your friends</p>
+        </section>
+
+
+
+        <section id="step-7">
+          <p className="my-2 font-semibold text-xl">
+            <span className="font-semibold underline text-xl">  Journey Information: </span>  </p>
+          <p className="text-md">Before you embark on your journey, visit our <Link  href={"/" + locale + "/journey"} className="text-blue-500 underline">Journey Page</Link> to find all the essential information you need to know about performing Hajj. This page includes details on travel, rituals, accommodations, and other important guidelines to ensure a smooth and spiritually fulfilling pilgrimage.</p>
+        </section>
+      </main>
     </div>
   )
 }

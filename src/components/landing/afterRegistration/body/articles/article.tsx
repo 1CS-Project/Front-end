@@ -15,7 +15,7 @@ type props={
 
 function Article({image,author,body,length,title,url}:props) {
     return ( 
-        <div className="rounded-md overflow-hidden max-w-[370px]">
+        <div className="rounded-md overflow-hidden max-w-[350px]">
             <Image alt="" src={image} width={400} height={200}/>
             <h1 className="my-3 font-medium text-xl">{title}</h1>
             <p className="text-sm">{body}</p>

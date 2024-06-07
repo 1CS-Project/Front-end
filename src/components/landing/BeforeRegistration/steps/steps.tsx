@@ -43,9 +43,8 @@ function Steps() {
             </div>
       
         <div data-aos="fade-left" >
-        <h1 className="font-semibold text-xl mb-3">Examination</h1>
-          <p className=''>In this step, pilgrims are guided through the process of scheduling and attending medical examinations to assess their physical fitness and readiness for the rigorous journey ahead.
-In this step, pilgrims are guided through the process of scheduling and attending medical examinations to assess their physical fitness and readiness for the rigorous journey ahead.</p>
+        <h1 className="font-semibold text-xl mb-3">{t("exam")}</h1>
+          <p className=''>{t("examinfo")}</p>
       
           
         </div>

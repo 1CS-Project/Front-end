@@ -20,11 +20,12 @@ async function Layout({ children }: { children: React.ReactNode }) {
   // }
   
   return (
-      <div>
+      <div className="flex flex-col h-screen w-full">
       <NextIntlClientProvider messages={pick(messages,"home")}>
         <Header user={user?.name as string}/>
       </NextIntlClientProvider>
         {children}
+        <div className="flex-1"></div>
         <Footer/>
       </div>
     

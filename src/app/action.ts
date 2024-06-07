@@ -368,3 +368,66 @@ export async function getVols(){
         return undefined;
     }
 }
+
+
+export type ClientFlight={
+    id: string,
+    aireport: string,
+    volStart: string,
+    volEnd: string,
+    hotel: string,
+    nationalId: string,
+    code: string
+}
+
+
+export async function getClientVol(){
+    const token=cookies().get("jwt")?.value;    
+    
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/getVolClient`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()
+
+        console.log(data);
+        
+        
+        return data as ClientFlight|undefined;
+
+    } catch (error) {
+        return undefined;
+    }
+}
+
+
+
+export async function getGroupData(code:string){
+    const token=cookies().get("jwt")?.value;    
+    
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/getGroupData/${code}`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()        
+        
+        return data as ClientFlight|undefined;
+
+    } catch (error) {
+        return undefined;
+    }
+}

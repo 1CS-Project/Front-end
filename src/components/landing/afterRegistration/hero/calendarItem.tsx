@@ -26,7 +26,7 @@ function CalendarItem({number,title,body,link,started,startDate,endDate,semiOpen
 
     useEffect(()=>{
         let interval:NodeJS.Timeout;
-        if (startDate&&endDate){
+        if (startDate&&endDate&&!semiOpen){
             interval=setInterval(()=>{
                 const current=new Date()
                 if (current>=startDate &&current<=endDate){

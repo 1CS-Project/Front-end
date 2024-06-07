@@ -1,4 +1,4 @@
-import { baladiaDidTirage, getTimer, isUserWinned } from "@/app/action";
+import { baladiaDidTirage, getTimer, getTirageRegData, isUserWinned } from "@/app/action";
 import Hilal from "../../common/icons/hilal";
 import Stars from "../../common/icons/stars";
 import ATimer from "./aTimer";
@@ -10,6 +10,9 @@ import { NextIntlClientProvider, useLocale } from "next-intl";
 
 async function Hero() {
 
+
+    const tirageData=await getTirageRegData();
+    const registedInTirage=tirageData?.data?true:false;
     const dates=await getTimer();
     const isWinner=await isUserWinned();
     const baladiaTirage=await baladiaDidTirage();
@@ -36,9 +39,9 @@ async function Hero() {
                 </div>
             </div>   
             <Calendar/>
-            <NextIntlClientProvider>
+            {!registedInTirage&&<NextIntlClientProvider>
                 <ATimer isWinner={isWinner?true:false} baladiaDidTirage={baladiaTirage?true:false} {...dates} />
-            </NextIntlClientProvider>
+            </NextIntlClientProvider>}
             
 
         </div>

@@ -14,14 +14,40 @@ async function Payment() {
           <li>- Certificat de qualification sanitaire.</li>
         </ul>
         <p className="font-semibold text-lg mt-4 ">2) After making the payment at the bank, wait for the results</p>
-        <div className="mt-4 flex gap-4 justify-center items-center ">
+        {/* <div className="mt-4 flex gap-4 justify-center items-center ">
             <button disabled={!payment || payment.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
               Failed
             </button>
             <button disabled={!payment || payment.status==="rejected"}  className="w-[25%] flex  pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#13A10E] px-4 py-2 text-white font-medium rounded-lg">
               Success
             </button>
-        </div>
+        </div> */}
+         <div className="p-4">
+                    <h1 className="text-xl font-medium">Your result:</h1>
+                    <div className="mt-4 flex gap-4 justify-center items-center ">
+                      <button disabled={!payment?.data || payment.data?.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
+                        Failed
+                      </button>
+                      <button disabled={!payment?.data || payment.data?.status==="rejected"}  className="w-[25%] flex  pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#13A10E] px-4 py-2 text-white font-medium rounded-lg">
+                        Success
+                      </button>
+                    </div>
+            </div>
+            {payment?.gender==="female"&&
+                <div className="p-4">
+                  <h1 className="text-xl font-medium">Your Mahrem result:</h1>
+                  <div className="mt-4 flex gap-4 justify-center items-center ">
+                    <button disabled={!payment.dataMahrem || payment.dataMahrem?.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
+                      Failed
+                    </button>
+                    <button disabled={!payment.dataMahrem || payment.dataMahrem?.status==="rejected"}  className="w-[25%] flex  pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#13A10E] px-4 py-2 text-white font-medium rounded-lg">
+                      Success
+                    </button>
+                  </div>
+          </div>}
+          {payment?.gender==="female"&&(!payment.data || !payment.dataMahrem)&&
+                  <h1 className="text-center text-xl font-medium mt-4 text-red-600">Both must be accepeted so you can move to the next step</h1>
+                }
       </div>
       <div>
         <Image

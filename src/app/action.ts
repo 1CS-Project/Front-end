@@ -319,8 +319,12 @@ export async function getCandidatPaymentStatus(){
             return undefined;
         }
 
-        let data=await re.json()
-        return data.data as paymentStatus|undefined;
+        let d=await re.json()
+        const gender=d.gender as "male"|"female"
+        const data=d.data as examination|undefined;
+        const dataMahrem=d.dataMahrem as examination|undefined
+        
+        return {gender,data,dataMahrem};
 
     } catch (error) {
         return undefined;

@@ -15,11 +15,18 @@ async function Calendar() {
          passedExamination=passedExamination&&examinationStatus.dataMahrem?.status==="accepted"
       }
    }
-
-   console.log(examinationStatus);
    
+   const payed=(await getCandidatPaymentStatus());
 
-   const payed=(await getCandidatPaymentStatus())?.status==="accepted";
+   let passedPayment=false;
+   if (payed){
+      // examinationStatus&&(examinationStatus.gender==="male"?examinationStatus.data?.status==="accepted":examinationStatus.data?.status==="accepted"&&examinationStatus?.dataMahrem?.status==="accepted")
+      passedPayment=payed.data?.status==="accepted";
+      if (payed.gender==="female"){
+         passedPayment=passedPayment&&payed.dataMahrem?.status==="accepted"
+      }
+   }   
+
    
 
 
@@ -46,14 +53,14 @@ async function Calendar() {
                />
                <CalendarItem
                   number="03"
-                  started={passedExamination&&!payed}
-                  semiOpen={payed}
+                  started={passedExamination&&!passedPayment}
+                  semiOpen={passedPayment}
                   link="/payment"
                   title="Pay your bills"
                   body="One of the five pillars of Islam central to Muslim belief, Hajj is the pilgrimage to Mecca that "
                />
                <CalendarItem
-                  started={payed}
+                  started={passedPayment}
                   number="04"
                   link="/reserv"
                   title="Reservation"

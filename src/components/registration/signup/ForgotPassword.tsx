@@ -52,7 +52,7 @@ function ForgetPassword() {
         </div>
         {!emailSent &&
           <div className="mt-5">
-            <form id='resetPassForm' onSubmit={submit}>
+            {/* <form id='resetPassForm' onSubmit={submit}> */}
             <form id='resetPassForm' onSubmit={submit}>
               <div className="grid gap-y-4">
                 <div>

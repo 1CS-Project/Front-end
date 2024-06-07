@@ -163,3 +163,166 @@ export async function getTimer(){
         throw Error("Please try again later")
     }
 }
+
+
+
+// export async function checkUserWin(){
+//     const token=cookies().get("jwt")?.value;    
+
+//     try {
+//         let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/user-registration`,{
+//             headers:{
+//                 "Authorization":`Bearer ${token}`   
+//             }
+//         })
+//         if (!re.ok){
+//             return undefined;
+//         }
+//         let data=await re.json()
+//         return data.data as {data:TirageDataT};
+
+//     } catch (error) {
+//         return undefined;
+//     }
+// }
+
+
+export async function baladiaDidTirage(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/baladiaDidTirage`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        if (!re.ok){
+            return undefined;
+        }
+        let data=await re.json()
+        return data as {data:Record<string,any>};
+
+    } catch (error) {
+        return undefined;
+    }
+}
+type UserWinned={
+    nationalIdNumber: string,
+    date_of_winner: string,
+    baladia: string
+}
+
+
+export async function isUserWinned(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/tirage/user-win`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()
+        return data.data as UserWinned;
+
+    } catch (error) {
+        return undefined;
+    }
+}
+
+type Hospital={
+    id:string,
+    Wilaya:string 
+    nameCenter:string,
+    emailCenter:string,
+    dateDebut:string,
+    dateFin:string,
+    BaladiaLocation:string,
+    
+}
+export async function getBaladiaCentres(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/examination/baladiaCentres`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()
+        return data.data as Hospital[];
+
+    } catch (error) {
+        return undefined;
+    }
+}
+
+
+
+type examination={
+    status:"accepted"|"rejected",
+    note?:string
+}
+
+export async function getCandidatExaminationStatus(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/examination/clientExaminateStatus`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+
+        if (!re.ok){
+            return undefined;
+        }
+
+        let d=await re.json()
+        const gender=d.gender as "male"|"female"
+        const data=d.data as examination|undefined;
+        const dataMahrem=d.dataMahrem as examination|undefined
+        
+        return {gender,data,dataMahrem};
+
+    } catch (error) {
+        return undefined;
+    }
+}
+
+
+type paymentStatus={
+    status:"accepted"|"rejected",
+}
+
+export async function getCandidatPaymentStatus(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/dashboard/getClientPaymentStatus`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()
+        return data.data as paymentStatus|undefined;
+
+    } catch (error) {
+        return undefined;
+    }
+}

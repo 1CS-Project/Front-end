@@ -1,6 +1,9 @@
+import { getCandidatPaymentStatus } from "@/app/action";
 import Image from "next/image"
 
-function payment() {
+async function Payment() {
+  const payment=await getCandidatPaymentStatus();
+
   return (
     <div className="flex justify-between items-center">
       <div>
@@ -11,13 +14,13 @@ function payment() {
           <li>- Certificat de qualification sanitaire.</li>
         </ul>
         <p className="font-semibold text-lg mt-4 ">2) After making the payment at the bank, wait for the results</p>
-        <div className="mt-4 flex gap-4 justify-center items-center">
-          <button type="submit" className=" w-[25%] flex justify-center items-center gap-1 bg-gray-300 px-4 py-2 text-white font-medium rounded-lg">
-          Not-paid
-          </button>
-          <button type="submit" className="w-[25%] flex justify-center items-center gap-1 bg-[#13A10E] px-4 py-2 text-white font-medium rounded-lg">
-          Paid
-          </button>
+        <div className="mt-4 flex gap-4 justify-center items-center ">
+            <button disabled={!payment || payment.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
+              Failed
+            </button>
+            <button disabled={!payment || payment.status==="rejected"}  className="w-[25%] flex  pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#13A10E] px-4 py-2 text-white font-medium rounded-lg">
+              Success
+            </button>
         </div>
       </div>
       <div>
@@ -33,4 +36,4 @@ function payment() {
   )
 }
 
-export default payment
+export default Payment;

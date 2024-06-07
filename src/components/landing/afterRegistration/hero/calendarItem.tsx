@@ -12,20 +12,24 @@ type props={
     number:string,
     title:string,
     body:string,
-    startDate?:Date
+    startDate?:Date,
+    endDate?:Date,
+    started?:boolean,
     link:string,
+    semiOpen?:boolean
 }
 
 
-function CalendarItem({number,title,body,link,startDate}:props) {
+function CalendarItem({number,title,body,link,started,startDate,endDate,semiOpen}:props) {
     const local=useLocale();
-    const [passed,setPassed]=useState(startDate?new Date() >startDate:false);
+    const [passed,setPassed]=useState(started);
 
     useEffect(()=>{
         let interval:NodeJS.Timeout;
-        if (startDate){
+        if (startDate&&endDate){
             interval=setInterval(()=>{
-                if (new Date()>startDate){
+                const current=new Date()
+                if (current>=startDate &&current<=endDate){
                     setPassed(true);
                     clearInterval(interval);
                 }
@@ -36,8 +40,8 @@ function CalendarItem({number,title,body,link,startDate}:props) {
     
     
     return ( 
-        <Link href={local+link} className={`w-[130px] ${passed?"":"pointer-events-none"}`}>
-            <div className={passed?"opacity-0":""}>
+        <Link href={local+link} className={`w-[130px] ${(passed||semiOpen)?"":"pointer-events-none"}`}>
+            <div className={(passed||semiOpen)?"opacity-0":""}>
                 <Locked/>
             </div>
             <h1 className={"font-Abril font-normal text-7xl px-5 border-b border-black pb-2 "+(passed?" bg-gradient-to-bl opacity-[0.88] from-[#B49169] via-[#D6B153] via-45% to-[#B49169] inline-block text-transparent bg-clip-text":"text-black/20 pointer-events-none")}>

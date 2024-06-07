@@ -1,4 +1,4 @@
-import { getCandidatExaminationStatus, getCandidatPaymentStatus, getTimer, isUserWinned } from "@/app/action";
+import { getCandidatExaminationStatus, getCandidatPaymentStatus, getTimer, getTirageRegData, isUserWinned } from "@/app/action";
 import CalendarItem from "./calendarItem";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -7,6 +7,8 @@ async function Calendar() {
    const hadjRegEnd=(await getTimer()).endDate;
    const isWinner=(await isUserWinned())?true:false;
    const examinationStatus=(await getCandidatExaminationStatus());
+   const tirageData=await getTirageRegData();
+   const registedInTirage=tirageData?.data?true:false;
    let passedExamination=false;
    if (examinationStatus){
       // examinationStatus&&(examinationStatus.gender==="male"?examinationStatus.data?.status==="accepted":examinationStatus.data?.status==="accepted"&&examinationStatus?.dataMahrem?.status==="accepted")
@@ -17,7 +19,6 @@ async function Calendar() {
    }
    
    const payed=(await getCandidatPaymentStatus());
-
    let passedPayment=false;
    if (payed){
       // examinationStatus&&(examinationStatus.gender==="male"?examinationStatus.data?.status==="accepted":examinationStatus.data?.status==="accepted"&&examinationStatus?.dataMahrem?.status==="accepted")
@@ -29,6 +30,8 @@ async function Calendar() {
 
    
 
+   
+
 
    
     return ( 
@@ -36,10 +39,11 @@ async function Calendar() {
             <NextIntlClientProvider>
                <CalendarItem
                   number="01"
+                  semiOpen={registedInTirage}
                   startDate={hadjRegStart}
                   endDate={hadjRegEnd}
-                  started={hadjRegStart?new Date() >=hadjRegStart && new Date() <=hadjRegEnd:false}
-                  link="/tirage_reg"
+                  started={!registedInTirage&&(hadjRegStart?new Date() >=hadjRegStart && new Date() <=hadjRegEnd:false)}
+                  link={registedInTirage?"/profil/registration":"/tirage_reg"}
                   title="Wait until we open the registration"
                   body="One of the five pillars of Islam central to Muslim belief, Hajj is the pilgrimage to Mecca that"
                />
@@ -62,7 +66,7 @@ async function Calendar() {
                <CalendarItem
                   started={passedPayment}
                   number="04"
-                  link="/reserv"
+                  link="/reservation"
                   title="Reservation"
                   body="One of the five pillars of Islam central to Muslim belief, Hajj is the pilgrimage to Mecca that"
                />

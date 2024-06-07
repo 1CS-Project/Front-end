@@ -330,3 +330,41 @@ export async function getCandidatPaymentStatus(){
         return undefined;
     }
 }
+
+export type Flight={
+
+    id:number,
+    AireportLocatoin:string,
+    wilayaSelect: string,
+    VolStart: string,
+    VolEnd: string,
+    PlaceOfVol: string,
+    DirectionVol: string,
+    ListHotel: string,
+    ListAvailibleRoom: string,
+    ListMaxPosOfRoom: string
+}
+
+
+export async function getVols(){
+    const token=cookies().get("jwt")?.value;    
+
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/AficheVolPourClientBaladya`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json()
+        
+        return data.data as Flight[];
+
+    } catch (error) {
+        return undefined;
+    }
+}

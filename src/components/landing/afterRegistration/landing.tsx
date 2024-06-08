@@ -1,7 +1,4 @@
-import { isUserWinned } from "@/app/action";
-import Header from "../common/header";
 import Body from "./body/body";
-import Footer from "./footer/footer";
 import Hero from "./hero/hero";
 
 type props={

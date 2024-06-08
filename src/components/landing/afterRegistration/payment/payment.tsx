@@ -1,7 +1,8 @@
-import { getCandidatPaymentStatus } from "@/app/action";
+import { getBaladyaBanks, getCandidatPaymentStatus } from "@/app/action";
 import Image from "next/image"
 
 async function Payment() {
+  const banks=await getBaladyaBanks();
   const payment=await getCandidatPaymentStatus();
 
   return (
@@ -22,8 +23,24 @@ async function Payment() {
               Success
             </button>
         </div> */}
+        {banks&&<div>
+          <h1 className="text-xl my-2 font-medium">Banks:</h1>
+          {banks.map((e)=>(
+            <div  key={e.id} className="px-4 space-y-2">
+              <h1 className="font-semibold">
+                {e.BanqueName}
+              </h1>
+              <h1 className="">
+                <span className="font-semibold">From:</span> {new Date(e.dateDebut).toDateString()}
+              </h1>
+              <h1>
+                <span className="font-semibold">To:</span> {new Date(e.dateFin).toDateString()}
+              </h1>
+            </div>
+          ))}
+        </div>}
+          <h1 className="text-xl my-2 font-medium">Your result:</h1>
          <div className="p-4">
-                    <h1 className="text-xl font-medium">Your result:</h1>
                     <div className="mt-4 flex gap-4 justify-center items-center ">
                       <button disabled={!payment?.data || payment.data?.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
                         Failed
@@ -34,8 +51,9 @@ async function Payment() {
                     </div>
             </div>
             {payment?.gender==="female"&&
-                <div className="p-4">
+            <>
                   <h1 className="text-xl font-medium">Your Mahrem result:</h1>
+                <div className="p-4">
                   <div className="mt-4 flex gap-4 justify-center items-center ">
                     <button disabled={!payment.dataMahrem || payment.dataMahrem?.status==="accepted"}  className=" w-[25%] flex pointer-events-none disabled:bg-slate-400 justify-center items-center gap-1 bg-[#a12e0edb] px-4 py-2 text-white font-medium rounded-lg">
                       Failed
@@ -44,7 +62,8 @@ async function Payment() {
                       Success
                     </button>
                   </div>
-          </div>}
+          </div>
+            </>}
           {payment?.gender==="female"&&(!payment.data || !payment.dataMahrem)&&
                   <h1 className="text-center text-xl font-medium mt-4 text-red-600">Both must be accepeted so you can move to the next step</h1>
                 }

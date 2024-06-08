@@ -6,12 +6,12 @@ import Hero from '@/components/landing/BeforeRegistration/hero/hero';
 import Steps from '@/components/landing/BeforeRegistration/steps/steps';
 import { NextIntlClientProvider } from 'next-intl';
 import {pick} from "lodash";
-import { getToken, getMinUser, getTimer } from '@/app/action';
+import {  getMinUser, getTimer } from '@/app/action';
 import { getMessages } from 'next-intl/server';
 import Landing from '@/components/landing/afterRegistration/landing';
-import Examination from '@/components/landing/afterRegistration/examination/examination';
-import Payment from '@/components/landing/afterRegistration/payment/payment';
-import Resarvation from '@/components/landing/afterRegistration/resarvation/resarvation';
+// import Examination from '@/components/landing/afterRegistration/examination/examination';
+// import Payment from '@/components/landing/afterRegistration/payment/payment';
+// import Resarvation from '@/components/landing/afterRegistration/resarvation/resarvation';
 
 export default async function Home() {
     const messages = await getMessages();

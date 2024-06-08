@@ -479,7 +479,7 @@ function etapehaj() {
           </div>
 
           <p className="font-semibold text-center mt-4">Muzdalifah :</p>
-          <p className="text-center mt-2">After sunset, pilgrims leave Arafat for Muzdalifah, where they spend the night outdoors, collecting pebbles for the next day's ritual.</p>
+          <p className="text-center mt-2">After sunset, pilgrims leave Arafat for Muzdalifah, where they spend the night outdoors, collecting pebbles for the next day&apos;s ritual.</p>
 
         </div>
         <div className={`w-[80%] bg-gray-100 rounded-md m-auto p-10 ${clickedCard === 8 ? 'visible' : 'hidden'}`}>
@@ -579,7 +579,7 @@ function etapehaj() {
           </div>
 
           <p className="font-semibold text-center mt-4">Tawaf Al-Ifada :</p>
-          <p className="text-center mt-2">Tawaf al-Ifadah is a critical ritual during Hajj performed after pilgrims spend the night in Muzdalifah and stone the Jamarat. It involves circling the Kaaba seven times in a counterclockwise direction, signifying devotion and the unity of Muslims worldwide. This ritual represents the climax of the Hajj pilgrimage, symbolizing the pilgrim's renewed spiritual state and closeness to Allah.</p>
+          <p className="text-center mt-2">Tawaf al-Ifadah is a critical ritual during Hajj performed after pilgrims spend the night in Muzdalifah and stone the Jamarat. It involves circling the Kaaba seven times in a counterclockwise direction, signifying devotion and the unity of Muslims worldwide. This ritual represents the climax of the Hajj pilgrimage, symbolizing the pilgrim&apos;s renewed spiritual state and closeness to Allah.</p>
 
         </div>
 

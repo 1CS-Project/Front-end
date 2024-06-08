@@ -29,10 +29,8 @@ function conditions() {
     "Not have performed Hajj during the past seven (7) years",
     "Be at least nineteen (19) years old on the day of registration",
     "Be registered in one municipality without any other",
-    "Mention the number of previous registrations.",
-    "Mention the number of previous registrations.",
-    "Mention the number of previous registrations.",
-    "Mention the number of previous registrations."
+  
+
   ];
 
   // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -1,19 +1,23 @@
+import { getClientVol } from "@/app/action";
+import Or from "@/components/landing/afterRegistration/reservation/Or";
+import ReservationHeader from "@/components/landing/afterRegistration/reservation/reservationHeader";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 
 async function Layout({ children }: { children: React.ReactNode }) {
+    const volData=await getClientVol();
+    const locale =useLocale();
     return ( 
         <div className="px-36 mt-20 ">
-            <div className="h-fit text-center">
-                <h1 className="py-1 text-lg font-medium ">Join group</h1>
-                <input className="h-10 rounded-l-xl" type="text" name="" id="" />
-                <button className="text-white font-medium bg-gradient-to-r from-buttonleft to-buttonright  h-10 px-2 rounded-r-full">Join</button>
-            </div>
-            <h1 className="text-center py-10 text-xl font-medium">OR</h1>
-            <div className=" flex justify-between">
-                <div>
+           {!volData&&<>
+            <ReservationHeader/>
+            <Or locale={locale}/>
+           </>}
+            <div className={" flex justify-between "+(volData?"pt-10":"")}>
+                <div className={volData&&"w-full"}>
                     {children}
                 </div>
-                <div>
+                <div className="min-w-[300px]">
                     <Image src="/image/plane.png" alt="plane" width={300} height={600}/>
                 </div>
             </div>

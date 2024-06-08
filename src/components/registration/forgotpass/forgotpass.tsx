@@ -4,7 +4,7 @@ import { useLocale } from "next-intl";
 import { redirect, useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-function forgotpass() {
+function ForgotPass() {
   let params=useSearchParams();
   let token=params.get("access_token");
 
@@ -124,4 +124,4 @@ function forgotpass() {
   )
 }
 
-export default forgotpass
+export default ForgotPass;

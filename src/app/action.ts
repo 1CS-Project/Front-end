@@ -431,3 +431,37 @@ export async function getGroupData(code:string){
         return undefined;
     }
 }
+
+type bank={
+    id:string
+    BanqueName: string,
+    dateDebut: string,
+    dateFin: string,
+    // BaladiaLocation: string
+}
+
+export async function getBaladyaBanks(){
+    
+    const token=cookies().get("jwt")?.value;    
+    
+    try {
+        let re=await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/getBaladyaBanks`,{
+            headers:{
+                "Authorization":`Bearer ${token}`   
+            }
+        })
+        
+        if (!re.ok){
+            return undefined;
+        }
+
+        let data=await re.json() 
+        
+        console.log(data);
+        
+        return data.data as bank[]|undefined;
+
+    } catch (error) {
+        return undefined;
+    }
+}

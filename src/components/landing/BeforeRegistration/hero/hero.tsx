@@ -16,7 +16,7 @@ type props={
 }
 
 
-function hero({startDate,endDate,hadjStart}:props) {
+function Hero({startDate,endDate,hadjStart}:props) {
 
 
   const notDefinedYet=!hadjStart||!startDate||!endDate;
@@ -119,4 +119,4 @@ function hero({startDate,endDate,hadjStart}:props) {
   )
 }
 
-export default hero
+export default Hero;
